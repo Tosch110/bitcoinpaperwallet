@@ -3,28 +3,31 @@
 <head>
 	<title>Bitcoin Paper Wallet Generator</title>
 	<!--
-    
+
+		https://paperwallet.lisk.io
+		forked from
     generate-wallet.html (from https://bitcoinpaperwallet.com)
-    
-    Contact: Canton Becker / canton@gmail.com / www.cantonbecker.com
-    
+
+		Contact Lisk Paperwallet: Tobias Schwarz
+    Contact Bitcoin and others: Canton Becker / canton@gmail.com / www.cantonbecker.com
+
     generate-wallet.html is always distributed with a PGP signature "generate-wallet.html.sig" which you
     can use to validate the integrity and authorship of this file like so:
-    
+
     gpg --recv-key 36E1D9B6
-    gpg --verify --with-fingerprint generate-wallet.html.sig generate-wallet.html    
-    
+    gpg --verify --with-fingerprint generate-wallet.html.sig generate-wallet.html
+
 	The bitcoinpaperwallet.com folding wallet design may not be used for commercial use
     without permission. The design of the bitcoin hologram sticker used to seal these wallets
     is copyrighted. As a courtesy, please do not modify this software in such a way that the
     links to purchase hologram stickers and wallet making supplies are removed or pointed elsewhere.
-     
+
     This software (HTML and JavaScript) is ©Copyright 2016 Canton Becker and bitaddress.org
     and licensed under the MIT license.
-    
+
     Special thanks to pointbiz/bitaddress.org, Artiom Chilaru/flexlabs.org, and Martin Ankerl
     for significant contributions to this software.
-    
+
     ****************************************************************************************
     ****************************************************************************************
     * Contributions to support the bitcoinpaperwallet.com developers are extremely welcome.
@@ -43,9 +46,9 @@
 
 	Notice of Copyrights and Licenses:
 	***********************************
-	The bitaddress.org project, software and embedded resources are copyright bitaddress.org. 
+	The bitaddress.org project, software and embedded resources are copyright bitaddress.org.
 
-	Portions of the all-in-one HTML document contain JavaScript codes that are the copyrights of others. 
+	Portions of the all-in-one HTML document contain JavaScript codes that are the copyrights of others.
 	The individual copyrights are included throughout the document along with their licenses.
 	Included JavaScript libraries are separated with HTML script tags.
 
@@ -63,22 +66,22 @@
 	ninja.(*)				MIT License				// from bitaddress.org
 	parser.setUA			GPLv2 & MIT				// Browser User Agent detection
 	jsqrcode				Apache License, 2.0		// QR Code scanning from webcam
-    
+
 	This HTML file and the graphics required to make it work are available under The MIT License (MIT)
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
-	associated documentation files (the "Software"), to deal in the Software without restriction, including 
-	without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
-	sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject 
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+	associated documentation files (the "Software"), to deal in the Software without restriction, including
+	without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+	sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject
 	to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in all copies or substantial 
+	The above copyright notice and this permission notice shall be included in all copies or substantial
 	portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
-	WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+	WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 	GitHub Repository: https://github.com/cantonbecker/bitcoinpaperwallet
@@ -93,7 +96,14 @@ function setCryptoCurrency(toThis) {
 	window.currencyName = toThis;
 	switch (toThis)
 	{
-	case 'Bitcoin':	
+	case 'Lisk':
+	  window.networkVersion = 0x00;
+	  window.privateKeyPrefix = 0x88;
+	  window.WIFPrefix = '5L';
+	  window.compressedWIFPrefix = 'w';
+		document.title = 'Lisk paper wallet';
+	  break;
+	case 'Bitcoin':
 	  window.networkVersion = 0x00;
 	  window.privateKeyPrefix = 0x80;
 	  window.WIFPrefix = '5';
@@ -110,7 +120,7 @@ function setCryptoCurrency(toThis) {
 		window.networkVersion = 0x1e;
 		window.privateKeyPrefix = 0x9e;
 		window.WIFPrefix = '6';
-		window.compressedWIFPrefix = 'Q';	
+		window.compressedWIFPrefix = 'Q';
 		document.title = 'Dogecoin paper wallet generator. Wow! Many coin. Such shiny.';
 		break;
 	case 'Testnet':
@@ -122,7 +132,7 @@ function setCryptoCurrency(toThis) {
 		break;
 	default:
 	  alert ('Invalid cryptocurrency "' + toThis + '" at initialization. Defaulting to Bitcoin.');
-	  setCryptoCurrency('Bitcoin');		
+	  setCryptoCurrency('Lisk');
 	} // eof switch
 	return (true);
 }
@@ -147,68 +157,71 @@ switch (myDesign) {
 	case 'alt-testnet':
 		setCryptoCurrency('Testnet');
 		break;
+		case 'bitcoin':
+			setCryptoCurrency('Bitcoin');
+			break;
 	default:
-	setCryptoCurrency('Bitcoin');
+	setCryptoCurrency('Lisk');
 	window.suppliesURL = 'https://bitcoinpaperwallet.com/#purchase'; // remove special currency flag
-} 
+}
 
 </script>
 
 	<script type="text/javascript">
 // Array.prototype.map function is in the public domain.
-// Production steps of ECMA-262, Edition 5, 15.4.4.19  
-// Reference: http://es5.github.com/#x15.4.4.19  
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.com/#x15.4.4.19
 if (!Array.prototype.map) {
 	Array.prototype.map = function (callback, thisArg) {
 		var T, A, k;
 		if (this == null) {
 			throw new TypeError(" this is null or not defined");
 		}
-		// 1. Let O be the result of calling ToObject passing the |this| value as the argument.  
+		// 1. Let O be the result of calling ToObject passing the |this| value as the argument.
 		var O = Object(this);
-		// 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".  
-		// 3. Let len be ToUint32(lenValue).  
+		// 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
+		// 3. Let len be ToUint32(lenValue).
 		var len = O.length >>> 0;
-		// 4. If IsCallable(callback) is false, throw a TypeError exception.  
-		// See: http://es5.github.com/#x9.11  
+		// 4. If IsCallable(callback) is false, throw a TypeError exception.
+		// See: http://es5.github.com/#x9.11
 		if ({}.toString.call(callback) != "[object Function]") {
 			throw new TypeError(callback + " is not a function");
 		}
-		// 5. If thisArg was supplied, let T be thisArg; else let T be undefined.  
+		// 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
 		if (thisArg) {
 			T = thisArg;
 		}
-		// 6. Let A be a new array created as if by the expression new Array(len) where Array is  
-		// the standard built-in constructor with that name and len is the value of len.  
+		// 6. Let A be a new array created as if by the expression new Array(len) where Array is
+		// the standard built-in constructor with that name and len is the value of len.
 		A = new Array(len);
-		// 7. Let k be 0  
+		// 7. Let k be 0
 		k = 0;
-		// 8. Repeat, while k < len  
+		// 8. Repeat, while k < len
 		while (k < len) {
 			var kValue, mappedValue;
-			// a. Let Pk be ToString(k).  
-			//   This is implicit for LHS operands of the in operator  
-			// b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.  
-			//   This step can be combined with c  
-			// c. If kPresent is true, then  
+			// a. Let Pk be ToString(k).
+			//   This is implicit for LHS operands of the in operator
+			// b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
+			//   This step can be combined with c
+			// c. If kPresent is true, then
 			if (k in O) {
-				// i. Let kValue be the result of calling the Get internal method of O with argument Pk.  
+				// i. Let kValue be the result of calling the Get internal method of O with argument Pk.
 				kValue = O[k];
-				// ii. Let mappedValue be the result of calling the Call internal method of callback  
-				// with T as the this value and argument list containing kValue, k, and O.  
+				// ii. Let mappedValue be the result of calling the Call internal method of callback
+				// with T as the this value and argument list containing kValue, k, and O.
 				mappedValue = callback.call(T, kValue, k, O);
-				// iii. Call the DefineOwnProperty internal method of A with arguments  
-				// Pk, Property Descriptor {Value: mappedValue, Writable: true, Enumerable: true, Configurable: true},  
-				// and false.  
-				// In browsers that support Object.defineProperty, use the following:  
-				// Object.defineProperty(A, Pk, { value: mappedValue, writable: true, enumerable: true, configurable: true });  
-				// For best browser support, use the following:  
+				// iii. Call the DefineOwnProperty internal method of A with arguments
+				// Pk, Property Descriptor {Value: mappedValue, Writable: true, Enumerable: true, Configurable: true},
+				// and false.
+				// In browsers that support Object.defineProperty, use the following:
+				// Object.defineProperty(A, Pk, { value: mappedValue, writable: true, enumerable: true, configurable: true });
+				// For best browser support, use the following:
 				A[k] = mappedValue;
 			}
-			// d. Increase k by 1.  
+			// d. Increase k by 1.
 			k++;
 		}
-		// 9. return A  
+		// 9. return A
 		return A;
 	};
 }
@@ -362,7 +375,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 		};
 
 	})();
-}	
+}
 	</script>
 	<script type="text/javascript">
 /*!
@@ -499,7 +512,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 
 	SHA256._digestsize = 32;
 
-})();	
+})();
 	</script>
 	<script type="text/javascript">
 /*!
@@ -555,7 +568,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 
 	};
 
-})(); 
+})();
 	</script>
 	<script type="text/javascript">
 /*!
@@ -707,7 +720,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 			// Allow mode to override options
 			if (mode.fixOptions) mode.fixOptions(options);
 
-			var 
+			var
 
 			// Convert to bytes if message is a string
 		m = (
@@ -748,7 +761,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 			// Allow mode to override options
 			if (mode.fixOptions) mode.fixOptions(options);
 
-			var 
+			var
 
 			// Convert to bytes if ciphertext is a string
 		c = (
@@ -1190,9 +1203,9 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 
 	/**
 	* Electronic Code Book mode.
-	* 
+	*
 	* ECB applies the cipher directly against each block of the input.
-	* 
+	*
 	* ECB does not require an initialization vector.
 	*/
 	var ECB = C_mode.ECB = function () {
@@ -1227,7 +1240,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 
 	/**
 	* Cipher block chaining
-	* 
+	*
 	* The first block is XORed with the IV. Subsequent blocks are XOR with the
 	* previous cipher output.
 	*/
@@ -1281,11 +1294,11 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 
 	/**
 	* Cipher feed back
-	* 
+	*
 	* The cipher output is XORed with the plain text to produce the cipher output,
 	* which is then fed back into the cipher to produce a bit pattern to XOR the
 	* next block with.
-	* 
+	*
 	* This is a stream cipher mode and does not require padding.
 	*/
 	var CFB = C_mode.CFB = function () {
@@ -1333,10 +1346,10 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 
 	/**
 	* Output feed back
-	* 
+	*
 	* The cipher repeatedly encrypts its own output. The output is XORed with the
 	* plain text to produce the cipher text.
-	* 
+	*
 	* This is a stream cipher mode and does not require padding.
 	*/
 	var OFB = C_mode.OFB = function () {
@@ -1592,11 +1605,11 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 	<script type="text/javascript">
 /*!
 * Random number generator with ArcFour PRNG
-* 
+*
 * NOTE: For best results, put code like
 * <body onclick='SecureRandom.seedTime();' onkeypress='SecureRandom.seedTime();'>
 * in your main HTML document.
-* 
+*
 * Copyright Tom Wu, bitaddress.org  BSD License.
 * http://www-cs-students.stanford.edu/~tjw/jsbn/LICENSE
 */
@@ -1783,7 +1796,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 * Basic Javascript Elliptic Curve implementation
 * Ported loosely from BouncyCastle's Java EC code
 * Only Fp curves implemented for now
-* 
+*
 * Copyright Tom Wu, bitaddress.org  BSD License.
 * http://www-cs-students.stanford.edu/~tjw/jsbn/LICENSE
 */
@@ -1844,7 +1857,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 	/**
 	* return a sqrt root - the routine verifies that the calculation
 	* returns the right value - if none exists it returns null.
-	* 
+	*
 	* Copyright (c) 2000 - 2011 The Legion Of The Bouncy Castle (http://www.bouncycastle.org)
 	* Ported to JavaScript by bitaddress.org
 	*/
@@ -2133,7 +2146,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 		var len = 32; // integerToBytes will zero pad if integer is less than 32 bytes. 32 bytes length is required by the Bitcoin protocol.
 		var enc = ec.integerToBytes(x, len);
 
-		// when compressed prepend byte depending if y point is even or odd 
+		// when compressed prepend byte depending if y point is even or odd
 		if (compressed) {
 			if (y.isEven()) {
 				enc.unshift(0x02);
@@ -2451,7 +2464,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 	<script type="text/javascript">
 /*!
 * Basic JavaScript BN library - subset useful for RSA encryption. v1.3
-* 
+*
 * Copyright (c) 2005  Tom Wu
 * All Rights Reserved.
 * BSD License
@@ -3732,7 +3745,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 // Licensed under the MIT license:
 //   http://www.opensource.org/licenses/mit-license.php
 //
-// The word "QR Code" is registered trademark of 
+// The word "QR Code" is registered trademark of
 // DENSO WAVE INCORPORATED
 //   http://www.denso-wave.com/qrcode/faqpatent-e.html
 //
@@ -3946,7 +3959,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 			var data = (this.errorCorrectLevel << 3) | maskPattern;
 			var bits = QRCode.Util.getBCHTypeInfo(data);
 
-			// vertical		
+			// vertical
 			for (var i = 0; i < 15; i++) {
 
 				var mod = (!test && ((bits >> i) & 1) == 1);
@@ -4629,7 +4642,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 	[2, 35, 17],
 	[2, 35, 13],
 
-	// 4		
+	// 4
 	[1, 100, 80],
 	[2, 50, 32],
 	[2, 50, 24],
@@ -4647,7 +4660,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 	[4, 43, 19],
 	[4, 43, 15],
 
-	// 7		
+	// 7
 	[2, 98, 78],
 	[4, 49, 31],
 	[2, 32, 14, 4, 33, 15],
@@ -4665,7 +4678,7 @@ if (typeof Crypto == "undefined" || !Crypto.util) {
 	[4, 36, 16, 4, 37, 17],
 	[4, 36, 12, 4, 37, 13],
 
-	// 10		
+	// 10
 	[2, 86, 68, 2, 87, 69],
 	[4, 69, 43, 1, 70, 44],
 	[6, 43, 19, 2, 44, 20],
@@ -5044,7 +5057,7 @@ Bitcoin.ECDSA = (function () {
 		* Parses a byte array containing a DER-encoded signature.
 		*
 		* This function will return an object of the form:
-		* 
+		*
 		* {
 		*   r: BigInteger,
 		*   s: BigInteger
@@ -5222,7 +5235,7 @@ Bitcoin.ECKey = (function () {
 			} else if (ECKey.isBase64Format(input)) {
 				bytes = Crypto.util.base64ToBytes(input);
 			}
-			
+
 			if (ECKey.isBase6Format(input)) {
 				this.priv = new BigInteger(input, 6);
 			} else if (bytes == null || bytes.length != 32) {
@@ -5322,7 +5335,7 @@ Bitcoin.ECKey = (function () {
 		return this;
 	};
 
-	// Sipa Private Key Wallet Import Format 
+	// Sipa Private Key Wallet Import Format
 	ECKey.prototype.getBitcoinWalletImportFormat = function () {
 		var bytes = this.getBitcoinPrivateKeyByteArray();
 		bytes.unshift(ECKey.privateKeyPrefix); // prepend 0x80 byte
@@ -5333,12 +5346,12 @@ Bitcoin.ECKey = (function () {
 		return privWif;
 	};
 
-	// Private Key Hex Format 
+	// Private Key Hex Format
 	ECKey.prototype.getBitcoinHexFormat = function () {
 		return Crypto.util.bytesToHex(this.getBitcoinPrivateKeyByteArray()).toString().toUpperCase();
 	};
 
-	// Private Key Base64 Format 
+	// Private Key Base64 Format
 	ECKey.prototype.getBitcoinBase64Format = function () {
 		return Crypto.util.bytesToBase64(this.getBitcoinPrivateKeyByteArray());
 	};
@@ -5346,7 +5359,7 @@ Bitcoin.ECKey = (function () {
 	ECKey.prototype.getBitcoinPrivateKeyByteArray = function () {
 		// Get a copy of private key as a byte array
 		var bytes = this.priv.toByteArrayUnsigned();
-		// zero pad if private key is less than 32 bytes 
+		// zero pad if private key is less than 32 bytes
 		while (bytes.length < 32) bytes.unshift(0x00);
 		return bytes;
 	};
@@ -5570,17 +5583,17 @@ Bitcoin.Util = {
 	<script type="text/javascript">
 /*
 * Copyright (c) 2010-2011 Intalio Pte, All Rights Reserved
-* 
+*
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
 * in the Software without restriction, including without limitation the rights
 * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 * copies of the Software, and to permit persons to whom the Software is
 * furnished to do so, subject to the following conditions:
-* 
+*
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
-* 
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -5600,7 +5613,7 @@ Bitcoin.Util = {
 	* N = Cpu cost
 	* r = Memory cost
 	* p = parallelization cost
-	* 
+	*
 	*/
 	window.Crypto_scrypt = function (passwd, salt, N, r, p, dkLen, callback) {
 		if (N == 0 || (N & (N - 1)) != 0) throw Error("N must be > 0 and a power of 2");
@@ -5664,7 +5677,7 @@ Bitcoin.Util = {
 		// using this function to enclose everything needed to create a worker (but also invokable directly for synchronous use)
 		function scryptCore() {
 			var XY = [], V = [];
-			
+
 			salsa20_8(new Array(32)); // dummy call added to work around problem with BIP38 encoding on Safari 6.05
 
 			if (typeof B === 'undefined') {
@@ -5878,16 +5891,16 @@ Bitcoin.Util = {
 	//
 	// Copyright © 2012-2013 Faisalman <fyzlman@gmail.com>
 	// Dual licensed under GPLv2 & MIT
-	
+
 	(function (window, undefined) {
-	
+
 		'use strict';
-	
+
 		//////////////
 		// Constants
 		/////////////
-	
-	
+
+
 		var EMPTY       = '',
 			UNKNOWN     = '?',
 			FUNC_TYPE   = 'function',
@@ -5903,13 +5916,13 @@ Bitcoin.Util = {
 			CONSOLE     = 'console',
 			MOBILE      = 'mobile',
 			TABLET      = 'tablet';
-	
-	
+
+
 		///////////
 		// Helper
 		//////////
-	
-	
+
+
 		var util = {
 			has : function (str1, str2) {
 				return str2.toLowerCase().indexOf(str1.toLowerCase()) !== -1;
@@ -5918,23 +5931,23 @@ Bitcoin.Util = {
 				return str.toLowerCase();
 			}
 		};
-	
-	
+
+
 		///////////////
 		// Map helper
 		//////////////
-	
-	
+
+
 		var mapper = {
-	
+
 			rgx : function () {
-	
+
 				// loop through all regexes maps
 				for (var result, i = 0, j, k, p, q, matches, match, args = arguments; i < args.length; i += 2) {
-	
+
 					var regex = args[i],       // even sequence (0,2,4,..)
 						props = args[i + 1];   // odd sequence (1,3,5,..)
-	
+
 					// construct object barebones
 					if (typeof(result) === UNDEF_TYPE) {
 						result = {};
@@ -5947,7 +5960,7 @@ Bitcoin.Util = {
 							}
 						}
 					}
-	
+
 					// try matching uastring with regexes
 					for (j = k = 0; j < regex.length; j++) {
 						matches = regex[j].exec(this.getUA());
@@ -5984,14 +5997,14 @@ Bitcoin.Util = {
 							break;
 						}
 					}
-	
+
 					if(!!matches) break; // break the loop immediately if match found
 				}
 				return result;
 			},
-	
+
 			str : function (str, map) {
-	
+
 				for (var i in map) {
 					// check if array
 					if (typeof(map[i]) === OBJ_TYPE && map[i].length > 0) {
@@ -6007,15 +6020,15 @@ Bitcoin.Util = {
 				return str;
 			}
 		};
-	
-	
+
+
 		///////////////
 		// String map
 		//////////////
-	
-	
+
+
 		var maps = {
-	
+
 			browser : {
 				oldsafari : {
 					major : {
@@ -6035,7 +6048,7 @@ Bitcoin.Util = {
 					}
 				}
 			},
-	
+
 			device : {
 				sprint : {
 					model : {
@@ -6047,7 +6060,7 @@ Bitcoin.Util = {
 					}
 				}
 			},
-	
+
 			os : {
 				windows : {
 					version : {
@@ -6064,73 +6077,73 @@ Bitcoin.Util = {
 				}
 			}
 		};
-	
-	
+
+
 		//////////////
 		// Regex map
 		/////////////
-	
-	
+
+
 		var regexes = {
-	
+
 			browser : [[
-	
+
 				// Presto based
 				/(opera\smini)\/((\d+)?[\w\.-]+)/i,                                 // Opera Mini
 				/(opera\s[mobiletab]+).+version\/((\d+)?[\w\.-]+)/i,                // Opera Mobi/Tablet
 				/(opera).+version\/((\d+)?[\w\.]+)/i,                               // Opera > 9.80
 				/(opera)[\/\s]+((\d+)?[\w\.]+)/i                                    // Opera < 9.80
-				
+
 				], [NAME, VERSION, MAJOR], [
-	
+
 				/\s(opr)\/((\d+)?[\w\.]+)/i                                         // Opera Webkit
 				], [[NAME, 'Opera'], VERSION, MAJOR], [
-	
+
 				// Mixed
 				/(kindle)\/((\d+)?[\w\.]+)/i,                                       // Kindle
 				/(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?((\d+)?[\w\.]+)*/i,
 																					// Lunascape/Maxthon/Netfront/Jasmine/Blazer
-	
+
 				// Trident based
 				/(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?((\d+)?[\w\.]*)/i,
 																					// Avant/IEMobile/SlimBrowser/Baidu
 				/(?:ms|\()(ie)\s((\d+)?[\w\.]+)/i,                                  // Internet Explorer
-	
+
 				// Webkit/KHTML based
 				/(rekonq)((?:\/)[\w\.]+)*/i,                                        // Rekonq
 				/(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt)\/((\d+)?[\w\.-]+)/i
 																					// Chromium/Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt
 				], [NAME, VERSION, MAJOR], [
-	
+
 				/(yabrowser)\/((\d+)?[\w\.]+)/i                                     // Yandex
 				], [[NAME, 'Yandex'], VERSION, MAJOR], [
-	
+
 				/(comodo_dragon)\/((\d+)?[\w\.]+)/i                                 // Comodo Dragon
 				], [[NAME, /_/g, ' '], VERSION, MAJOR], [
-	
+
 				/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?((\d+)?[\w\.]+)/i
 																					// Chrome/OmniWeb/Arora/Tizen/Nokia
 				], [NAME, VERSION, MAJOR], [
-	
+
 				/(dolfin)\/((\d+)?[\w\.]+)/i                                        // Dolphin
 				], [[NAME, 'Dolphin'], VERSION, MAJOR], [
-	
+
 				/((?:android.+)crmo|crios)\/((\d+)?[\w\.]+)/i                       // Chrome for Android/iOS
 				], [[NAME, 'Chrome'], VERSION, MAJOR], [
-	
+
 				/version\/((\d+)?[\w\.]+).+?mobile\/\w+\s(safari)/i                 // Mobile Safari
 				], [VERSION, MAJOR, [NAME, 'Mobile Safari']], [
-	
+
 				/version\/((\d+)?[\w\.]+).+?(mobile\s?safari|safari)/i              // Safari & Safari Mobile
 				], [VERSION, MAJOR, NAME], [
-	
+
 				/webkit.+?(mobile\s?safari|safari)((\/[\w\.]+))/i                   // Safari < 3.0
 				], [NAME, [MAJOR, mapper.str, maps.browser.oldsafari.major], [VERSION, mapper.str, maps.browser.oldsafari.version]], [
-	
+
 				/(konqueror)\/((\d+)?[\w\.]+)/i,                                    // Konqueror
 				/(webkit|khtml)\/((\d+)?[\w\.]+)/i
 				], [NAME, VERSION, MAJOR], [
-	
+
 				// Gecko based
 				/(navigator|netscape)\/((\d+)?[\w\.-]+)/i                           // Netscape
 				], [[NAME, 'Netscape'], VERSION, MAJOR], [
@@ -6140,7 +6153,7 @@ Bitcoin.Util = {
 				/(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix)\/((\d+)?[\w\.-]+)/i,
 																					// Firefox/SeaMonkey/K-Meleon/IceCat/IceApe/Firebird/Phoenix
 				/(mozilla)\/((\d+)?[\w\.]+).+rv\:.+gecko\/\d+/i,                    // Mozilla
-	
+
 				// Other
 				/(uc\s?browser|polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf)[\/\s]?((\d+)?[\w\.]+)/i,
 																					// UCBrowser/Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf
@@ -6150,44 +6163,44 @@ Bitcoin.Util = {
 				/(mosaic)[\/\s]((\d+)?[\w\.]+)/i                                    // Mosaic
 				], [NAME, VERSION, MAJOR]
 			],
-	
+
 			cpu : [[
-	
+
 				/(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i                     // AMD64
 				], [[ARCHITECTURE, 'amd64']], [
-	
+
 				/((?:i[346]|x)86)[;\)]/i                                            // IA32
 				], [[ARCHITECTURE, 'ia32']], [
-	
+
 				// PocketPC mistakenly identified as PowerPC
 				/windows\s(ce|mobile);\sppc;/i
 				], [[ARCHITECTURE, 'arm']], [
-	
+
 				/((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i                           // PowerPC
 				], [[ARCHITECTURE, /ower/, '', util.lowerize]], [
-	
+
 				/(sun4\w)[;\)]/i                                                    // SPARC
 				], [[ARCHITECTURE, 'sparc']], [
-	
+
 				/(ia64(?=;)|68k(?=\))|arm(?=v\d+;)|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i
 																					// IA64, 68K, ARM, IRIX, MIPS, SPARC, PA-RISC
 				], [ARCHITECTURE, util.lowerize]
 			],
-	
+
 			device : [[
-	
+
 				/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i                         // iPad/PlayBook
 				], [MODEL, VENDOR, [TYPE, TABLET]], [
-	
+
 				/(hp).+(touchpad)/i,                                                // HP TouchPad
 				/(kindle)\/([\w\.]+)/i,                                             // Kindle
 				/\s(nook)[\w\s]+build\/(\w+)/i,                                     // Nook
 				/(dell)\s(strea[kpr\s\d]*[\dko])/i                                  // Dell Streak
 				], [VENDOR, MODEL, [TYPE, TABLET]], [
-	
+
 				/\((ip[honed]+);.+(apple)/i                                         // iPod/iPhone
 				], [MODEL, VENDOR, [TYPE, MOBILE]], [
-	
+
 				/(blackberry)[\s-]?(\w+)/i,                                         // BlackBerry
 				/(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|huawei|meizu|motorola)[\s_-]?([\w-]+)*/i,
 																					// BenQ/Palm/Sony-Ericsson/Acer/Asus/Dell/Huawei/Meizu/Motorola
@@ -6196,34 +6209,34 @@ Bitcoin.Util = {
 				], [VENDOR, MODEL, [TYPE, MOBILE]], [
 				/\((bb10);\s(\w+)/i                                                 // BlackBerry 10
 				], [[VENDOR, 'BlackBerry'], MODEL, [TYPE, MOBILE]], [
-	
+
 				/android.+((transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+))/i       // Asus Tablets
 				], [[VENDOR, 'Asus'], MODEL, [TYPE, TABLET]], [
-	
+
 				/(sony)\s(tablet\s[ps])/i                                           // Sony Tablets
 				], [VENDOR, MODEL, [TYPE, TABLET]], [
-	
+
 				/(nintendo)\s([wids3u]+)/i                                          // Nintendo
 				], [VENDOR, MODEL, [TYPE, CONSOLE]], [
-	
+
 				/((playstation)\s[3portablevi]+)/i                                  // Playstation
 				], [[VENDOR, 'Sony'], MODEL, [TYPE, CONSOLE]], [
-	
+
 				/(sprint\s(\w+))/i                                                  // Sprint Phones
 				], [[VENDOR, mapper.str, maps.device.sprint.vendor], [MODEL, mapper.str, maps.device.sprint.model], [TYPE, MOBILE]], [
-	
+
 				/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i,                               // HTC
 				/(zte)-(\w+)*/i,                                                    // ZTE
 				/(alcatel|geeksphone|huawei|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]+)*/i
 																					// Alcatel/GeeksPhone/Huawei/Lenovo/Nexian/Panasonic/Sony
 				], [VENDOR, [MODEL, /_/g, ' '], [TYPE, MOBILE]], [
-	
+
 				/\s((milestone|droid[2x]?))[globa\s]*\sbuild\//i,                   // Motorola
 				/(mot)[\s-]?(\w+)*/i
 				], [[VENDOR, 'Motorola'], MODEL, [TYPE, MOBILE]], [
 				/android.+\s((mz60\d|xoom[\s2]{0,2}))\sbuild\//i
 				], [[VENDOR, 'Motorola'], MODEL, [TYPE, TABLET]], [
-	
+
 				/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n8000|sgh-t8[56]9))/i
 				], [[VENDOR, 'Samsung'], MODEL, [TYPE, TABLET]], [                  // Samsung
 				/((s[cgp]h-\w+|gt-\w+|galaxy\snexus))/i,
@@ -6232,45 +6245,45 @@ Bitcoin.Util = {
 				], [[VENDOR, 'Samsung'], MODEL, [TYPE, MOBILE]], [
 				/(sie)-(\w+)*/i                                                     // Siemens
 				], [[VENDOR, 'Siemens'], MODEL, [TYPE, MOBILE]], [
-	
+
 				/(maemo|nokia).*(n900|lumia\s\d+)/i,                                // Nokia
 				/(nokia)[\s_-]?([\w-]+)*/i
 				], [[VENDOR, 'Nokia'], MODEL, [TYPE, MOBILE]], [
-	
+
 				/android\s3\.[\s\w-;]{10}((a\d{3}))/i                               // Acer
 				], [[VENDOR, 'Acer'], MODEL, [TYPE, TABLET]], [
-	
+
 				/android\s3\.[\s\w-;]{10}(lg?)-([06cv9]{3,4})/i                     // LG
 				], [[VENDOR, 'LG'], MODEL, [TYPE, TABLET]], [
 				/((nexus\s4))/i,
 				/(lg)[e;\s-\/]+(\w+)*/i
 				], [[VENDOR, 'LG'], MODEL, [TYPE, MOBILE]], [
-	
+
 				/(mobile|tablet);.+rv\:.+gecko\//i                                  // Unidentifiable
 				], [TYPE, VENDOR, MODEL]
 			],
-	
+
 			engine : [[
-	
+
 				/(presto)\/([\w\.]+)/i,                                             // Presto
 				/(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i,     // WebKit/Trident/NetFront/NetSurf/Amaya/Lynx/w3m
 				/(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i,                          // KHTML/Tasman/Links
 				/(icab)[\/\s]([23]\.[\d\.]+)/i                                      // iCab
 				], [NAME, VERSION], [
-	
+
 				/rv\:([\w\.]+).*(gecko)/i                                           // Gecko
 				], [VERSION, NAME]
 			],
-	
+
 			os : [[
-	
+
 				// Windows based
 				/(windows)\snt\s6\.2;\s(arm)/i,                                     // Windows RT
 				/(windows\sphone(?:\sos)*|windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i
 				], [NAME, [VERSION, mapper.str, maps.os.windows.version]], [
 				/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i
 				], [[NAME, 'Windows'], [VERSION, mapper.str, maps.os.windows.version]], [
-	
+
 				// Mobile/Embedded OS
 				/\((bb)(10);/i                                                      // BlackBerry 10
 				], [[NAME, 'BlackBerry'], VERSION], [
@@ -6283,10 +6296,10 @@ Bitcoin.Util = {
 				], [[NAME, 'Symbian'], VERSION],[
 				/mozilla.+\(mobile;.+gecko.+firefox/i                               // Firefox OS
 				], [[NAME, 'Firefox OS'], VERSION], [
-	
+
 				// Console
 				/(nintendo|playstation)\s([wids3portablevu]+)/i,                    // Nintendo/Playstation
-	
+
 				// GNU/Linux based
 				/(mint)[\/\s\(]?(\w+)*/i,                                           // Mint
 				/(joli|[kxln]?ubuntu|debian|[open]*suse|gentoo|arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk)[\/\s-]?([\w\.-]+)*/i,
@@ -6295,24 +6308,24 @@ Bitcoin.Util = {
 				/(hurd|linux)\s?([\w\.]+)*/i,                                       // Hurd/Linux
 				/(gnu)\s?([\w\.]+)*/i                                               // GNU
 				], [NAME, VERSION], [
-	
+
 				/(cros)\s[\w]+\s([\w\.]+\w)/i                                       // Chromium OS
 				], [[NAME, 'Chromium OS'], VERSION],[
-	
+
 				// Solaris
 				/(sunos)\s?([\w\.]+\d)*/i                                           // Solaris
 				], [[NAME, 'Solaris'], VERSION], [
-	
+
 				// BSD based
 				/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]+)*/i                   // FreeBSD/NetBSD/OpenBSD/PC-BSD/DragonFly
 				], [NAME, VERSION],[
-	
+
 				/(ip[honead]+)(?:.*os\s*([\w]+)*\slike\smac|;\sopera)/i             // iOS
 				], [[NAME, 'iOS'], [VERSION, /_/g, '.']], [
-	
+
 				/(mac\sos\sx)\s?([\w\s\.]+\w)*/i                                    // Mac OS
 				], [NAME, [VERSION, /_/g, '.']], [
-	
+
 				// Other
 				/(haiku)\s(\w+)/i,                                                  // Haiku
 				/(aix)\s((\d)(?=\.|\)|\s)[\w\.]*)*/i,                               // AIX
@@ -6322,17 +6335,17 @@ Bitcoin.Util = {
 				], [NAME, VERSION]
 			]
 		};
-	
-	
+
+
 		/////////////////
 		// Constructor
 		////////////////
-	
-	
+
+
 		var UAParser = function (uastring) {
-	
+
 			var ua = uastring || ((window && window.navigator && window.navigator.userAgent) ? window.navigator.userAgent : EMPTY);
-	
+
 			if (!(this instanceof UAParser)) {
 				return new UAParser(uastring).getResult();
 			}
@@ -6370,14 +6383,14 @@ Bitcoin.Util = {
 			};
 			this.setUA(ua);
 		};
-	
-	
+
+
 		///////////
 		// Export
 		//////////
-	
-	
-		// check js environment 
+
+
+		// check js environment
 		if (typeof(exports) !== UNDEF_TYPE) {
 			// nodejs env
 			if (typeof(module) !== UNDEF_TYPE && module.exports) {
@@ -6386,7 +6399,7 @@ Bitcoin.Util = {
 			exports.UAParser = UAParser;
 		} else {
 			// browser env
-			window.UAParser = UAParser;        
+			window.UAParser = UAParser;
 			// requirejs env (optional)
 			if (typeof(define) === FUNC_TYPE && define.amd) {
 				define(function () {
@@ -6410,7 +6423,7 @@ Bitcoin.Util = {
 				};
 			}
 		}
-	
+
 	})(this);
 	</script>
 
@@ -6418,10 +6431,10 @@ Bitcoin.Util = {
 	// Included by bitcoinpaperwallet.com to support QR code scanning
 	//https://github.com/LazarSoft/jsqrcode
 	/*
-	  Ported to JavaScript by Lazar Laszlo 2011 
-  
+	  Ported to JavaScript by Lazar Laszlo 2011
+
 	  lazarsoft@gmail.com, www.lazarsoft.info
-  
+
 	  Updated to replace Array.prototype.remove with an arrayRemove function to avoid conflicts
 	*/
 
@@ -6512,7 +6525,7 @@ Bitcoin.Util = {
 									}
 							}
 					}
-		
+
 
 
 	GridSampler.sampleGrid3=function( image,  dimension,  transform)
@@ -6565,7 +6578,7 @@ Bitcoin.Util = {
 	GridSampler.sampleGridx=function( image,  dimension,  p1ToX,  p1ToY,  p2ToX,  p2ToY,  p3ToX,  p3ToY,  p4ToX,  p4ToY,  p1FromX,  p1FromY,  p2FromX,  p2FromY,  p3FromX,  p3FromY,  p4FromX,  p4FromY)
 	{
 			var transform = PerspectiveTransform.quadrilateralToQuadrilateral(p1ToX, p1ToY, p2ToX, p2ToY, p3ToX, p3ToY, p4ToX, p4ToY, p1FromX, p1FromY, p2FromX, p2FromY, p3FromX, p3FromY, p4FromX, p4FromY);
-						
+
 			return GridSampler.sampleGrid3(image, dimension, transform);
 	}
 
@@ -6573,7 +6586,7 @@ Bitcoin.Util = {
 	{
 			this.count = count;
 			this.dataCodewords = dataCodewords;
-		
+
 			this.__defineGetter__("Count", function()
 			{
 					return this.count;
@@ -6591,17 +6604,17 @@ Bitcoin.Util = {
 					this.ecBlocks = new Array(ecBlocks1, ecBlocks2);
 			else
 					this.ecBlocks = new Array(ecBlocks1);
-		
+
 			this.__defineGetter__("ECCodewordsPerBlock", function()
 			{
 					return this.ecCodewordsPerBlock;
 			});
-		
+
 			this.__defineGetter__("TotalECCodewords", function()
 			{
 					return  this.ecCodewordsPerBlock * this.NumBlocks;
 			});
-		
+
 			this.__defineGetter__("NumBlocks", function()
 			{
 					var total = 0;
@@ -6611,7 +6624,7 @@ Bitcoin.Util = {
 					}
 					return total;
 			});
-		
+
 			this.getECBlocks=function()
 							{
 									return this.ecBlocks;
@@ -6623,7 +6636,7 @@ Bitcoin.Util = {
 			this.versionNumber = versionNumber;
 			this.alignmentPatternCenters = alignmentPatternCenters;
 			this.ecBlocks = new Array(ecBlocks1, ecBlocks2, ecBlocks3, ecBlocks4);
-		
+
 			var total = 0;
 			var ecCodewords = ecBlocks1.ECCodewordsPerBlock;
 			var ecbArray = ecBlocks1.getECBlocks();
@@ -6633,12 +6646,12 @@ Bitcoin.Util = {
 					total += ecBlock.Count * (ecBlock.DataCodewords + ecCodewords);
 			}
 			this.totalCodewords = total;
-		
+
 			this.__defineGetter__("VersionNumber", function()
 			{
 					return  this.versionNumber;
 			});
-		
+
 			this.__defineGetter__("AlignmentPatternCenters", function()
 			{
 					return  this.alignmentPatternCenters;
@@ -6651,19 +6664,19 @@ Bitcoin.Util = {
 			{
 					return  17 + 4 * this.versionNumber;
 			});
-		
+
 			this.buildFunctionPattern=function()
 					{
 							var dimension = this.DimensionForVersion;
 							var bitMatrix = new BitMatrix(dimension);
-						
+
 							// Top left finder pattern + separator + format
 							bitMatrix.setRegion(0, 0, 9, 9);
 							// Top right finder pattern + separator + format
 							bitMatrix.setRegion(dimension - 8, 0, 8, 9);
 							// Bottom left finder pattern + separator + format
 							bitMatrix.setRegion(0, dimension - 8, 9, 8);
-						
+
 							// Alignment patterns
 							var max = this.alignmentPatternCenters.length;
 							for (var x = 0; x < max; x++)
@@ -6679,12 +6692,12 @@ Bitcoin.Util = {
 											bitMatrix.setRegion(this.alignmentPatternCenters[y] - 2, i, 5, 5);
 									}
 							}
-						
+
 							// Vertical timing pattern
 							bitMatrix.setRegion(6, 9, 1, dimension - 17);
 							// Horizontal timing pattern
 							bitMatrix.setRegion(9, 6, dimension - 17, 1);
-						
+
 							if (this.versionNumber > 6)
 							{
 									// Version info, top right
@@ -6692,7 +6705,7 @@ Bitcoin.Util = {
 									// Version info, bottom left
 									bitMatrix.setRegion(0, dimension - 11, 6, 3);
 							}
-						
+
 							return bitMatrix;
 					}
 			this.getECBlocksForLevel=function( ecLevel)
@@ -6763,45 +6776,45 @@ Bitcoin.Util = {
 
 	function buildVersions()
 	{
-			return new Array(new Version(1, new Array(), new ECBlocks(7, new ECB(1, 19)), new ECBlocks(10, new ECB(1, 16)), new ECBlocks(13, new ECB(1, 13)), new ECBlocks(17, new ECB(1, 9))), 
-			new Version(2, new Array(6, 18), new ECBlocks(10, new ECB(1, 34)), new ECBlocks(16, new ECB(1, 28)), new ECBlocks(22, new ECB(1, 22)), new ECBlocks(28, new ECB(1, 16))), 
-			new Version(3, new Array(6, 22), new ECBlocks(15, new ECB(1, 55)), new ECBlocks(26, new ECB(1, 44)), new ECBlocks(18, new ECB(2, 17)), new ECBlocks(22, new ECB(2, 13))), 
-			new Version(4, new Array(6, 26), new ECBlocks(20, new ECB(1, 80)), new ECBlocks(18, new ECB(2, 32)), new ECBlocks(26, new ECB(2, 24)), new ECBlocks(16, new ECB(4, 9))), 
-			new Version(5, new Array(6, 30), new ECBlocks(26, new ECB(1, 108)), new ECBlocks(24, new ECB(2, 43)), new ECBlocks(18, new ECB(2, 15), new ECB(2, 16)), new ECBlocks(22, new ECB(2, 11), new ECB(2, 12))), 
-			new Version(6, new Array(6, 34), new ECBlocks(18, new ECB(2, 68)), new ECBlocks(16, new ECB(4, 27)), new ECBlocks(24, new ECB(4, 19)), new ECBlocks(28, new ECB(4, 15))), 
-			new Version(7, new Array(6, 22, 38), new ECBlocks(20, new ECB(2, 78)), new ECBlocks(18, new ECB(4, 31)), new ECBlocks(18, new ECB(2, 14), new ECB(4, 15)), new ECBlocks(26, new ECB(4, 13), new ECB(1, 14))), 
-			new Version(8, new Array(6, 24, 42), new ECBlocks(24, new ECB(2, 97)), new ECBlocks(22, new ECB(2, 38), new ECB(2, 39)), new ECBlocks(22, new ECB(4, 18), new ECB(2, 19)), new ECBlocks(26, new ECB(4, 14), new ECB(2, 15))), 
-			new Version(9, new Array(6, 26, 46), new ECBlocks(30, new ECB(2, 116)), new ECBlocks(22, new ECB(3, 36), new ECB(2, 37)), new ECBlocks(20, new ECB(4, 16), new ECB(4, 17)), new ECBlocks(24, new ECB(4, 12), new ECB(4, 13))), 
-			new Version(10, new Array(6, 28, 50), new ECBlocks(18, new ECB(2, 68), new ECB(2, 69)), new ECBlocks(26, new ECB(4, 43), new ECB(1, 44)), new ECBlocks(24, new ECB(6, 19), new ECB(2, 20)), new ECBlocks(28, new ECB(6, 15), new ECB(2, 16))), 
-			new Version(11, new Array(6, 30, 54), new ECBlocks(20, new ECB(4, 81)), new ECBlocks(30, new ECB(1, 50), new ECB(4, 51)), new ECBlocks(28, new ECB(4, 22), new ECB(4, 23)), new ECBlocks(24, new ECB(3, 12), new ECB(8, 13))), 
-			new Version(12, new Array(6, 32, 58), new ECBlocks(24, new ECB(2, 92), new ECB(2, 93)), new ECBlocks(22, new ECB(6, 36), new ECB(2, 37)), new ECBlocks(26, new ECB(4, 20), new ECB(6, 21)), new ECBlocks(28, new ECB(7, 14), new ECB(4, 15))), 
-			new Version(13, new Array(6, 34, 62), new ECBlocks(26, new ECB(4, 107)), new ECBlocks(22, new ECB(8, 37), new ECB(1, 38)), new ECBlocks(24, new ECB(8, 20), new ECB(4, 21)), new ECBlocks(22, new ECB(12, 11), new ECB(4, 12))), 
-			new Version(14, new Array(6, 26, 46, 66), new ECBlocks(30, new ECB(3, 115), new ECB(1, 116)), new ECBlocks(24, new ECB(4, 40), new ECB(5, 41)), new ECBlocks(20, new ECB(11, 16), new ECB(5, 17)), new ECBlocks(24, new ECB(11, 12), new ECB(5, 13))), 
-			new Version(15, new Array(6, 26, 48, 70), new ECBlocks(22, new ECB(5, 87), new ECB(1, 88)), new ECBlocks(24, new ECB(5, 41), new ECB(5, 42)), new ECBlocks(30, new ECB(5, 24), new ECB(7, 25)), new ECBlocks(24, new ECB(11, 12), new ECB(7, 13))), 
-			new Version(16, new Array(6, 26, 50, 74), new ECBlocks(24, new ECB(5, 98), new ECB(1, 99)), new ECBlocks(28, new ECB(7, 45), new ECB(3, 46)), new ECBlocks(24, new ECB(15, 19), new ECB(2, 20)), new ECBlocks(30, new ECB(3, 15), new ECB(13, 16))), 
-			new Version(17, new Array(6, 30, 54, 78), new ECBlocks(28, new ECB(1, 107), new ECB(5, 108)), new ECBlocks(28, new ECB(10, 46), new ECB(1, 47)), new ECBlocks(28, new ECB(1, 22), new ECB(15, 23)), new ECBlocks(28, new ECB(2, 14), new ECB(17, 15))), 
-			new Version(18, new Array(6, 30, 56, 82), new ECBlocks(30, new ECB(5, 120), new ECB(1, 121)), new ECBlocks(26, new ECB(9, 43), new ECB(4, 44)), new ECBlocks(28, new ECB(17, 22), new ECB(1, 23)), new ECBlocks(28, new ECB(2, 14), new ECB(19, 15))), 
-			new Version(19, new Array(6, 30, 58, 86), new ECBlocks(28, new ECB(3, 113), new ECB(4, 114)), new ECBlocks(26, new ECB(3, 44), new ECB(11, 45)), new ECBlocks(26, new ECB(17, 21), new ECB(4, 22)), new ECBlocks(26, new ECB(9, 13), new ECB(16, 14))), 
-			new Version(20, new Array(6, 34, 62, 90), new ECBlocks(28, new ECB(3, 107), new ECB(5, 108)), new ECBlocks(26, new ECB(3, 41), new ECB(13, 42)), new ECBlocks(30, new ECB(15, 24), new ECB(5, 25)), new ECBlocks(28, new ECB(15, 15), new ECB(10, 16))), 
-			new Version(21, new Array(6, 28, 50, 72, 94), new ECBlocks(28, new ECB(4, 116), new ECB(4, 117)), new ECBlocks(26, new ECB(17, 42)), new ECBlocks(28, new ECB(17, 22), new ECB(6, 23)), new ECBlocks(30, new ECB(19, 16), new ECB(6, 17))), 
-			new Version(22, new Array(6, 26, 50, 74, 98), new ECBlocks(28, new ECB(2, 111), new ECB(7, 112)), new ECBlocks(28, new ECB(17, 46)), new ECBlocks(30, new ECB(7, 24), new ECB(16, 25)), new ECBlocks(24, new ECB(34, 13))), 
-			new Version(23, new Array(6, 30, 54, 74, 102), new ECBlocks(30, new ECB(4, 121), new ECB(5, 122)), new ECBlocks(28, new ECB(4, 47), new ECB(14, 48)), new ECBlocks(30, new ECB(11, 24), new ECB(14, 25)), new ECBlocks(30, new ECB(16, 15), new ECB(14, 16))), 
-			new Version(24, new Array(6, 28, 54, 80, 106), new ECBlocks(30, new ECB(6, 117), new ECB(4, 118)), new ECBlocks(28, new ECB(6, 45), new ECB(14, 46)), new ECBlocks(30, new ECB(11, 24), new ECB(16, 25)), new ECBlocks(30, new ECB(30, 16), new ECB(2, 17))), 
-			new Version(25, new Array(6, 32, 58, 84, 110), new ECBlocks(26, new ECB(8, 106), new ECB(4, 107)), new ECBlocks(28, new ECB(8, 47), new ECB(13, 48)), new ECBlocks(30, new ECB(7, 24), new ECB(22, 25)), new ECBlocks(30, new ECB(22, 15), new ECB(13, 16))), 
-			new Version(26, new Array(6, 30, 58, 86, 114), new ECBlocks(28, new ECB(10, 114), new ECB(2, 115)), new ECBlocks(28, new ECB(19, 46), new ECB(4, 47)), new ECBlocks(28, new ECB(28, 22), new ECB(6, 23)), new ECBlocks(30, new ECB(33, 16), new ECB(4, 17))), 
+			return new Array(new Version(1, new Array(), new ECBlocks(7, new ECB(1, 19)), new ECBlocks(10, new ECB(1, 16)), new ECBlocks(13, new ECB(1, 13)), new ECBlocks(17, new ECB(1, 9))),
+			new Version(2, new Array(6, 18), new ECBlocks(10, new ECB(1, 34)), new ECBlocks(16, new ECB(1, 28)), new ECBlocks(22, new ECB(1, 22)), new ECBlocks(28, new ECB(1, 16))),
+			new Version(3, new Array(6, 22), new ECBlocks(15, new ECB(1, 55)), new ECBlocks(26, new ECB(1, 44)), new ECBlocks(18, new ECB(2, 17)), new ECBlocks(22, new ECB(2, 13))),
+			new Version(4, new Array(6, 26), new ECBlocks(20, new ECB(1, 80)), new ECBlocks(18, new ECB(2, 32)), new ECBlocks(26, new ECB(2, 24)), new ECBlocks(16, new ECB(4, 9))),
+			new Version(5, new Array(6, 30), new ECBlocks(26, new ECB(1, 108)), new ECBlocks(24, new ECB(2, 43)), new ECBlocks(18, new ECB(2, 15), new ECB(2, 16)), new ECBlocks(22, new ECB(2, 11), new ECB(2, 12))),
+			new Version(6, new Array(6, 34), new ECBlocks(18, new ECB(2, 68)), new ECBlocks(16, new ECB(4, 27)), new ECBlocks(24, new ECB(4, 19)), new ECBlocks(28, new ECB(4, 15))),
+			new Version(7, new Array(6, 22, 38), new ECBlocks(20, new ECB(2, 78)), new ECBlocks(18, new ECB(4, 31)), new ECBlocks(18, new ECB(2, 14), new ECB(4, 15)), new ECBlocks(26, new ECB(4, 13), new ECB(1, 14))),
+			new Version(8, new Array(6, 24, 42), new ECBlocks(24, new ECB(2, 97)), new ECBlocks(22, new ECB(2, 38), new ECB(2, 39)), new ECBlocks(22, new ECB(4, 18), new ECB(2, 19)), new ECBlocks(26, new ECB(4, 14), new ECB(2, 15))),
+			new Version(9, new Array(6, 26, 46), new ECBlocks(30, new ECB(2, 116)), new ECBlocks(22, new ECB(3, 36), new ECB(2, 37)), new ECBlocks(20, new ECB(4, 16), new ECB(4, 17)), new ECBlocks(24, new ECB(4, 12), new ECB(4, 13))),
+			new Version(10, new Array(6, 28, 50), new ECBlocks(18, new ECB(2, 68), new ECB(2, 69)), new ECBlocks(26, new ECB(4, 43), new ECB(1, 44)), new ECBlocks(24, new ECB(6, 19), new ECB(2, 20)), new ECBlocks(28, new ECB(6, 15), new ECB(2, 16))),
+			new Version(11, new Array(6, 30, 54), new ECBlocks(20, new ECB(4, 81)), new ECBlocks(30, new ECB(1, 50), new ECB(4, 51)), new ECBlocks(28, new ECB(4, 22), new ECB(4, 23)), new ECBlocks(24, new ECB(3, 12), new ECB(8, 13))),
+			new Version(12, new Array(6, 32, 58), new ECBlocks(24, new ECB(2, 92), new ECB(2, 93)), new ECBlocks(22, new ECB(6, 36), new ECB(2, 37)), new ECBlocks(26, new ECB(4, 20), new ECB(6, 21)), new ECBlocks(28, new ECB(7, 14), new ECB(4, 15))),
+			new Version(13, new Array(6, 34, 62), new ECBlocks(26, new ECB(4, 107)), new ECBlocks(22, new ECB(8, 37), new ECB(1, 38)), new ECBlocks(24, new ECB(8, 20), new ECB(4, 21)), new ECBlocks(22, new ECB(12, 11), new ECB(4, 12))),
+			new Version(14, new Array(6, 26, 46, 66), new ECBlocks(30, new ECB(3, 115), new ECB(1, 116)), new ECBlocks(24, new ECB(4, 40), new ECB(5, 41)), new ECBlocks(20, new ECB(11, 16), new ECB(5, 17)), new ECBlocks(24, new ECB(11, 12), new ECB(5, 13))),
+			new Version(15, new Array(6, 26, 48, 70), new ECBlocks(22, new ECB(5, 87), new ECB(1, 88)), new ECBlocks(24, new ECB(5, 41), new ECB(5, 42)), new ECBlocks(30, new ECB(5, 24), new ECB(7, 25)), new ECBlocks(24, new ECB(11, 12), new ECB(7, 13))),
+			new Version(16, new Array(6, 26, 50, 74), new ECBlocks(24, new ECB(5, 98), new ECB(1, 99)), new ECBlocks(28, new ECB(7, 45), new ECB(3, 46)), new ECBlocks(24, new ECB(15, 19), new ECB(2, 20)), new ECBlocks(30, new ECB(3, 15), new ECB(13, 16))),
+			new Version(17, new Array(6, 30, 54, 78), new ECBlocks(28, new ECB(1, 107), new ECB(5, 108)), new ECBlocks(28, new ECB(10, 46), new ECB(1, 47)), new ECBlocks(28, new ECB(1, 22), new ECB(15, 23)), new ECBlocks(28, new ECB(2, 14), new ECB(17, 15))),
+			new Version(18, new Array(6, 30, 56, 82), new ECBlocks(30, new ECB(5, 120), new ECB(1, 121)), new ECBlocks(26, new ECB(9, 43), new ECB(4, 44)), new ECBlocks(28, new ECB(17, 22), new ECB(1, 23)), new ECBlocks(28, new ECB(2, 14), new ECB(19, 15))),
+			new Version(19, new Array(6, 30, 58, 86), new ECBlocks(28, new ECB(3, 113), new ECB(4, 114)), new ECBlocks(26, new ECB(3, 44), new ECB(11, 45)), new ECBlocks(26, new ECB(17, 21), new ECB(4, 22)), new ECBlocks(26, new ECB(9, 13), new ECB(16, 14))),
+			new Version(20, new Array(6, 34, 62, 90), new ECBlocks(28, new ECB(3, 107), new ECB(5, 108)), new ECBlocks(26, new ECB(3, 41), new ECB(13, 42)), new ECBlocks(30, new ECB(15, 24), new ECB(5, 25)), new ECBlocks(28, new ECB(15, 15), new ECB(10, 16))),
+			new Version(21, new Array(6, 28, 50, 72, 94), new ECBlocks(28, new ECB(4, 116), new ECB(4, 117)), new ECBlocks(26, new ECB(17, 42)), new ECBlocks(28, new ECB(17, 22), new ECB(6, 23)), new ECBlocks(30, new ECB(19, 16), new ECB(6, 17))),
+			new Version(22, new Array(6, 26, 50, 74, 98), new ECBlocks(28, new ECB(2, 111), new ECB(7, 112)), new ECBlocks(28, new ECB(17, 46)), new ECBlocks(30, new ECB(7, 24), new ECB(16, 25)), new ECBlocks(24, new ECB(34, 13))),
+			new Version(23, new Array(6, 30, 54, 74, 102), new ECBlocks(30, new ECB(4, 121), new ECB(5, 122)), new ECBlocks(28, new ECB(4, 47), new ECB(14, 48)), new ECBlocks(30, new ECB(11, 24), new ECB(14, 25)), new ECBlocks(30, new ECB(16, 15), new ECB(14, 16))),
+			new Version(24, new Array(6, 28, 54, 80, 106), new ECBlocks(30, new ECB(6, 117), new ECB(4, 118)), new ECBlocks(28, new ECB(6, 45), new ECB(14, 46)), new ECBlocks(30, new ECB(11, 24), new ECB(16, 25)), new ECBlocks(30, new ECB(30, 16), new ECB(2, 17))),
+			new Version(25, new Array(6, 32, 58, 84, 110), new ECBlocks(26, new ECB(8, 106), new ECB(4, 107)), new ECBlocks(28, new ECB(8, 47), new ECB(13, 48)), new ECBlocks(30, new ECB(7, 24), new ECB(22, 25)), new ECBlocks(30, new ECB(22, 15), new ECB(13, 16))),
+			new Version(26, new Array(6, 30, 58, 86, 114), new ECBlocks(28, new ECB(10, 114), new ECB(2, 115)), new ECBlocks(28, new ECB(19, 46), new ECB(4, 47)), new ECBlocks(28, new ECB(28, 22), new ECB(6, 23)), new ECBlocks(30, new ECB(33, 16), new ECB(4, 17))),
 			new Version(27, new Array(6, 34, 62, 90, 118), new ECBlocks(30, new ECB(8, 122), new ECB(4, 123)), new ECBlocks(28, new ECB(22, 45), new ECB(3, 46)), new ECBlocks(30, new ECB(8, 23), new ECB(26, 24)), new ECBlocks(30, new ECB(12, 15),                 new ECB(28, 16))),
-			new Version(28, new Array(6, 26, 50, 74, 98, 122), new ECBlocks(30, new ECB(3, 117), new ECB(10, 118)), new ECBlocks(28, new ECB(3, 45), new ECB(23, 46)), new ECBlocks(30, new ECB(4, 24), new ECB(31, 25)), new ECBlocks(30, new ECB(11, 15), new ECB(31, 16))), 
-			new Version(29, new Array(6, 30, 54, 78, 102, 126), new ECBlocks(30, new ECB(7, 116), new ECB(7, 117)), new ECBlocks(28, new ECB(21, 45), new ECB(7, 46)), new ECBlocks(30, new ECB(1, 23), new ECB(37, 24)), new ECBlocks(30, new ECB(19, 15), new ECB(26, 16))), 
-			new Version(30, new Array(6, 26, 52, 78, 104, 130), new ECBlocks(30, new ECB(5, 115), new ECB(10, 116)), new ECBlocks(28, new ECB(19, 47), new ECB(10, 48)), new ECBlocks(30, new ECB(15, 24), new ECB(25, 25)), new ECBlocks(30, new ECB(23, 15), new ECB(25, 16))), 
-			new Version(31, new Array(6, 30, 56, 82, 108, 134), new ECBlocks(30, new ECB(13, 115), new ECB(3, 116)), new ECBlocks(28, new ECB(2, 46), new ECB(29, 47)), new ECBlocks(30, new ECB(42, 24), new ECB(1, 25)), new ECBlocks(30, new ECB(23, 15), new ECB(28, 16))), 
-			new Version(32, new Array(6, 34, 60, 86, 112, 138), new ECBlocks(30, new ECB(17, 115)), new ECBlocks(28, new ECB(10, 46), new ECB(23, 47)), new ECBlocks(30, new ECB(10, 24), new ECB(35, 25)), new ECBlocks(30, new ECB(19, 15), new ECB(35, 16))), 
-			new Version(33, new Array(6, 30, 58, 86, 114, 142), new ECBlocks(30, new ECB(17, 115), new ECB(1, 116)), new ECBlocks(28, new ECB(14, 46), new ECB(21, 47)), new ECBlocks(30, new ECB(29, 24), new ECB(19, 25)), new ECBlocks(30, new ECB(11, 15), new ECB(46, 16))), 
-			new Version(34, new Array(6, 34, 62, 90, 118, 146), new ECBlocks(30, new ECB(13, 115), new ECB(6, 116)), new ECBlocks(28, new ECB(14, 46), new ECB(23, 47)), new ECBlocks(30, new ECB(44, 24), new ECB(7, 25)), new ECBlocks(30, new ECB(59, 16), new ECB(1, 17))), 
-			new Version(35, new Array(6, 30, 54, 78, 102, 126, 150), new ECBlocks(30, new ECB(12, 121), new ECB(7, 122)), new ECBlocks(28, new ECB(12, 47), new ECB(26, 48)), new ECBlocks(30, new ECB(39, 24), new ECB(14, 25)),new ECBlocks(30, new ECB(22, 15), new ECB(41, 16))), 
-			new Version(36, new Array(6, 24, 50, 76, 102, 128, 154), new ECBlocks(30, new ECB(6, 121), new ECB(14, 122)), new ECBlocks(28, new ECB(6, 47), new ECB(34, 48)), new ECBlocks(30, new ECB(46, 24), new ECB(10, 25)), new ECBlocks(30, new ECB(2, 15), new ECB(64, 16))), 
-			new Version(37, new Array(6, 28, 54, 80, 106, 132, 158), new ECBlocks(30, new ECB(17, 122), new ECB(4, 123)), new ECBlocks(28, new ECB(29, 46), new ECB(14, 47)), new ECBlocks(30, new ECB(49, 24), new ECB(10, 25)), new ECBlocks(30, new ECB(24, 15), new ECB(46, 16))), 
-			new Version(38, new Array(6, 32, 58, 84, 110, 136, 162), new ECBlocks(30, new ECB(4, 122), new ECB(18, 123)), new ECBlocks(28, new ECB(13, 46), new ECB(32, 47)), new ECBlocks(30, new ECB(48, 24), new ECB(14, 25)), new ECBlocks(30, new ECB(42, 15), new ECB(32, 16))), 
-			new Version(39, new Array(6, 26, 54, 82, 110, 138, 166), new ECBlocks(30, new ECB(20, 117), new ECB(4, 118)), new ECBlocks(28, new ECB(40, 47), new ECB(7, 48)), new ECBlocks(30, new ECB(43, 24), new ECB(22, 25)), new ECBlocks(30, new ECB(10, 15), new ECB(67, 16))), 
+			new Version(28, new Array(6, 26, 50, 74, 98, 122), new ECBlocks(30, new ECB(3, 117), new ECB(10, 118)), new ECBlocks(28, new ECB(3, 45), new ECB(23, 46)), new ECBlocks(30, new ECB(4, 24), new ECB(31, 25)), new ECBlocks(30, new ECB(11, 15), new ECB(31, 16))),
+			new Version(29, new Array(6, 30, 54, 78, 102, 126), new ECBlocks(30, new ECB(7, 116), new ECB(7, 117)), new ECBlocks(28, new ECB(21, 45), new ECB(7, 46)), new ECBlocks(30, new ECB(1, 23), new ECB(37, 24)), new ECBlocks(30, new ECB(19, 15), new ECB(26, 16))),
+			new Version(30, new Array(6, 26, 52, 78, 104, 130), new ECBlocks(30, new ECB(5, 115), new ECB(10, 116)), new ECBlocks(28, new ECB(19, 47), new ECB(10, 48)), new ECBlocks(30, new ECB(15, 24), new ECB(25, 25)), new ECBlocks(30, new ECB(23, 15), new ECB(25, 16))),
+			new Version(31, new Array(6, 30, 56, 82, 108, 134), new ECBlocks(30, new ECB(13, 115), new ECB(3, 116)), new ECBlocks(28, new ECB(2, 46), new ECB(29, 47)), new ECBlocks(30, new ECB(42, 24), new ECB(1, 25)), new ECBlocks(30, new ECB(23, 15), new ECB(28, 16))),
+			new Version(32, new Array(6, 34, 60, 86, 112, 138), new ECBlocks(30, new ECB(17, 115)), new ECBlocks(28, new ECB(10, 46), new ECB(23, 47)), new ECBlocks(30, new ECB(10, 24), new ECB(35, 25)), new ECBlocks(30, new ECB(19, 15), new ECB(35, 16))),
+			new Version(33, new Array(6, 30, 58, 86, 114, 142), new ECBlocks(30, new ECB(17, 115), new ECB(1, 116)), new ECBlocks(28, new ECB(14, 46), new ECB(21, 47)), new ECBlocks(30, new ECB(29, 24), new ECB(19, 25)), new ECBlocks(30, new ECB(11, 15), new ECB(46, 16))),
+			new Version(34, new Array(6, 34, 62, 90, 118, 146), new ECBlocks(30, new ECB(13, 115), new ECB(6, 116)), new ECBlocks(28, new ECB(14, 46), new ECB(23, 47)), new ECBlocks(30, new ECB(44, 24), new ECB(7, 25)), new ECBlocks(30, new ECB(59, 16), new ECB(1, 17))),
+			new Version(35, new Array(6, 30, 54, 78, 102, 126, 150), new ECBlocks(30, new ECB(12, 121), new ECB(7, 122)), new ECBlocks(28, new ECB(12, 47), new ECB(26, 48)), new ECBlocks(30, new ECB(39, 24), new ECB(14, 25)),new ECBlocks(30, new ECB(22, 15), new ECB(41, 16))),
+			new Version(36, new Array(6, 24, 50, 76, 102, 128, 154), new ECBlocks(30, new ECB(6, 121), new ECB(14, 122)), new ECBlocks(28, new ECB(6, 47), new ECB(34, 48)), new ECBlocks(30, new ECB(46, 24), new ECB(10, 25)), new ECBlocks(30, new ECB(2, 15), new ECB(64, 16))),
+			new Version(37, new Array(6, 28, 54, 80, 106, 132, 158), new ECBlocks(30, new ECB(17, 122), new ECB(4, 123)), new ECBlocks(28, new ECB(29, 46), new ECB(14, 47)), new ECBlocks(30, new ECB(49, 24), new ECB(10, 25)), new ECBlocks(30, new ECB(24, 15), new ECB(46, 16))),
+			new Version(38, new Array(6, 32, 58, 84, 110, 136, 162), new ECBlocks(30, new ECB(4, 122), new ECB(18, 123)), new ECBlocks(28, new ECB(13, 46), new ECB(32, 47)), new ECBlocks(30, new ECB(48, 24), new ECB(14, 25)), new ECBlocks(30, new ECB(42, 15), new ECB(32, 16))),
+			new Version(39, new Array(6, 26, 54, 82, 110, 138, 166), new ECBlocks(30, new ECB(20, 117), new ECB(4, 118)), new ECBlocks(28, new ECB(40, 47), new ECB(7, 48)), new ECBlocks(30, new ECB(43, 24), new ECB(22, 25)), new ECBlocks(30, new ECB(10, 15), new ECB(67, 16))),
 			new Version(40, new Array(6, 30, 58, 86, 114, 142, 170), new ECBlocks(30, new ECB(19, 118), new ECB(6, 119)), new ECBlocks(28, new ECB(18, 47), new ECB(31, 48)), new ECBlocks(30, new ECB(34, 24), new ECB(34, 25)), new ECBlocks(30, new ECB(20, 15), new ECB(61, 16))));
 	}
 
@@ -6864,7 +6877,7 @@ Bitcoin.Util = {
 
 	PerspectiveTransform.quadrilateralToQuadrilateral=function( x0,  y0,  x1,  y1,  x2,  y2,  x3,  y3,  x0p,  y0p,  x1p,  y1p,  x2p,  y2p,  x3p,  y3p)
 	{
-		
+
 			var qToS = this.quadrilateralToSquare(x0, y0, x1, y1, x2, y2, x3, y3);
 			var sToQ = this.squareToQuadrilateral(x0p, y0p, x1p, y1p, x2p, y2p, x3p, y3p);
 			return sToQ.times(qToS);
@@ -6908,7 +6921,7 @@ Bitcoin.Util = {
 	{
 			this.image=image;
 			this.resultPointCallback = null;
-		
+
 			this.sizeOfBlackWhiteBlackRun=function( fromX,  fromY,  toX,  toY)
 					{
 							// Mild variant of Bresenham's algorithm;
@@ -6923,7 +6936,7 @@ Bitcoin.Util = {
 									toX = toY;
 									toY = temp;
 							}
-						
+
 							var dx = Math.abs(toX - fromX);
 							var dy = Math.abs(toY - fromY);
 							var error = - dx >> 1;
@@ -6932,7 +6945,7 @@ Bitcoin.Util = {
 							var state = 0; // In black pixels, looking for white, first or second time
 							for (var x = fromX, y = fromY; x != toX; x += xstep)
 							{
-								
+
 									var realX = steep?y:x;
 									var realY = steep?x:y;
 									if (state == 1)
@@ -6950,7 +6963,7 @@ Bitcoin.Util = {
 													state++;
 											}
 									}
-								
+
 									if (state == 3)
 									{
 											// Found black, white, black, and stumbled back onto white; done
@@ -6974,12 +6987,12 @@ Bitcoin.Util = {
 							return  Math.sqrt( (diffX2 * diffX2 + diffY2 * diffY2));
 					}
 
-		
+
 			this.sizeOfBlackWhiteBlackRunBothWays=function( fromX,  fromY,  toX,  toY)
 					{
-						
+
 							var result = this.sizeOfBlackWhiteBlackRun(fromX, fromY, toX, toY);
-						
+
 							// Now count other way -- don't run off image though of course
 							var scale = 1.0;
 							var otherToX = fromX - (toX - fromX);
@@ -6994,7 +7007,7 @@ Bitcoin.Util = {
 									otherToX = qrcode.width - 1;
 							}
 							var otherToY = Math.floor (fromY - (toY - fromY) * scale);
-						
+
 							scale = 1.0;
 							if (otherToY < 0)
 							{
@@ -7007,13 +7020,13 @@ Bitcoin.Util = {
 									otherToY = qrcode.height - 1;
 							}
 							otherToX = Math.floor (fromX + (otherToX - fromX) * scale);
-						
+
 							result += this.sizeOfBlackWhiteBlackRun(fromX, fromY, otherToX, otherToY);
 							return result - 1.0; // -1 because we counted the middle pixel twice
 					}
-				
 
-		
+
+
 			this.calculateModuleSizeOneWay=function( pattern,  otherPattern)
 					{
 							var moduleSizeEst1 = this.sizeOfBlackWhiteBlackRunBothWays(Math.floor( pattern.X), Math.floor( pattern.Y), Math.floor( otherPattern.X), Math.floor(otherPattern.Y));
@@ -7031,7 +7044,7 @@ Bitcoin.Util = {
 							return (moduleSizeEst1 + moduleSizeEst2) / 14.0;
 					}
 
-		
+
 			this.calculateModuleSize=function( topLeft,  topRight,  bottomLeft)
 					{
 							// Take the average
@@ -7046,24 +7059,24 @@ Bitcoin.Util = {
 			}
 			this.computeDimension=function( topLeft,  topRight,  bottomLeft,  moduleSize)
 					{
-						
+
 							var tltrCentersDimension = Math.round(this.distance(topLeft, topRight) / moduleSize);
 							var tlblCentersDimension = Math.round(this.distance(topLeft, bottomLeft) / moduleSize);
 							var dimension = ((tltrCentersDimension + tlblCentersDimension) >> 1) + 7;
 							switch (dimension & 0x03)
 							{
-								
+
 									// mod 4
-									case 0: 
+									case 0:
 											dimension++;
 											break;
 											// 1? do nothing
-								
-									case 2: 
+
+									case 2:
 											dimension--;
 											break;
-								
-									case 3: 
+
+									case 3:
 											throw "Error";
 									}
 							return dimension;
@@ -7080,14 +7093,14 @@ Bitcoin.Util = {
 							{
 									throw "Error";
 							}
-						
+
 							var alignmentAreaTopY = Math.max(0, estAlignmentY - allowance);
 							var alignmentAreaBottomY = Math.min(qrcode.height - 1, estAlignmentY + allowance);
-						
+
 							var alignmentFinder = new AlignmentPatternFinder(this.image, alignmentAreaLeftX, alignmentAreaTopY, alignmentAreaRightX - alignmentAreaLeftX, alignmentAreaBottomY - alignmentAreaTopY, overallEstModuleSize, this.resultPointCallback);
 							return alignmentFinder.find();
 					}
-				
+
 			this.createTransform=function( topLeft,  topRight,  bottomLeft, alignmentPattern, dimension)
 					{
 							var dimMinusThree =  dimension - 3.5;
@@ -7108,26 +7121,26 @@ Bitcoin.Util = {
 									bottomRightY = (topRight.Y - topLeft.Y) + bottomLeft.Y;
 									sourceBottomRightX = sourceBottomRightY = dimMinusThree;
 							}
-						
+
 							var transform = PerspectiveTransform.quadrilateralToQuadrilateral(3.5, 3.5, dimMinusThree, 3.5, sourceBottomRightX, sourceBottomRightY, 3.5, dimMinusThree, topLeft.X, topLeft.Y, topRight.X, topRight.Y, bottomRightX, bottomRightY, bottomLeft.X, bottomLeft.Y);
-						
+
 							return transform;
-					}                
-		
+					}
+
 			this.sampleGrid=function( image,  transform,  dimension)
 					{
-						
+
 							var sampler = GridSampler;
 							return sampler.sampleGrid3(image, dimension, transform);
 					}
-		
+
 			this.processFinderPatternInfo = function( info)
 					{
-						
+
 							var topLeft = info.TopLeft;
 							var topRight = info.TopRight;
 							var bottomLeft = info.BottomLeft;
-						
+
 							var moduleSize = this.calculateModuleSize(topLeft, topRight, bottomLeft);
 							if (moduleSize < 1.0)
 							{
@@ -7136,22 +7149,22 @@ Bitcoin.Util = {
 							var dimension = this.computeDimension(topLeft, topRight, bottomLeft, moduleSize);
 							var provisionalVersion = Version.getProvisionalVersionForDimension(dimension);
 							var modulesBetweenFPCenters = provisionalVersion.DimensionForVersion - 7;
-						
+
 							var alignmentPattern = null;
 							// Anything above version 1 has an alignment pattern
 							if (provisionalVersion.AlignmentPatternCenters.length > 0)
 							{
-								
+
 									// Guess where a "bottom right" finder pattern would have been
 									var bottomRightX = topRight.X - topLeft.X + bottomLeft.X;
 									var bottomRightY = topRight.Y - topLeft.Y + bottomLeft.Y;
-								
+
 									// Estimate that alignment pattern is closer by 3 modules
 									// from "bottom right" to known top left location
 									var correctionToTopLeft = 1.0 - 3.0 /  modulesBetweenFPCenters;
 									var estAlignmentX = Math.floor (topLeft.X + correctionToTopLeft * (bottomRightX - topLeft.X));
 									var estAlignmentY = Math.floor (topLeft.Y + correctionToTopLeft * (bottomRightY - topLeft.Y));
-								
+
 									// Kind of arbitrary -- expand search radius before giving up
 									for (var i = 4; i <= 16; i <<= 1)
 									{
@@ -7167,11 +7180,11 @@ Bitcoin.Util = {
 									}
 									// If we didn't find alignment pattern... well try anyway without it
 							}
-						
+
 							var transform = this.createTransform(topLeft, topRight, bottomLeft, alignmentPattern, dimension);
-						
+
 							var bits = this.sampleGrid(this.image, transform, dimension);
-						
+
 							var points;
 							if (alignmentPattern == null)
 							{
@@ -7183,14 +7196,14 @@ Bitcoin.Util = {
 							}
 							return new DetectorResult(bits, points);
 					}
-				
 
-		
+
+
 			this.detect=function()
 			{
 					var info =  new FinderPatternFinder().findFinderPattern(this.image);
-						
-					return this.processFinderPatternInfo(info); 
+
+					return this.processFinderPatternInfo(info);
 			}
 	}
 
@@ -7325,7 +7338,7 @@ Bitcoin.Util = {
 			this.bits = new Array(rowSize * height);
 			for(var i=0;i<this.bits.length;i++)
 					this.bits[i]=0;
-		
+
 			this.__defineGetter__("Width", function()
 			{
 					return this.width;
@@ -7342,7 +7355,7 @@ Bitcoin.Util = {
 					}
 					return this.width;
 			});
-		
+
 			this.get_Renamed=function( x,  y)
 					{
 							var offset = y * this.rowSize + (x >> 5);
@@ -7397,7 +7410,7 @@ Bitcoin.Util = {
 	{
 			this.numDataCodewords = numDataCodewords;
 			this.codewords = codewords;
-		
+
 			this.__defineGetter__("NumDataCodewords", function()
 			{
 					return this.numDataCodewords;
@@ -7406,20 +7419,20 @@ Bitcoin.Util = {
 			{
 					return this.codewords;
 			});
-	}        
-		
+	}
+
 	DataBlock.getDataBlocks=function(rawCodewords,  version,  ecLevel)
 	{
-		
+
 			if (rawCodewords.length != version.TotalCodewords)
 			{
 					throw "ArgumentException";
 			}
-		
+
 			// Figure out the number and size of data blocks used by this version and
 			// error correction level
 			var ecBlocks = version.getECBlocksForLevel(ecLevel);
-		
+
 			// First count the total number of data blocks
 			var totalBlocks = 0;
 			var ecBlockArray = ecBlocks.getECBlocks();
@@ -7427,7 +7440,7 @@ Bitcoin.Util = {
 			{
 					totalBlocks += ecBlockArray[i].Count;
 			}
-		
+
 			// Now establish DataBlocks of the appropriate size and number of data codewords
 			var result = new Array(totalBlocks);
 			var numResultBlocks = 0;
@@ -7441,7 +7454,7 @@ Bitcoin.Util = {
 							result[numResultBlocks++] = new DataBlock(numDataCodewords, new Array(numBlockCodewords));
 					}
 			}
-		
+
 			// All blocks have the same amount of data, except that the last n
 			// (where n may be 0) have 1 more byte. Figure out where these start.
 			var shorterBlocksTotalCodewords = result[0].codewords.length;
@@ -7456,7 +7469,7 @@ Bitcoin.Util = {
 					longerBlocksStartAt--;
 			}
 			longerBlocksStartAt++;
-		
+
 			var shorterBlocksNumDataCodewords = shorterBlocksTotalCodewords - ecBlocks.ECCodewordsPerBlock;
 			// The last elements of result may be 1 element longer;
 			// first fill out as many elements as all of them have
@@ -7496,19 +7509,19 @@ Bitcoin.Util = {
 			this.bitMatrix = bitMatrix;
 			this.parsedVersion = null;
 			this.parsedFormatInfo = null;
-		
+
 			this.copyBit=function( i,  j,  versionBits)
 			{
 					return this.bitMatrix.get_Renamed(i, j)?(versionBits << 1) | 0x1:versionBits << 1;
 			}
-		
+
 			this.readFormatInformation=function()
 			{
 							if (this.parsedFormatInfo != null)
 							{
 									return this.parsedFormatInfo;
 							}
-						
+
 							// Read top-left format info bits
 							var formatInfoBits = 0;
 							for (var i = 0; i < 6; i++)
@@ -7524,13 +7537,13 @@ Bitcoin.Util = {
 							{
 									formatInfoBits = this.copyBit(8, j, formatInfoBits);
 							}
-						
+
 							this.parsedFormatInfo = FormatInformation.decodeFormatInformation(formatInfoBits);
 							if (this.parsedFormatInfo != null)
 							{
 									return this.parsedFormatInfo;
 							}
-						
+
 							// Hmm, failed. Try the top-right/bottom-left pattern
 							var dimension = this.bitMatrix.Dimension;
 							formatInfoBits = 0;
@@ -7543,30 +7556,30 @@ Bitcoin.Util = {
 							{
 									formatInfoBits = this.copyBit(8, j, formatInfoBits);
 							}
-						
+
 							this.parsedFormatInfo = FormatInformation.decodeFormatInformation(formatInfoBits);
 							if (this.parsedFormatInfo != null)
 							{
 									return this.parsedFormatInfo;
 							}
-							throw "Error readFormatInformation";        
+							throw "Error readFormatInformation";
 			}
 			this.readVersion=function()
 					{
-						
+
 							if (this.parsedVersion != null)
 							{
 									return this.parsedVersion;
 							}
-						
+
 							var dimension = this.bitMatrix.Dimension;
-						
+
 							var provisionalVersion = (dimension - 17) >> 2;
 							if (provisionalVersion <= 6)
 							{
 									return Version.getVersionForNumber(provisionalVersion);
 							}
-						
+
 							// Read top-right version info: 3 wide by 6 tall
 							var versionBits = 0;
 							var ijMin = dimension - 11;
@@ -7577,13 +7590,13 @@ Bitcoin.Util = {
 											versionBits = this.copyBit(i, j, versionBits);
 									}
 							}
-						
+
 							this.parsedVersion = Version.decodeVersionInformation(versionBits);
 							if (this.parsedVersion != null && this.parsedVersion.DimensionForVersion == dimension)
 							{
 									return this.parsedVersion;
 							}
-						
+
 							// Hmm, failed. Try bottom left: 6 wide by 3 tall
 							versionBits = 0;
 							for (var i = 5; i >= 0; i--)
@@ -7593,7 +7606,7 @@ Bitcoin.Util = {
 											versionBits = this.copyBit(i, j, versionBits);
 									}
 							}
-						
+
 							this.parsedVersion = Version.decodeVersionInformation(versionBits);
 							if (this.parsedVersion != null && this.parsedVersion.DimensionForVersion == dimension)
 							{
@@ -7603,18 +7616,18 @@ Bitcoin.Util = {
 					}
 			this.readCodewords=function()
 					{
-						
+
 							var formatInfo = this.readFormatInformation();
 							var version = this.readVersion();
-						
+
 							// Get the data mask for the format used in this QR Code. This will exclude
 							// some bits from reading as we wind through the bit matrix.
 							var dataMask = DataMask.forReference( formatInfo.DataMask);
 							var dimension = this.bitMatrix.Dimension;
 							dataMask.unmaskBitMatrix(this.bitMatrix, dimension);
-						
+
 							var functionPattern = version.buildFunctionPattern();
-						
+
 							var readingUp = true;
 							var result = new Array(version.TotalCodewords);
 							var resultOffset = 0;
@@ -7887,7 +7900,7 @@ Bitcoin.Util = {
 									received[position] = GF256.addOrSubtract(received[position], errorMagnitudes[i]);
 							}
 			}
-		
+
 			this.runEuclideanAlgorithm=function( a,  b,  R)
 					{
 							// Assume a's degree is >= b's
@@ -7897,14 +7910,14 @@ Bitcoin.Util = {
 									a = b;
 									b = temp;
 							}
-						
+
 							var rLast = a;
 							var r = b;
 							var sLast = this.field.One;
 							var s = this.field.Zero;
 							var tLast = this.field.Zero;
 							var t = this.field.One;
-						
+
 							// Run Euclidean algorithm until r's degree is less than R/2
 							while (r.Degree >= Math.floor(R / 2))
 							{
@@ -7914,7 +7927,7 @@ Bitcoin.Util = {
 									rLast = r;
 									sLast = s;
 									tLast = t;
-								
+
 									// Divide rLastLast by rLast, with quotient in q and remainder in r
 									if (rLast.Zero)
 									{
@@ -7933,17 +7946,17 @@ Bitcoin.Util = {
 											r = r.addOrSubtract(rLast.multiplyByMonomial(degreeDiff, scale));
 											//r.EXE();
 									}
-								
+
 									s = q.multiply1(sLast).addOrSubtract(sLastLast);
 									t = q.multiply1(tLast).addOrSubtract(tLastLast);
 							}
-						
+
 							var sigmaTildeAtZero = t.getCoefficient(0);
 							if (sigmaTildeAtZero == 0)
 							{
 									throw "ReedSolomonException sigmaTilde(0) was zero";
 							}
-						
+
 							var inverse = this.field.inverse(sigmaTildeAtZero);
 							var sigma = t.multiply2(inverse);
 							var omega = r.multiply2(inverse);
@@ -8033,7 +8046,7 @@ Bitcoin.Util = {
 			{
 					this.coefficients = coefficients;
 			}
-		
+
 			this.__defineGetter__("Zero", function()
 			{
 					return this.coefficients[0] == 0;
@@ -8046,12 +8059,12 @@ Bitcoin.Util = {
 			{
 					return this.coefficients;
 			});
-		
+
 			this.getCoefficient=function( degree)
 			{
 					return this.coefficients[this.coefficients.length - 1 - degree];
 			}
-		
+
 			this.evaluateAt=function( a)
 			{
 					if (a == 0)
@@ -8077,7 +8090,7 @@ Bitcoin.Util = {
 					}
 					return result2;
 			}
-		
+
 			this.addOrSubtract=function( other)
 					{
 							if (this.field != other.field)
@@ -8092,7 +8105,7 @@ Bitcoin.Util = {
 							{
 									return this;
 							}
-						
+
 							var smallerCoefficients = this.coefficients;
 							var largerCoefficients = other.coefficients;
 							if (smallerCoefficients.length > largerCoefficients.length)
@@ -8106,12 +8119,12 @@ Bitcoin.Util = {
 							// Copy high-order terms only found in higher-degree polynomial's coefficients
 							//Array.Copy(largerCoefficients, 0, sumDiff, 0, lengthDiff);
 							for(var ci=0;ci<lengthDiff;ci++)sumDiff[ci]=largerCoefficients[ci];
-						
+
 							for (var i = lengthDiff; i < largerCoefficients.length; i++)
 							{
 									sumDiff[i] = GF256.addOrSubtract(smallerCoefficients[i - lengthDiff], largerCoefficients[i]);
 							}
-						
+
 							return new GF256Poly(field, sumDiff);
 			}
 			this.multiply1=function( other)
@@ -8186,13 +8199,13 @@ Bitcoin.Util = {
 							{
 									throw "Divide by 0";
 							}
-						
+
 							var quotient = this.field.Zero;
 							var remainder = this;
-						
+
 							var denominatorLeadingTerm = other.getCoefficient(other.Degree);
 							var inverseDenominatorLeadingTerm = this.field.inverse(denominatorLeadingTerm);
-						
+
 							while (remainder.Degree >= other.Degree && !remainder.Zero)
 							{
 									var degreeDifference = remainder.Degree - other.Degree;
@@ -8202,7 +8215,7 @@ Bitcoin.Util = {
 									quotient = quotient.addOrSubtract(iterationQuotient);
 									remainder = remainder.addOrSubtract(term);
 							}
-						
+
 							return new Array(quotient, remainder);
 					}
 	}
@@ -8230,7 +8243,7 @@ Bitcoin.Util = {
 			this.zero = new GF256Poly(this, new Array(at0));
 			var at1=new Array(1);at1[0]=1;
 			this.one = new GF256Poly(this, new Array(at1));
-		
+
 			this.__defineGetter__("Zero", function()
 			{
 					return this.zero;
@@ -8289,7 +8302,7 @@ Bitcoin.Util = {
 									return a;
 							}
 							return this.expTable[(this.logTable[a] + this.logTable[b]) % 255];
-					}                
+					}
 	}
 
 	GF256.QR_CODE_FIELD = new GF256(0x011D);
@@ -8336,13 +8349,13 @@ Bitcoin.Util = {
 			var parser = new BitMatrixParser(bits);
 			var version = parser.readVersion();
 			var ecLevel = parser.readFormatInformation().ErrorCorrectionLevel;
-		
+
 			// Read codewords
 			var codewords = parser.readCodewords();
 
 			// Separate into data blocks
 			var dataBlocks = DataBlock.getDataBlocks(codewords, version, ecLevel);
-		
+
 			// Count total number of data bytes
 			var totalBytes = 0;
 			for (var i = 0; i < dataBlocks.length; i++)
@@ -8351,7 +8364,7 @@ Bitcoin.Util = {
 			}
 			var resultBytes = new Array(totalBytes);
 			var resultOffset = 0;
-		
+
 			// Error-correct and copy data blocks together into a stream of bytes
 			for (var j = 0; j < dataBlocks.length; j++)
 			{
@@ -8364,7 +8377,7 @@ Bitcoin.Util = {
 							resultBytes[resultOffset++] = codewordBytes[i];
 					}
 			}
-		
+
 			// Decode the contents of that stream of bytes
 			var reader = new QRCodeDataBlockReader(resultBytes, version.VersionNumber, ecLevel.Bits);
 			return reader;
@@ -8383,7 +8396,7 @@ Bitcoin.Util = {
 	qrcode.callback = null;
 
 	qrcode.decode = function(src){
-		
+
 			if(arguments.length==0)
 			{
 					var canvas_qr = document.getElementById("qr-canvas");
@@ -8423,7 +8436,7 @@ Bitcoin.Util = {
 											qrcode.callback(qrcode.result);
 									return;
 							}
-						
+
 				try
 				{
 					qrcode.result = qrcode.process(context);
@@ -8446,12 +8459,12 @@ Bitcoin.Util = {
 	}
 
 	qrcode.process = function(ctx){
-		
+
 			var start = new Date().getTime();
 
 			var image = qrcode.grayScaleToBitmap(qrcode.grayscale());
 		//var image = qrcode.binarize(128);
-		
+
 		if(qrcode.debug)
 		{
 			for (var y = 0; y < qrcode.height; y++)
@@ -8466,13 +8479,13 @@ Bitcoin.Util = {
 			}
 			ctx.putImageData(qrcode.imagedata, 0, 0);
 		}
-		
+
 			//var finderPatternInfo = new FinderPatternFinder().findFinderPattern(image);
-		
+
 			var detector = new Detector(image);
 
 			var qRCodeMatrix = detector.detect();
-		
+
 			/*for (var y = 0; y < qRCodeMatrix.bits.Height; y++)
 			{
 					for (var x = 0; x < qRCodeMatrix.bits.Width; x++)
@@ -8485,7 +8498,7 @@ Bitcoin.Util = {
 			}*/
 		if(qrcode.debug)
 			ctx.putImageData(qrcode.imagedata, 0, 0);
-		
+
 			var reader = Decoder.decode(qRCodeMatrix.bits);
 			var data = reader.DataByte;
 			var str="";
@@ -8494,11 +8507,11 @@ Bitcoin.Util = {
 					for(var j=0;j<data[i].length;j++)
 							str+=String.fromCharCode(data[i][j]);
 			}
-		
+
 			var end = new Date().getTime();
 			var time = end - start;
 			console.log(time);
-	
+
 			return qrcode.decode_utf8(str);
 			//alert("Time:" + time + " Code: "+str);
 	}
@@ -8522,7 +8535,7 @@ Bitcoin.Util = {
 					for (var x = 0; x < qrcode.width; x++)
 					{
 							var gray = qrcode.getPixel(x, y);
-						
+
 							ret[x+y*qrcode.width] = gray<=th?true:false;
 					}
 			}
@@ -8578,7 +8591,7 @@ Bitcoin.Util = {
 					//Console.out.println("");
 			}
 			//Console.out.println("");
-		
+
 			return middle;
 	}
 
@@ -8589,7 +8602,7 @@ Bitcoin.Util = {
 			var areaWidth = Math.floor(qrcode.width / sqrtNumArea);
 			var areaHeight = Math.floor(qrcode.height / sqrtNumArea);
 			var bitmap = new Array(qrcode.height*qrcode.width);
-		
+
 			for (var ay = 0; ay < sqrtNumArea; ay++)
 			{
 					for (var ax = 0; ax < sqrtNumArea; ax++)
@@ -8613,7 +8626,7 @@ Bitcoin.Util = {
 					for (var x = 0; x < qrcode.width; x++)
 					{
 							var gray = qrcode.getPixel(x, y);
-						
+
 							ret[x+y*qrcode.width] = gray;
 					}
 			}
@@ -8645,14 +8658,14 @@ Bitcoin.Util = {
 
 	qrcode.orderBestPatterns=function(patterns)
 					{
-						
+
 							function distance( pattern1,  pattern2)
 							{
 									xDiff = pattern1.X - pattern2.X;
 									yDiff = pattern1.Y - pattern2.Y;
 									return  Math.sqrt( (xDiff * xDiff + yDiff * yDiff));
 							}
-						
+
 							/// <summary> Returns the z component of the cross product between vectors BC and BA.</summary>
 							function crossProductZ( pointA,  pointB,  pointC)
 							{
@@ -8661,12 +8674,12 @@ Bitcoin.Util = {
 									return ((pointC.x - bX) * (pointA.y - bY)) - ((pointC.y - bY) * (pointA.x - bX));
 							}
 
-						
+
 							// Find distances between pattern centers
 							var zeroOneDistance = distance(patterns[0], patterns[1]);
 							var oneTwoDistance = distance(patterns[1], patterns[2]);
 							var zeroTwoDistance = distance(patterns[0], patterns[2]);
-						
+
 							var pointA, pointB, pointC;
 							// Assume one closest to other two is B; A and C will just be guesses at first
 							if (oneTwoDistance >= zeroOneDistance && oneTwoDistance >= zeroTwoDistance)
@@ -8687,7 +8700,7 @@ Bitcoin.Util = {
 									pointA = patterns[0];
 									pointC = patterns[1];
 							}
-						
+
 							// Use cross product to figure out whether A and C are correct or flipped.
 							// This asks whether BC x BA has a positive z component, which is the arrangement
 							// we want for A, B, C. If it's negative, then we've got it flipped around and
@@ -8698,7 +8711,7 @@ Bitcoin.Util = {
 									pointA = pointC;
 									pointC = temp;
 							}
-						
+
 							patterns[0] = pointA;
 							patterns[1] = pointB;
 							patterns[2] = pointC;
@@ -8711,11 +8724,11 @@ Bitcoin.Util = {
 			this.y=posY;
 			this.count = 1;
 			this.estimatedModuleSize = estimatedModuleSize;
-		
+
 			this.__defineGetter__("EstimatedModuleSize", function()
 			{
 					return this.estimatedModuleSize;
-			}); 
+			});
 			this.__defineGetter__("Count", function()
 			{
 					return this.count;
@@ -8741,7 +8754,7 @@ Bitcoin.Util = {
 							}
 							return false;
 					}
-		
+
 	}
 
 	function FinderPatternInfo(patternCenters)
@@ -8752,15 +8765,15 @@ Bitcoin.Util = {
 			this.__defineGetter__("BottomLeft", function()
 			{
 					return this.bottomLeft;
-			}); 
+			});
 			this.__defineGetter__("TopLeft", function()
 			{
 					return this.topLeft;
-			}); 
+			});
 			this.__defineGetter__("TopRight", function()
 			{
 					return this.topRight;
-			}); 
+			});
 	}
 
 	function FinderPatternFinder()
@@ -8770,7 +8783,7 @@ Bitcoin.Util = {
 			this.hasSkipped = false;
 			this.crossCheckStateCount = new Array(0,0,0,0,0);
 			this.resultPointCallback = null;
-		
+
 			this.__defineGetter__("CrossCheckStateCount", function()
 			{
 					this.crossCheckStateCount[0] = 0;
@@ -8779,8 +8792,8 @@ Bitcoin.Util = {
 					this.crossCheckStateCount[3] = 0;
 					this.crossCheckStateCount[4] = 0;
 					return this.crossCheckStateCount;
-			}); 
-		
+			});
+
 			this.foundPatternCross=function( stateCount)
 					{
 							var totalModuleSize = 0;
@@ -8809,10 +8822,10 @@ Bitcoin.Util = {
 			this.crossCheckVertical=function( startI,  centerJ,  maxCount,  originalStateCountTotal)
 					{
 							var image = this.image;
-						
+
 							var maxI = qrcode.height;
 							var stateCount = this.CrossCheckStateCount;
-						
+
 							// Start counting up from center
 							var i = startI;
 							while (i >= 0 && image[centerJ + i*qrcode.width])
@@ -8843,7 +8856,7 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							// Now also count down from center
 							i = startI + 1;
 							while (i < maxI && image[centerJ +i*qrcode.width])
@@ -8873,7 +8886,7 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							// If we found a finder-pattern-like section, but its size is more than 40% different than
 							// the original, assume it's a false positive
 							var stateCountTotal = stateCount[0] + stateCount[1] + stateCount[2] + stateCount[3] + stateCount[4];
@@ -8881,16 +8894,16 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							return this.foundPatternCross(stateCount)?this.centerFromEnd(stateCount, i):NaN;
 					}
 			this.crossCheckHorizontal=function( startJ,  centerI,  maxCount, originalStateCountTotal)
 					{
 							var image = this.image;
-						
+
 							var maxJ = qrcode.width;
 							var stateCount = this.CrossCheckStateCount;
-						
+
 							var j = startJ;
 							while (j >= 0 && image[j+ centerI*qrcode.width])
 							{
@@ -8919,7 +8932,7 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							j = startJ + 1;
 							while (j < maxJ && image[j+ centerI*qrcode.width])
 							{
@@ -8948,7 +8961,7 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							// If we found a finder-pattern-like section, but its size is significantly different than
 							// the original, assume it's a false positive
 							var stateCountTotal = stateCount[0] + stateCount[1] + stateCount[2] + stateCount[3] + stateCount[4];
@@ -8956,7 +8969,7 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							return this.foundPatternCross(stateCount)?this.centerFromEnd(stateCount, j):NaN;
 					}
 			this.handlePossibleCenter=function( stateCount,  i,  j)
@@ -8998,17 +9011,17 @@ Bitcoin.Util = {
 							}
 							return false;
 					}
-				
+
 			this.selectBestPatterns=function()
 					{
-						
+
 							var startSize = this.possibleCenters.length;
 							if (startSize < 3)
 							{
 									// Couldn't find enough finder patterns
 									throw "Couldn't find enough finder patterns";
 							}
-						
+
 							// Filter outlier possibilities whose module size is too different
 							if (startSize > 3)
 							{
@@ -9048,7 +9061,7 @@ Bitcoin.Util = {
 											}
 									}
 							}
-						
+
 							if (this.possibleCenters.length > 3)
 							{
 									// Throw away all but those first size candidate points we found.
@@ -9058,10 +9071,10 @@ Bitcoin.Util = {
 											return 0;
 									});
 							}
-						
+
 							return new Array( this.possibleCenters[0],  this.possibleCenters[1],  this.possibleCenters[2]);
 					}
-				
+
 			this.findRowSkip=function()
 					{
 							var max = this.possibleCenters.length;
@@ -9093,7 +9106,7 @@ Bitcoin.Util = {
 							}
 							return 0;
 					}
-		
+
 			this.haveMultiplyConfirmedCenters=function()
 					{
 							var confirmedCount = 0;
@@ -9125,7 +9138,7 @@ Bitcoin.Util = {
 							}
 							return totalDeviation <= 0.05 * totalModuleSize;
 					}
-				
+
 			this.findFinderPattern = function(image){
 					var tryHarder = false;
 					this.image=image;
@@ -9136,7 +9149,7 @@ Bitcoin.Util = {
 					{
 									iSkip = MIN_SKIP;
 					}
-				
+
 					var done = false;
 					var stateCount = new Array(5);
 					for (var i = iSkip - 1; i < maxI && !done; i += iSkip)
@@ -9191,7 +9204,7 @@ Bitcoin.Util = {
 																							// and top of presumed third confirmed center
 																							// but back up a bit to get a full chance of detecting
 																							// it, entire width of center of finder pattern
-																						
+
 																							// Skip by rowSkip, but back off by stateCount[2] (size of last center
 																							// of pattern we saw) to be conservative, and also back off by iSkip which
 																							// is about to be re-added
@@ -9203,7 +9216,7 @@ Bitcoin.Util = {
 																	else
 																	{
 																			// Advance to next black pixel
-																			do 
+																			do
 																			{
 																					j++;
 																			}
@@ -9255,10 +9268,10 @@ Bitcoin.Util = {
 									}
 							}
 					}
-				
+
 					var patternInfo = this.selectBestPatterns();
 					qrcode.orderBestPatterns(patternInfo);
-				
+
 					return new FinderPatternInfo(patternInfo);
 			};
 	}
@@ -9269,11 +9282,11 @@ Bitcoin.Util = {
 			this.y=posY;
 			this.count = 1;
 			this.estimatedModuleSize = estimatedModuleSize;
-		
+
 			this.__defineGetter__("EstimatedModuleSize", function()
 			{
 					return this.estimatedModuleSize;
-			}); 
+			});
 			this.__defineGetter__("Count", function()
 			{
 					return this.count;
@@ -9299,7 +9312,7 @@ Bitcoin.Util = {
 							}
 							return false;
 					}
-		
+
 	}
 
 	function AlignmentPatternFinder( image,  startX,  startY,  width,  height,  moduleSize,  resultPointCallback)
@@ -9313,7 +9326,7 @@ Bitcoin.Util = {
 			this.moduleSize = moduleSize;
 			this.crossCheckStateCount = new Array(0,0,0);
 			this.resultPointCallback = resultPointCallback;
-		
+
 			this.centerFromEnd=function(stateCount,  end)
 					{
 							return  (end - stateCount[2]) - stateCount[1] / 2.0;
@@ -9335,13 +9348,13 @@ Bitcoin.Util = {
 			this.crossCheckVertical=function( startI,  centerJ,  maxCount,  originalStateCountTotal)
 					{
 							var image = this.image;
-						
+
 							var maxI = qrcode.height;
 							var stateCount = this.crossCheckStateCount;
 							stateCount[0] = 0;
 							stateCount[1] = 0;
 							stateCount[2] = 0;
-						
+
 							// Start counting up from center
 							var i = startI;
 							while (i >= 0 && image[centerJ + i*qrcode.width] && stateCount[1] <= maxCount)
@@ -9363,7 +9376,7 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							// Now also count down from center
 							i = startI + 1;
 							while (i < maxI && image[centerJ + i*qrcode.width] && stateCount[1] <= maxCount)
@@ -9384,16 +9397,16 @@ Bitcoin.Util = {
 							{
 									return NaN;
 							}
-						
+
 							var stateCountTotal = stateCount[0] + stateCount[1] + stateCount[2];
 							if (5 * Math.abs(stateCountTotal - originalStateCountTotal) >= 2 * originalStateCountTotal)
 							{
 									return NaN;
 							}
-						
+
 							return this.foundPatternCross(stateCount)?this.centerFromEnd(stateCount, i):NaN;
 					}
-				
+
 			this.handlePossibleCenter=function( stateCount,  i,  j)
 					{
 							var stateCountTotal = stateCount[0] + stateCount[1] + stateCount[2];
@@ -9422,7 +9435,7 @@ Bitcoin.Util = {
 							}
 							return null;
 					}
-				
+
 			this.find = function()
 			{
 							var startX = this.startX;
@@ -9505,17 +9518,17 @@ Bitcoin.Util = {
 											}
 									}
 							}
-						
+
 							// Hmm, nothing we saw was observed and confirmed twice. If we had
 							// any guess at all, return it.
 							if (!(this.possibleCenters.length == 0))
 							{
 									return  this.possibleCenters[0];
 							}
-						
+
 							throw "Couldn't find enough alignment patterns";
 					}
-		
+
 	}
 
 	function QRCodeDataBlockReader(blocks,  version,  numErrorCorrectionCode)
@@ -9531,9 +9544,9 @@ Bitcoin.Util = {
 					this.dataLengthMode = 1;
 			else if (version >= 27 && version <= 40)
 					this.dataLengthMode = 2;
-				
+
 			this.getNextBits = function( numBits)
-					{                        
+					{
 							var bits = 0;
 							if (numBits < this.bitPointer + 1)
 							{
@@ -9544,7 +9557,7 @@ Bitcoin.Util = {
 											mask += (1 << i);
 									}
 									mask <<= (this.bitPointer - numBits + 1);
-								
+
 									bits = (this.blocks[this.blockPointer] & mask) >> (this.bitPointer - numBits + 1);
 									this.bitPointer -= numBits;
 									return bits;
@@ -9560,7 +9573,7 @@ Bitcoin.Util = {
 									bits = (this.blocks[this.blockPointer] & mask1) << (numBits - (this.bitPointer + 1));
 					this.blockPointer++;
 									bits += ((this.blocks[this.blockPointer]) >> (8 - (numBits - (this.bitPointer + 1))));
-								
+
 									this.bitPointer = this.bitPointer - numBits % 8;
 									if (this.bitPointer < 0)
 									{
@@ -9575,24 +9588,24 @@ Bitcoin.Util = {
 									var mask3 = 0; // mask of 3rd block
 									//bitPointer + 1 : number of bits of the 1st block
 									//8 : number of the 2nd block (note that use already 8bits because next word uses 3 data blocks)
-									//numBits - (bitPointer + 1 + 8) : number of bits of the 3rd block 
+									//numBits - (bitPointer + 1 + 8) : number of bits of the 3rd block
 									for (var i = 0; i < this.bitPointer + 1; i++)
 									{
 											mask1 += (1 << i);
 									}
 									var bitsFirstBlock = (this.blocks[this.blockPointer] & mask1) << (numBits - (this.bitPointer + 1));
 									this.blockPointer++;
-								
+
 									var bitsSecondBlock = this.blocks[this.blockPointer] << (numBits - (this.bitPointer + 1 + 8));
 									this.blockPointer++;
-								
+
 									for (var i = 0; i < numBits - (this.bitPointer + 1 + 8); i++)
 									{
 											mask3 += (1 << i);
 									}
 									mask3 <<= 8 - (numBits - (this.bitPointer + 1 + 8));
 									var bitsThirdBlock = (this.blocks[this.blockPointer] & mask3) >> (8 - (numBits - (this.bitPointer + 1 + 8)));
-								
+
 									bits = bitsFirstBlock + bitsSecondBlock + bitsThirdBlock;
 									this.bitPointer = this.bitPointer - (numBits - 8) % 8;
 									if (this.bitPointer < 0)
@@ -9622,7 +9635,7 @@ Bitcoin.Util = {
 											break;
 									index++;
 							}
-						
+
 							return this.getNextBits(qrcode.sizeOfDataLengthInfo[this.dataLengthMode][index]);
 					}
 			this.getRomanAndFigureString=function( dataLength)
@@ -9631,7 +9644,7 @@ Bitcoin.Util = {
 							var intData = 0;
 							var strData = "";
 							var tableRomanAndFigure = new Array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ', '$', '%', '*', '+', '-', '.', '/', ':');
-							do 
+							do
 							{
 									if (length > 1)
 									{
@@ -9650,7 +9663,7 @@ Bitcoin.Util = {
 									}
 							}
 							while (length > 0);
-						
+
 							return strData;
 					}
 			this.getFigureString=function( dataLength)
@@ -9658,7 +9671,7 @@ Bitcoin.Util = {
 							var length = dataLength;
 							var intData = 0;
 							var strData = "";
-							do 
+							do
 							{
 									if (length >= 3)
 									{
@@ -9684,7 +9697,7 @@ Bitcoin.Util = {
 									strData += intData;
 							}
 							while (length > 0);
-						
+
 							return strData;
 					}
 			this.get8bitByteArray=function( dataLength)
@@ -9692,8 +9705,8 @@ Bitcoin.Util = {
 							var length = dataLength;
 							var intData = 0;
 							var output = new Array();
-						
-							do 
+
+							do
 							{
 									intData = this.getNextBits(8);
 									output.push( intData);
@@ -9707,12 +9720,12 @@ Bitcoin.Util = {
 							var length = dataLength;
 							var intData = 0;
 							var unicodeString = "";
-							do 
+							do
 							{
 									intData = getNextBits(13);
 									var lowerByte = intData % 0xC0;
 									var higherByte = intData / 0xC0;
-								
+
 									var tempWord = (higherByte << 8) + lowerByte;
 									var shiftjisWord = 0;
 									if (tempWord + 0x8140 <= 0x9FFC)
@@ -9725,7 +9738,7 @@ Bitcoin.Util = {
 											// between E040 - EBBF on Shift_JIS character set
 											shiftjisWord = tempWord + 0xC140;
 									}
-								
+
 									//var tempByte = new Array(0,0);
 									//tempByte[0] = (sbyte) (shiftjisWord >> 8);
 									//tempByte[1] = (sbyte) (shiftjisWord & 0xFF);
@@ -9734,8 +9747,8 @@ Bitcoin.Util = {
 									length--;
 							}
 							while (length > 0);
-						
-						
+
+
 							return unicodeString;
 					}
 
@@ -9746,7 +9759,7 @@ Bitcoin.Util = {
 				var MODE_ROMAN_AND_NUMBER = 2;
 				var MODE_8BIT_BYTE = 4;
 				var MODE_KANJI = 8;
-					do 
+					do
 											{
 													var mode = this.NextMode();
 													//canvas.println("mode: " + mode);
@@ -9773,8 +9786,8 @@ Bitcoin.Util = {
 													//canvas.println("length: " + dataLength);
 													switch (mode)
 													{
-														
-															case MODE_NUMBER: 
+
+															case MODE_NUMBER:
 																	//canvas.println("Mode: Figure");
 																	var temp_str = this.getFigureString(dataLength);
 																	var ta = new Array(temp_str.length);
@@ -9782,8 +9795,8 @@ Bitcoin.Util = {
 																			ta[j]=temp_str.charCodeAt(j);
 																	output.push(ta);
 																	break;
-														
-															case MODE_ROMAN_AND_NUMBER: 
+
+															case MODE_ROMAN_AND_NUMBER:
 																	//canvas.println("Mode: Roman&Figure");
 																	var temp_str = this.getRomanAndFigureString(dataLength);
 																	var ta = new Array(temp_str.length);
@@ -9792,16 +9805,16 @@ Bitcoin.Util = {
 																	output.push(ta );
 																	//output.Write(SystemUtils.ToByteArray(temp_sbyteArray2), 0, temp_sbyteArray2.Length);
 																	break;
-														
-															case MODE_8BIT_BYTE: 
+
+															case MODE_8BIT_BYTE:
 																	//canvas.println("Mode: 8bit Byte");
 																	//sbyte[] temp_sbyteArray3;
 																	var temp_sbyteArray3 = this.get8bitByteArray(dataLength);
 																	output.push(temp_sbyteArray3);
 																	//output.Write(SystemUtils.ToByteArray(temp_sbyteArray3), 0, temp_sbyteArray3.Length);
 																	break;
-														
-															case MODE_KANJI: 
+
+															case MODE_KANJI:
 																	//canvas.println("Mode: Kanji");
 																	//sbyte[] temp_sbyteArray4;
 																	//temp_sbyteArray4 = SystemUtils.ToSByteArray(SystemUtils.ToByteArray(getKanjiString(dataLength)));
@@ -9810,7 +9823,7 @@ Bitcoin.Util = {
 																	output.push(temp_str);
 																	break;
 															}
-													//                        
+													//
 													//canvas.println("DataLength: " + dataLength);
 													//Console.out.println(dataString);
 											}
@@ -9873,7 +9886,7 @@ Bitcoin.Util = {
 				_video = document.getElementById(_id_video);
 
 				navigator.getUserMedia(
-					{video: true}, 
+					{video: true},
 					function(stream) {
 						_stream = stream;
 						_video.src = window.URL.createObjectURL(stream) || stream;
@@ -9882,7 +9895,7 @@ Bitcoin.Util = {
 							canvasInit();
 							_interval = setInterval(captureToCanvas, 500);
 						}, 250); // Needed to get videoWidth/videoHeight
-					}, 
+					},
 					function(error) {
 						_container.innerHTML = '';
 						_video = null;
@@ -9938,7 +9951,7 @@ Bitcoin.Util = {
 
 
 	<style type="text/css">
-			
+
 		/*	import ubuntu mono bold as our font for display public & private keys.
 			NOTE: This font has been stripped down such that it only includes characters A-Z, a-Z, and 0-9 */
 		@font-face {
@@ -9951,7 +9964,7 @@ Bitcoin.Util = {
 			font-weight: bold;
 			font-style: normal;
 		}
-		
+
 		.right { text-align: right; }
 		.walletarea { display: none; border-top: 2px solid #f7931a; }
 		.keyarea { font-family: Courier New; height: 110px; text-align: left; position: relative; padding: 5px; }
@@ -9966,9 +9979,9 @@ Bitcoin.Util = {
 		.faqs ol { padding: 0 0 0 25px; }
 		.faqs li { padding: 3px 0; }
 		body { margin-top: 0; font-family: Arial; background-image:url(images/webpage-background.png); background-repeat: repeat-y; background-position: center; background-color: #e2f9bd; font-size: 14px;}
-		
+
 		h1 { font-size: 24px; font-weight: 100; color: #090; margin:0 0 10px 0; padding:0; }
-		
+
 		a, a:visited { text-decoration: none; color: #ff6c00; }
 		a:hover {color: #0000FF; text-decoration: underline;}
 
@@ -9977,14 +9990,14 @@ Bitcoin.Util = {
 		-webkit-box-shadow: #B3B3B3 1px 0px 1px; -moz-box-shadow: #B3B3B3 1px 0px 1px; box-shadow: #B3B3B3 1px 0px 1px; }
 
 		#generate { height: 450px; text-align: left; position: relative; padding: 5px; border: none; line-height: 24px;}
-		
+
 		#generate input { font-size: 10px; }
-		
+
 		#papergenerate1 { font-weight: bold; color: #006806; }
 		.helpDivider { display: block; border-bottom: 1px dotted #999999; margin: 10px 0; }
 		.helpTitle { color: #029B15; font-size: 120%;}
 		#generatelabelbitcoinaddress { font-size: 90%;}
-				
+
 		#seedpoolarea { display: none; }
 		#seedpooldisplay {  font-family: monospace; font-size: 12px; width: 680px; padding: 0 0 0 0; word-wrap: break-word; color: #FF9637; line-height: 16px;}
 
@@ -9993,16 +10006,16 @@ Bitcoin.Util = {
 		#generate #mousemovelimit { font-size: 16px; color: #FFF; }
 
 		#rightArea { float: right; width: 170px; }
- 
-		#progress-bar { width: 170px; background:#99c31b; position: relative; margin-bottom: 20px; } 
-		.fullyRounded { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; } 
-		#progress-bar-percentage { background:#ff952d; padding: 3px 0px; text-align: center; height: 18px; } 
+
+		#progress-bar { width: 170px; background:#99c31b; position: relative; margin-bottom: 20px; }
+		.fullyRounded { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+		#progress-bar-percentage { background:#ff952d; padding: 3px 0px; text-align: center; height: 18px; }
 		#progress-bar-percentage span { display: inline-block; position: absolute; width: 100%; left: 0; }
-				
+
 		#main { position: relative; margin: 0px auto; width: 1010px; color: #444; } /* removed text-align: center; */
 		#logoback {  background-image:url(images/logo.png); background-position: top left; background-repeat: no-repeat; }
 		#menu { visibility: hidden; font-size: 90%; padding: 0 12px;}
-		
+
 		#culturemenu { text-align: right; padding: 10px 20px; font-size: 12px; }
 
 		#culturemenu { text-align: right; padding: 10px 20px; font-size: 12px;}
@@ -10011,9 +10024,9 @@ Bitcoin.Util = {
 
 		#calibratearea .calibratesvg { width: 1010px; height: 331px; border: 0; margin: 0; padding: 0; left: 0; }
 		#calibratearea #calibrationinfo { clear: both; text-align: center; color: #990000; padding: 10px 0;}
-		
+
 		#backarea .commands, #paperarea .commands { height: 120px; } /* identical so back and front line up */
-			
+
 		#backarea .backsvg { width: 1010px; height: 331px; border: 0; margin: 0; padding: 0; left: 0; }
 
 		#printeradjust { color: #060; font-size: 12px; }
@@ -10021,19 +10034,19 @@ Bitcoin.Util = {
 		#printeradjust a:hover span { background-color: #CCFFCC; }
 		#printeradjust a, #printeradjust a:hover {text-decoration: none;}
 		#printeradjust input { text-align: center; margin: 0 2px; width: 20px;}
-		
+
 		#detailwallet { margin-left: 35px; color: #d36200; }
-		
+
 		#paperarea { min-height: 120px; display: none; }
 		#paperarea .keyarea { border: 2px solid #f7931a; border-top: 0; }
-		
+
 		/* alphanum for public-private keys*/
 		#paperarea .keyarea.art { display: block; height: auto; border: 0; font-family: ubuntu_mono_bold, Arial, Helvetica, sans-serif; padding: 0; margin: 0; font-size: 13px;}
-		
+
 		#paperarea .artwallet .papersvg { width: 1010px; height: 331px; border: 0; margin: 0; padding: 0; left: 0; }
-		#paperarea .artwallet .qrcode_public { top: 120px; left: 41px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF; 
-		                                       padding: 5px 5px 2px 5px; } 
-		#paperarea .artwallet .qrcode_private { top: 103px; left: 828px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF; 
+		#paperarea .artwallet .qrcode_public { top: 120px; left: 41px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
+		                                       padding: 5px 5px 2px 5px; }
+		#paperarea .artwallet .qrcode_private { top: 103px; left: 828px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
 		                                        padding: 5px 5px 2px 5px; }
 
 		#paperarea .artwallet .btcaddress, #paperarea .artwallet .dupbtcaddress, #paperarea .artwallet .btcprivwif, #paperarea .artwallet .btcencryptedkey, #paperarea .artwallet .dupbtcprivwif, #paperarea .artwallet .dupbtcencryptedkey, #paperarea .artwallet .wallettype {
@@ -10044,70 +10057,70 @@ Bitcoin.Util = {
 		}
 
 
-		#paperarea .artwallet .btcaddress  
+		#paperarea .artwallet .btcaddress
 		{
 		    position: absolute; top: 275px; left: 40px; z-index: 100; background-color: transparent;
 		    color: #000000; margin: 0;
-				-webkit-transform-origin:top left; 
+				-webkit-transform-origin:top left;
 				/* -webkit-transform:rotate(-90deg); */
-				-moz-transform-origin:top left;    
+				-moz-transform-origin:top left;
 				/*-moz-transform:rotate(-90deg); */
-				-ms-transform-origin:top left;     
+				-ms-transform-origin:top left;
 				/*-ms-transform:rotate(-90deg);*/
-				-o-transform-origin:top left;      
+				-o-transform-origin:top left;
 				/*-o-transform:rotate(-90deg);*/
-				transform-origin:top left;         
+				transform-origin:top left;
 				/*transform:rotate(-90deg);*/
-		} 
+		}
 
-		#paperarea .artwallet .dupbtcaddress  
+		#paperarea .artwallet .dupbtcaddress
 		{
 		    position: absolute; top: 45px; left: 40px; z-index: 100; background-color: transparent;
 		    color: #000000; margin: 0;
 				/* -webkit-transform-origin:top left; */
-				-webkit-transform:rotate(-180deg); 
-				/* -moz-transform-origin:top left; */   
-				-moz-transform:rotate(-180deg); 
-				/* -ms-transform-origin:top left; */    
+				-webkit-transform:rotate(-180deg);
+				/* -moz-transform-origin:top left; */
+				-moz-transform:rotate(-180deg);
+				/* -ms-transform-origin:top left; */
 				-ms-transform:rotate(-180deg);
-				/* -o-transform-origin:top left; */     
+				/* -o-transform-origin:top left; */
 				-o-transform:rotate(-180deg);
-				/* transform-origin:top left; */        
+				/* transform-origin:top left; */
 				transform:rotate(-180deg);
-		} 
+		}
 
-		#paperarea .artwallet .btcprivwif, #paperarea .artwallet .btcencryptedkey  
+		#paperarea .artwallet .btcprivwif, #paperarea .artwallet .btcencryptedkey
 		{
 		    position: absolute; top: 245px; left: 610px; z-index: 100; background-color: transparent;
-		    color: #000000; margin: 0;  
-				-webkit-transform-origin:top left; 
+		    color: #000000; margin: 0;
+				-webkit-transform-origin:top left;
 				/*-webkit-transform:rotate(-90deg);*/
-				-moz-transform-origin:top left;    
+				-moz-transform-origin:top left;
 				/*-moz-transform:rotate(-90deg);*/
-				-ms-transform-origin:top left;     
+				-ms-transform-origin:top left;
 				/*-ms-transform:rotate(-90deg);*/
-				-o-transform-origin:top left;      
+				-o-transform-origin:top left;
 				/*-o-transform:rotate(-90deg);*/
-				transform-origin:top left;         
+				transform-origin:top left;
 				/*transform:rotate(-90deg);*/
 		}
 
-		#paperarea .artwallet .dupbtcprivwif, #paperarea .artwallet .dupbtcencryptedkey 
+		#paperarea .artwallet .dupbtcprivwif, #paperarea .artwallet .dupbtcencryptedkey
 		{
 		    position: absolute; top: 75px; left: 610px; z-index: 100; background-color: transparent;
-		    color: #000000; margin: 0;  
-				/* -webkit-transform-origin:top left; */ 
+		    color: #000000; margin: 0;
+				/* -webkit-transform-origin:top left; */
 				-webkit-transform:rotate(-180deg);
-				/* -moz-transform-origin:top left; */   
+				/* -moz-transform-origin:top left; */
 				-moz-transform:rotate(-180deg);
-				/* -ms-transform-origin:top left; */    
+				/* -ms-transform-origin:top left; */
 				-ms-transform:rotate(-180deg);
-				/* -o-transform-origin:top left; */      
+				/* -o-transform-origin:top left; */
 				-o-transform:rotate(-180deg);
-				/* transform-origin:top left; */    
+				/* transform-origin:top left; */
 				transform:rotate(-180deg);
 		}
-		
+
 		#paperarea .artwallet .btcencryptedkey, #paperarea .artwallet .dupbtcencryptedkey
 		{
 			font-size: 12px;
@@ -10116,16 +10129,16 @@ Bitcoin.Util = {
 		#paperarea .artwallet .wallettype
 		{
 		    position: absolute; top: 160px; left: 732px; z-index: 100; background-color: transparent;
-		    color: #000000; margin: 0; font-size: 11px; 
-				/* -webkit-transform-origin:top left; */ 
+		    color: #000000; margin: 0; font-size: 11px;
+				/* -webkit-transform-origin:top left; */
 				-webkit-transform:rotate(90deg);
-				/* -moz-transform-origin:top left; */   
+				/* -moz-transform-origin:top left; */
 				-moz-transform:rotate(90deg);
-				/* -ms-transform-origin:top left; */    
+				/* -ms-transform-origin:top left; */
 				-ms-transform:rotate(90deg);
-				/* -o-transform-origin:top left; */      
+				/* -o-transform-origin:top left; */
 				-o-transform:rotate(90deg);
-				/* transform-origin:top left; */    
+				/* transform-origin:top left; */
 				transform:rotate(90deg);
 		}
 
@@ -10141,16 +10154,16 @@ Bitcoin.Util = {
 		#backText #backLongText ul { margin: 0 0 0 14px; padding: 0; list-style: square outside none; }
 		#backText #backLongText li { margin: 0; padding: 0 0 3px 0; }
 		#backText #backLongText li strong { font-weight: 400; color: red; }
-		
+
 		#backText #backSeal { position: absolute; margin-top: 53px; margin-left: 10px; z-index: 1100; display: none;}
-		#backText #backSealBig { position: absolute; margin: 18px 0 0 0; padding: 0 0 0 0; z-index: 1200; width: 105px; 
+		#backText #backSealBig { position: absolute; margin: 18px 0 0 0; padding: 0 0 0 0; z-index: 1200; width: 105px;
 								  text-shadow: rgb(201, 251, 135) 2px 2px 0px, rgb(156, 156, 156) 4px 4px 0px;
 								  text-align: center; font-size: 28px; color: #000000;
 								  font-weight: bold; font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif; }
-		#backText #backSealSmall { position: absolute; margin: 53px 0 0 0; padding: 0 0 0 0; z-index: 1200; width: 105px; 
+		#backText #backSealSmall { position: absolute; margin: 53px 0 0 0; padding: 0 0 0 0; z-index: 1200; width: 105px;
 		font-family: ubuntu_mono_bold, Arial, Helvetica, sans-serif; text-align: center; font-size: 10px; letter-spacing: .1em; color: #22461b;
 		text-shadow: rgb(255, 255, 255) 1px 1px 1px }
-		#backText #backCustomMessageEntry { background-color: #EEE; width: 195px; height: 150px; font-size: 10px; } 
+		#backText #backCustomMessageEntry { background-color: #EEE; width: 195px; height: 150px; font-size: 10px; }
 		#backText #backCustomMessage { display: none; position: absolute; overflow: hidden; margin-left: 210px; width: 195px; margin-top: 20px; font-size: 11px; line-height: 15px; height: 150px; }
 
 		.nicerButton { /* thanks http://www.cssbuttongenerator.com */
@@ -10202,14 +10215,14 @@ Bitcoin.Util = {
 		.instructionsarea { padding: 0 25px; }
 		.instructionsarea { font-size: 12px; line-height: 18px; }
 		.instructionsarea li { padding-bottom: 8px; list-style: none; }
-		
+
 		.highlighted { font-size: 14px; padding: 8px; background-color: #ebfdbf;}
-		
-		#browserinfo { text-align: center; } 
+
+		#browserinfo { text-align: center; }
 		.englishjson { text-align: center; padding: 40px 0 20px 0; }
 		.unittests { text-align: center; }
 		.unittests div { width: 894px; font-family: monospace; text-align: left; margin: auto; padding: 5px; border: 1px solid black; }
-		
+
 		.background { background: #ccc no-repeat center; opacity: 0.4; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 		#busyblock, #busyblock_decrypt, #paperbip38settings, #paperqrscanner { position: absolute; display: none; width: 100%; height: 100%; top: 0; left: 0; z-index: 5000; vertical-aligh: middle; }
 		#busyblock.busy, #busyblock_decrypt.busy, #paperbip38settings.show, #paperqrscanner.show { display: block; }
@@ -10227,7 +10240,7 @@ Bitcoin.Util = {
 		}
 		.hide { display: none; }
 		.show { display: block; }
-		
+
 		input { font-size: 12px; }
 
 		/* IE8 */
@@ -10269,10 +10282,10 @@ Bitcoin.Util = {
 		#detailarea .notes { text-align: left; padding: 0 0 20px 0; }
 		#detailarea .pubqr .item .label { text-decoration: none; }
 		#detailarea .pubqr .item { float: left; margin: 10px 0; position: relative; }
-		#detailarea .pubqr .item.right { float: right; position: relative; top: 0; } 
+		#detailarea .pubqr .item.right { float: right; position: relative; top: 0; }
 		#detailarea .privqr .item .label { text-decoration: none; }
 		#detailarea .privqr .item { float: left; margin: 0; position: relative; }
-		#detailarea .privqr .item.right { float: right; position: relative; } 
+		#detailarea .privqr .item.right { float: right; position: relative; }
 		#detailarea .item { margin: 10px 0; position: relative; font-size: 90%; padding: 1px 0; }
 		#detailarea .item.clear { clear: both; padding-top: 10px; }
 		#detailarea .label { display: block; font-weight: bold; }
@@ -10282,13 +10295,13 @@ Bitcoin.Util = {
 		#detailarea #detailqrcodeprivate { position: relative; float: left; margin: 0 10px 0 0; padding: 13px 11px 11px 11px; }
 		#detailarea #detailqrcodeprivatecomp { position: relative; float: right; margin: 0 0 0 10px; padding: 13px 11px 11px 11px; }
 		#detailpubkey { width: 590px; }
-		#detailbip38commands { display: none; padding-top: 5px; }	
+		#detailbip38commands { display: none; padding-top: 5px; }
 		.answer { padding: 0 15px 10px 25px; text-align: left; display: none; font-size: 80%; }
 
 		#paperadvancedcommands { float: left; font-size: 12px; margin-left: 10px; padding: 4px; border: 1px dotted #CCC;}
-		
+
 		#paperencryptstatus { margin-top: 5px; font-size: 12px; line-height: 20px; }
-			
+
 		#paperencryptpassphrase {
 			background-color: #0086a6;
 			color: #FFF;
@@ -10303,37 +10316,37 @@ Bitcoin.Util = {
 			font-size: 11px;
 		}
 
-		@media screen 	
+		@media screen
 		{
 			#tagline { margin: 10px 0 0 310px; font-style: italic; font-size: 18px; color: #666; }
 			#tagline span {padding-left: 10px; font-size: 11px; color: #999;}
 			#tagsite { margin: 5px 0 20px 310px; font-size: 14px; color: #666; }
-			
+
 
 			#tagwarning { position: absolute; left: 250px; top: 25px; font-size: 12px; color: red; }
 			.menu { text-align: left; }
-			.menu .tab { border-top-left-radius: 5px; border-top-right-radius: 5px; display: inline-block; background-color: #e2f9bd; 
+			.menu .tab { border-top-left-radius: 5px; border-top-right-radius: 5px; display: inline-block; background-color: #e2f9bd;
 						 color: #060; font-size: 12px;
-						 border-top: 2px solid #f7931a; 
-						 border-left: 2px solid #f7931a; 
-						 border-right: 2px solid #f7931a; 
-						 border-bottom: 2px solid #e2f9bd; 
+						 border-top: 2px solid #f7931a;
+						 border-left: 2px solid #f7931a;
+						 border-right: 2px solid #f7931a;
+						 border-bottom: 2px solid #e2f9bd;
 						 padding: 4px 8px; margin: 0 2px 0 0; position: relative; top: 2px; z-index: 110; cursor: pointer; }
 			.menu .tab:hover { color: #090; }
 			.menu .tab.selected { background-color: #FFF; border-bottom: 4px solid #FFF; cursor: default; font-weight: bold; }
 			.menu .tab.selected:hover { color: #090; }
-			
+
 			.menu #printeradjust { float: right; text-align: right; margin-top: 5px; } /* zoom & shift */
-			
+
 			.pagebreak { height: 50px; }
-			.commands { padding: 10px 0 20px 10px; margin-bottom: 0;} 
-			.commands span { padding: 0 10px; } 
-			.commands span.print { float: right; padding-top: 10px;} 
+			.commands { padding: 10px 0 20px 10px; margin-bottom: 0;}
+			.commands span { padding: 0 10px; }
+			.commands span.print { float: right; padding-top: 10px;}
 			.commands span.right { float: right; }
 			.expandable { padding: 10px 15px; text-align: left; cursor: pointer; }
-			
+
 			.commands p.instructions { width: 650px; float: left; font-size: 13px; }
-			
+
 			#detailcommands { padding: 10px 0; }
 			#detailcommands span { padding: 0 10px; }
 			#detailprivkey { width: 250px; }
@@ -10341,9 +10354,9 @@ Bitcoin.Util = {
 			#detailkeyareakey { display: block; margin-top: 10px; color: #ff6c00;}
 
 
-			#bulkstartindex, #paperlimit, #paperlimitperpage { width: 35px; } 
+			#bulkstartindex, #paperlimit, #paperlimitperpage { width: 35px; }
 			#bulklimit { width: 45px; }
-			
+
 			.footer { font-family: Arial; font-size: 90%; clear: both; padding: 10px 0 10px 0; margin: 50px 20px; color: #999; border-top: 1px dotted #999;}
 			.footer div span.item { padding: 5px; }
 			.footer .authorbtc { float: left; width: 470px; }
@@ -10355,9 +10368,9 @@ Bitcoin.Util = {
 			.footer .copyright span { padding: 10px 0; }
 
 			#siginfo, #selfinfo { margin: 10px 100px; border: 1px solid #FF9705; padding: 15px; background-color: #FFFFF6; color: #333; z-index: 10000; font-size: 12px;}
-			
+
 			#supplyKeys { float: left; background-color: #EEFED0; border: 1px solid #CCCCCC; padding: 8px; }
-		}		
+		}
 
 		@media print
 		{
@@ -10383,9 +10396,9 @@ Bitcoin.Util = {
 			#backCustomMessageEntry { display: none; }
 		}
 	</style>
-    
+
 </head>
-<body onclick="SecureRandom.seedTime();" onmousemove="ninja.seeder.seed(event);" ontouchmove="ninja.seeder.seed(event);" 
+<body onclick="SecureRandom.seedTime();" onmousemove="ninja.seeder.seed(event);" ontouchmove="ninja.seeder.seed(event);"
 	  onLoad="setDesign(ninja.getQueryString()['design'], true, ninja.getQueryString()['lang']); guessPrinterSettings(); ">
 	<div id="busyblock">
 		<div class="background"></div>
@@ -10405,25 +10418,25 @@ Bitcoin.Util = {
     	<div id="logoback">
           	<div id="culturemenu">
               <!--
-              <span><a href="?culture=en" id="cultureen" class="selected">English</a></span> | 
-              <span><a href="?culture=es" id="culturees">Español</a></span> | 
+              <span><a href="?culture=en" id="cultureen" class="selected">English</a></span> |
+              <span><a href="?culture=es" id="culturees">Español</a></span> |
               <span><a href="?culture=fr" id="culturefr">Français</a></span> -->
               &nbsp;
           	</div>
-			<div id="tagline">Open Source JavaScript <script type="text/javascript">document.write(window.currencyName);</script> Paper Wallet Generator <span>Updated Feb 23, 2016</span></div>
-			<div id="tagsite">For help, security tips, or wallet making supplies visit <a href="https://bitcoinpaperwallet.com">bitcoinpaperwallet.com</a></div>
+			<div id="tagline">Open Source JavaScript <script type="text/javascript">document.write(window.currencyName);</script> Paper Wallet Generator <span>Updated Mai 25, 2017</span></div>
+			<div id="tagsite">For more help, security tips, or Bitcoin wallet making supplies visit <a href="https://bitcoinpaperwallet.com">bitcoinpaperwallet.com</a></div>
             <div id="tagwarning"></div>
 			<div id="seedpoolarea"><textarea rows="16" cols="62" id="seedpool"></textarea></div>
-        
+
 		<div class="menu" id="menu">
         	<div id="printeradjust">
 				Zoom:
-                <a href="#" onClick="printZoom(-1); return(false);"><span>-</span></a><input name="printerzoom" id="printerzoom" size="2" value="5" onChange="updateCalibrationInfo();" /><a href="#" onClick="printZoom(1); return(false);"><span>+</span></a> 
+                <a href="#" onClick="printZoom(-1); return(false);"><span>-</span></a><input name="printerzoom" id="printerzoom" size="2" value="5" onChange="updateCalibrationInfo();" /><a href="#" onClick="printZoom(1); return(false);"><span>+</span></a>
                 &nbsp;
-				Horizontal Shift: 
-                <a href="#" onClick="printShift(-1); return(false);"><span>-</span></a><input name="printershift" id="printershift" size="2" value="5" onChange="updateCalibrationInfo();" /><a href="#" onClick="printShift(1); return(false);"><span>+</span></a> 
+				Horizontal Shift:
+                <a href="#" onClick="printShift(-1); return(false);"><span>-</span></a><input name="printershift" id="printershift" size="2" value="5" onChange="updateCalibrationInfo();" /><a href="#" onClick="printShift(1); return(false);"><span>+</span></a>
             </div>
-            
+
 			<div class="tab selected" id="landwallet" onClick="ninja.tabSwitch(this);">Instructions</div>
 			<div class="tab" id="calibratewallet" onClick="ninja.tabSwitch(this);">1. Calibrate</div>
 			<div class="tab" id="paperwallet" onClick="ninja.tabSwitch(this);">2. Print Front</div>
@@ -10434,27 +10447,27 @@ Bitcoin.Util = {
 
 
 		</div><!-- end logoback -->
-		
+
 		<div id="generate">
 			<div id="generatelabelmovemouse">
 
 
                 <div id="rightArea">
-                
+
                   <div id="progress-bar" class="fullyRounded">
                       <div id="progress-bar-percentage" class="fullyRounded" style="width: 1%"><span id="mousemovelimit"> &nbsp; </span></div>
                   </div>
-  
+
                   <div id="seedSkipper">
                       <a href="#" class="nicerButton" style="width: 100px;" onClick="ninja.seeder.seedCount = ninja.seeder.seedLimit; ninja.seeder.seed();">Skip &raquo;</a><br />
                       <p>You may safely skip this step if you do not need to use the random wallet generator.</p>
                   </div>
                 </div>
-            	
+
                 Secure random number generation requires that you provide some unpredictable data, also called "entropy".<br />
                 <blink>Please move your mouse around and/or type random keystrokes into this box:</blink>
             	<input type="text" size="4" id="generatekeyinput" onKeyPress="ninja.seeder.seed(event);" />
-                
+
 				<p id="generatelabelbitcoinaddress">
 				<div id="seedpooldisplay"></div>
                 </p>
@@ -10462,10 +10475,10 @@ Bitcoin.Util = {
 		</div>
 
 		<div id="wallets">
-        
-        
-        
-			<div id="landarea" class="walletarea">	
+
+
+
+			<div id="landarea" class="walletarea">
 				<div id="landcommands" class="commands">
 					&nbsp;
 				</div>
@@ -10491,10 +10504,10 @@ Bitcoin.Util = {
 							 case 'file:':
 							   document.write('<span style="color: #009900;">&#10004; You are running this generator from your own download.</span><br />Tip: Make 100% sure you are offline by trying <a href="http://google.com" target="_blank">google.com</a></span>');
 							   break;
-							 default: 
+							 default:
 						  }
                         </script>
-                        
+
                         </li>
                         <li>
                         <script language="javascript">
@@ -10507,14 +10520,15 @@ Bitcoin.Util = {
                         </li>
                         <li><strong>?</strong> Are you using a secure operating system installation guaranteed to be free of spyware and viruses, for example, an <a href="#" onClick="window.open('https://bitcoinpaperwallet.com/ubuntu-linux-live-bootable-cd/', '_blank'); return false;">Ubuntu LiveCD?</a></li>
                         </ul>
-                        
+
                         <p><a href="https://bitcoinpaperwallet.com/#security" target="_blank">More security tips and answers to frequently asked questions &raquo;</a></p>
-                        
+
                         </div>
 						<span id="instructions2">
                         <p style="margin-top: 0;"><strong>Change your wallet's design, language, or cryptocurrency here:</strong>
                           <select name="designPicker" id="designPicker" style="font-size: 12px;" onChange="setDesign(this.value, false);">
-                            <option value="default">Standard Bitcoin Design</option>
+														<option value="default">Lisk LSK</option>
+                            <option value="bitcoin">Bitcoin Design</option>
                             <option value="blackwhite">Black &amp; White Bitcoin</option>
                             <option value="holiday">Holiday / Christmas Bitcoin (English)</option>
                             <option value="chinese-new-year">Chinese New Year Bitcoin (Simplified Chinese)</option>
@@ -10567,9 +10581,9 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 </div>
 				</div>
 			</div><!-- end landarea -->
-                    
-        
-        
+
+
+
 			<div id="calibratearea" class="walletarea">
 				<div class="commands">
 					<div id="calibratecommands">
@@ -10588,12 +10602,12 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 				<div id="calibrationinfo">Zoom / Shift : Default</div>
 				<img id="calibratesvg" class="calibratesvg" src="./images/calibrate-300dpi.jpg">
 				<div id="browserinfo"></div><!-- this gets set onLoad -->
-                
+
 			</div><!-- end calibratearea -->
-            
-            
-            
-            
+
+
+
+
 
 			<div id="paperarea" class="walletarea">
 				<div id="papercommands" class="commands">
@@ -10602,7 +10616,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                     	<span><label id="paperlabeladdressesperpage">Addresses per page:</label> <input type="text" id="paperlimitperpage" /></span>
 						<span><label id="paperlabeladdressestogenerate">Addresses to generate:</label> <input type="text" id="paperlimit" /></span>
                     </div>
-                    
+
                     <div id="keyButtons" style="display: block; float: left;">
                     <input type="button" id="papergenerate1" value="RANDOM GENERATE NEW WALLET" onClick="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1, document.getElementById('paperlimitperpage').value * 1, !document.getElementById('paperart').checked, document.getElementById('paperpassphrase').value); printCounter=0;" />
 
@@ -10615,9 +10629,9 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                    <br />
                    <br />
                    In this case, simply enter your private key in Wallet Import Format (or scan it using the "validate" feature on this web page.) WIF keys always begin with the number 5 and look something like this: '5JnwJNC7q3...' <em>The public address, e.g. '1vanityABC456...' is automatically calculated using the private key, so you only need to provide the private key.</em>
-                   
+
                    <div class="helpDivider"></div>
-                   
+
                    <b class="helpTitle">If you want to roll dice or shuffle a deck of cards to generate a key:</b>
                    <br />
                    <br />
@@ -10639,7 +10653,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                    <br />
                    <a href="#" class="nicerButton" onClick="document.getElementById('selfinfo').style.display='none'; return(false);">OK</a>
                 </div>
-                    
+
                     <div id="supplyKeys" style="display: none; float: left;">
                     <p style="padding: 0; margin: 0;"><input placeholder="Enter WIF private key (or brain wallet, dice rolls, shuffled cards, etc.)" autocomplete="off" id="suppliedPrivateKey" name="suppliedPrivateKey" spellcheck="false" style="font-family: ubuntu_mono_bold, 'Courier New', Courier, monospace;" />&nbsp;<input type="button" id="papergenerate3" value="Apply &raquo;" onClick="testAndApplyVanityKey();" />
                     </p>
@@ -10647,7 +10661,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                     <div style="float: right;">
                     <input type="button" id="papergenerate4" value="&laquo; Back to random generator" onClick="ninja.wallets.paperwallet.toggleVanityField(false);" />
                     </div>
-                    
+
                     <div style="float: left; font-size: 12px;"><a href="#" onClick="document.getElementById('selfinfo').style.display='block'; return(false);"><strong>Help me!</strong> (How to enter keys, roll dice...)</a></div>
                     </p>
                     </div>
@@ -10659,7 +10673,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                             <input type="button" value="Change Passphrase" onClick="ninja.wallets.paperwallet.toggleEncryptSettings(true);" style="font-size: 10px;">
 						</div>
 					</div>
-					
+
 					<div id="paperbip38settings">
 						<div class="background"></div>
 						<div class="dialog instructionsarea">
@@ -10667,20 +10681,20 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 							<h2>About "BIP38" Encryption</h2>
 							<p>The advantage with BIP38 is that if your paper wallet is stolen or compromised, the private key cannot be recovered without your password. <em>Even a very short password adds a strong degree of protection</em>. However, if you encrypt your private key with BIP38 and you lose your password, it will be impossible for you to recover the funds you have sent to this wallet.</p>
                             <p>Also, note that not all <script type="text/javascript">document.write(window.currencyName);</script> wallet applications or web services are able to import or "sweep" BIP38 encrypted keys. In this case, you will have to use the <strong>Validate or Decrypt</strong> feature on this webpage to reveal the unencrypted Wallet Import Format (WIF) key as an intermediate step before sweeping the balance.</p>
-                            
+
                             <p style="color: red;">WARNING: Before sending any funds to a BIP38-encrypted wallet, first do a test make sure you are able to decrypt the printed private key back to ordinary WIF format.</p>
 							<p>Unless you have a strong understanding of the BIP38 encryption and decryption workflow, <strong>click cancel</strong>, print your paper wallet without BIP38, and just keep it safe and hidden like you would jewels or cash.
 							</p>
 							<p>
 								<button id="paperbip38activate" disabled onClick="ninja.wallets.paperwallet.toggleEncryptSettings(false);">TURN ON BIP38 ENCRYPTION</button>
 								<label id="paperlabelBIPpassphrase" for="paperpassphrase"><strong>using password / passphrase:</strong></label>
-								<input type="text" id="paperpassphrase" autocomplete="off" onKeyUp="document.getElementById('paperbip38activate').disabled = this.value.length < 3" 
+								<input type="text" id="paperpassphrase" autocomplete="off" onKeyUp="document.getElementById('paperbip38activate').disabled = this.value.length < 3"
                                 onChange="this.value = this.value.toString().replace(/^\s+|\s+$/g, '');"/>
 							</p>
 							<p><button onClick="ninja.wallets.paperwallet.toggleEncryptSettings(false, true);">CANCEL</button></p>
 						</div>
 					</div>
-                    
+
 					<span class="print">
                     <a href="#" class="nicerButton" onClick="doPrint('generate');">Print Wallet Front</a>
                     </span>
@@ -10688,64 +10702,44 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 				</div>
 				<div id="paperkeyarea"></div>
 			</div><!-- end paperarea -->
-            
+
 
 
 
 
 			<div id="backarea" class="walletarea">
-				<div class="commands"> 
+				<div class="commands">
 					<div id="backcommands">
-						<p id="backinstructions" class="instructions highlighted"><strong>Reload the front page into your printer first.</strong> Note: The back design is intentionally larger than the front side. Use the front side as your guide when cutting out your wallet.</p>			
-                                   
+						<p id="backinstructions" class="instructions highlighted"><strong>Reload the front page into your printer first.</strong> Note: The back design is intentionally larger than the front side. Use the front side as your guide when cutting out your wallet.</p>
+
                         <span class="print"><a href="#" class="nicerButton" onClick="doPrint();">Print Wallet Back</a></span>
                     <br clear="all" />
 				</div>
 
 				<div id="backTextControl" style="font-size: 12px;">
                    <div style="float: left; width: 375px; text-align: right;">
-                  Denomination: 
+                  Denomination:
                   <select id="backDenominationSelect" onChange="setDenomination(this.value);">
                     <option value="">*** None ***</option>
-                    <option value="10 BTC">10 BTC</option>
-                    <option value="5 BTC">5 BTC</option>
-                    <option value="2 BTC">2 BTC</option>
-                    <option value="1 BTC">1 BTC</option>
-                    <option value="50000 Bits">50000 Bits</option>
-                    <option value="10000 Bits">10000 Bits</option>
-                    <option value="5000 Bits">5000 Bits</option>
-                    <option value="1000 Bits">1000 Bits</option>
-                    <option value="500 Bits">500 Bits</option>
-                    <option value="100 Bits">100 Bits</option>
-                    <option value="50000 mBTC">50000 mBTC</option>
-                    <option value="10000 mBTC">10000 mBTC</option>
-                    <option value="5000 mBTC">5000 mBTC</option>
-                    <option value="1000 mBTC">1000 mBTC</option>
-                    <option value="500 mBTC">500 mBTC</option>
-                    <option value="100 mBTC">100 mBTC</option>
-                    <option value="50 mBTC">50 mBTC</option>
-                    <option value="20 mBTC">20 mBTC</option>
-                    <option value="10 mBTC">10 mBTC</option>
-                    <option value="5 mBTC">5 mBTC</option>
-                    <option value="1 mBTC">1 mBTC</option>
+                    <option value="10000 LSK">10000 LSK</option>
+                    <option value="1000 LSK">1000 LSK</option>
+                    <option value="500 LSK">500 LSK</option>
+                    <option value="50 LSK">50 LSK</option>
                     <option value="other">Other...</option>
                   </select>
                   <div id="backDenominationOther" style="display: none;">
                   <input id="backDenominationOtherAmount" maxlength="5" size="6" value="1" onChange="setDenomination('other');">
                   <select id="backDenominationOtherUnit" onChange="setDenomination('other');">
-                  	<option value="BTC">BTC</option>
-                  	<option value="mBTC">mBTC</option>
-                  	<option value="&mu;BTC">&mu;BTC</option>
-                  	<option value="bits">bits</option>
+                  	<option value="LSK">LSK</option>
                   </select>
                   </div><!-- end backDenominationOther -->
                               </div>
-                              
+
                         <div style="float: left; margin: 0 0 0 80px;">
-                       Message: 
+                       Message:
                        <select id="backTextChooser" onChange="
-                       		var toggleBackLongText = (this.value == 'instructions' ? 'block' : 'none'); 				
-                       		var toggleBackCustomMessage = (this.value == 'message' ? 'block' : 'none'); 				
+                       		var toggleBackLongText = (this.value == 'instructions' ? 'block' : 'none');
+                       		var toggleBackCustomMessage = (this.value == 'message' ? 'block' : 'none');
                            document.getElementById('backLongText').style.display=toggleBackLongText;
                            document.getElementById('backCustomMessage').style.display=toggleBackCustomMessage;">
                             <option value="instructions">Instructions</option>
@@ -10754,10 +10748,10 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                        </select>
 
                         </div>
-                        
+
                         <div style="float: left; margin: 0 0 0 50px;">
-                           <input type="checkbox" checked id="backTextCheckbox2" 
-                   			 onClick="var toggleStatus = (this.checked ? 'block' : 'none'); 				
+                           <input type="checkbox" checked id="backTextCheckbox2"
+                   			 onClick="var toggleStatus = (this.checked ? 'block' : 'none');
                               document.getElementById('backAmount').style.display=toggleStatus;
                               document.getElementById('backDate').style.display=toggleStatus;
                               document.getElementById('backNotes').style.display=toggleStatus;
@@ -10768,14 +10762,14 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 			</div><!-- end commands -->
 
                 <div id="backText">
-					<div id="backSeal"><p id="backSealBig">1000</p><p id="backSealSmall">mBTC</p><img src="images/front-seal.png" width="105" height="78"></div>
-                    
+									<div id="backSeal"><p id="backSealBig">1000</p><p id="backSealSmall">mBTC</p><img src="images/front-seal.png" width="105" height="78"></div>
+
                     <div id="backPaperWallet"></div>
                 	<div id="backAmount"></div>
                 	<div id="backDate"></div>
                 	<div id="backNotes"></div>
                     <div id="backLines"><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
-                    
+
                     <div id="backCustomMessage">
                     	<div id="backCustomMessageContent" style="display: none;"></div>
                         <textarea id="backCustomMessageEntry" placeholder="Enter message here" onChange="document.getElementById('backCustomMessageContent').innerHTML=this.value.replace(/(?:\r\n|\r|\n)/g, '<br />');"></textarea>
@@ -10797,7 +10791,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 
 
 
-			<div id="foldarea" class="walletarea">	
+			<div id="foldarea" class="walletarea">
 				<div id="foldcommands" class="commands">
 					&nbsp;
 				</div>
@@ -10812,7 +10806,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 						</div>
 
 						<span id="instructions22">Cut out your wallet <em>using the front side as a guide, not the back!</em>
-                       
+
                         The design on the reverse side is intentionally larger than the front side so that back design will "bleed" to the edges even if your front and back sides are somewhat misaligned.
                         <br /><br />
                         Now fold the more narrow private key area in half, and then over again as indicated by the dotted lines in this diagram. The "butterfly" shape is time-consuming to cut out, but <em>without all those cuts and angles, someone can reveal your private key without removing the tape</em>!</span>
@@ -10820,19 +10814,19 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 						<br />
 						<span id="instructions23">The final wallet will be a rectangle shape with the more narrow private key area folded over it.</span>
 						<br />
-                                                
+
                         <br />
 						<span id="instructions13">Seal your wallet by placing two strips of sturdy <strong>light-blocking</strong> tape over the top and bottom edges of the private (folded) area. A zip-seal bag will keep it safe from moisture, which is especially important when using an inkjet printer.</span>
-						<br /><br />	
-                        <a href="#" onClick="window.open(window.suppliesURL, '_blank'); return false;" class="nicerButton" style="width: 400px;">Purchase hologram stickers and/or zip-sealing bags &raquo;</a>	
+						<br /><br />
+                        <a href="#" onClick="window.open(window.suppliesURL, '_blank'); return false;" class="nicerButton" style="width: 400px;">Purchase hologram stickers and/or zip-sealing bags &raquo;</a>
 
-						<br /><br />	
+						<br /><br />
 
 						<h1><span id="instructions16">How to add funds to your wallet:</span></h1>
 
 						<span id="instructions17">Send <script type="text/javascript">document.write(window.currencyName);</script>s to the address (or QR code) where your wallet says "PUBLIC ADDRESS".</span>
-						<br /><br />	
-                        
+						<br /><br />
+
 						<h1><span id="instructions18">How to withdraw funds from your wallet:</span></h1>
 
 						<span id="instructions19">You should expect to withdraw the entire balance of the wallet by importing it (or "sweeping" it) to a live wallet, e.g. a Bitcoin wallet application or online service like blockchain.info or coinbase.com.
@@ -10845,9 +10839,9 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                         &bull; <a href="https://bitcoinpaperwallet.com/printing-and-paper-tips/" target="_blank">What kind of printer and paper to use &raquo;</a><br />
                         &bull; <a href="https://bitcoinpaperwallet.com/wallet-tutorial-add-withdraw-funds/" target="_blank">Adding to and spending from a paper wallet &raquo;</a><br />
                         &bull; <a href="https://bitcoinpaperwallet.com/bip38-password-encrypted-wallets/" target="_blank">How and when to use BIP38 encryption &raquo;</a><br />
-                        
+
                         </span>
-                        
+
 					</div>
 				</div>
 			</div><!-- end landarea -->
@@ -10857,7 +10851,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 				<div id="detailcommands" class="commands">
 				&nbsp;
                 </div>
-			<div class="instructionsarea">	
+			<div class="instructionsarea">
 					<h1>Validate or decrypt private key</h1>
 					<div style="width: 45%; float: left; padding: 0 15px; border-right: 3px solid #ccc;">
                     	<p><em>This feature works for private keys made here as well as those generated using any other Bitcoin service or software, e.g. bitaddress.org or brainwallet.org</em></p>
@@ -10880,7 +10874,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 								<div id="paperqrpermissiondenied" style="color: red" class="hide">
 									<p>Permission denied. Your browser should display a message requesting access to your camera. Please click the "Allow" button to enable the camera.</p>
 									<p>If you are using Chrome and you launched this generator by opening the HTML file from your own computer "locally", you may need to launch Chrome from the command line and specify the <a href="https://bitcoinpaperwallet.com/how-to-scan-qr-codes-with-camera/" target="_blank" style="font-family: 'Lucida Console', Monaco, monospace;">--allow-file-access-from-files</a> flag. Or you can set up a local web server (Apache) and run this generator via http://127.0.0.1... or, give up and just use Firefox.</p>
-                                    
+
 								</div>
 								<div id="paperqrerror" style="color: red"></div>
 								<div id="paperqroutput"></div>
@@ -10913,7 +10907,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 							<span class="label" id="detaillabelbitcoinaddress"><strong style="font-size: 150%;">Public <script type="text/javascript">document.write(window.currencyName);</script> Address</strong></span>
 							<div id="detailqrcodepublic" class="qrcode_public"></div>
 							<span class="output" id="detailaddress"></span>
-						</div>					
+						</div>
 
 						<div class="item right" style="display:block;" id="compressedpicker">
 						<a href="#" onClick="document.getElementById('compressed1').style.display='block'; document.getElementById('compressed2').style.display='block';  document.getElementById('compressedpicker').style.display='none'; return(false);">Display compressed format keys?</a>
@@ -10969,11 +10963,11 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 						<span class="output" id="detailprivbip38"></span>
 					</div>
 				</div>
-				
+
             </div><!-- end instructionsarea -->
 			</div><!-- end detailarea -->
-            
-            
+
+
 		</div><!-- *** end wallets *** -->
 
 		<div id="footer" class="footer">
@@ -10984,18 +10978,18 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                     <strong>Bitcoin</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1Pjg628vjMLBvADrPHsthtzKiryM2y46DG<br />
                     <strong>Litecoin</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LYrGQmrvba7qJZUD7Jt4S1iejE5ndhw3CE<br />
                     <strong>Dogecoin</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DSE875u8k14M3K5d93iD1fsgcHkfjjy742<br /></span>
-                    
-                    <span class="item" style="font-size: 11px;">Contributions are shared by the <a href="https://bitcoinpaperwallet.com/#thanks" target="_blank">developers</a>, 
+
+                    <span class="item" style="font-size: 11px;">Contributions are shared by the <a href="https://bitcoinpaperwallet.com/#thanks" target="_blank">developers</a>,
                     including pointbiz of <strong>bitaddress.org</strong>.</span>
 
 
 				</div>
 			</div>
 			<div class="authorpgp">
-            
+
                 <div id="siginfo" style="display: none; position: absolute; top: -300px;">
-  
-                    After downloading and extracting the <a href="https://github.com/cantonbecker/bitcoinpaperwallet" target="_blank">ZIP package</a> for this generator, you should find a file named <b>generate-wallet.html.sig</b> 
+
+                    After downloading and extracting the <a href="https://github.com/cantonbecker/bitcoinpaperwallet" target="_blank">ZIP package</a> for this generator, you should find a file named <b>generate-wallet.html.sig</b>
                     which you can use to:
                     <ol><li> verify that <strong>generate-wallet.html</strong> hasn't been tampered with, and</li>
                     <li>get proof that it really was authored by Canton Becker (canton@gmail.com) whose public key and fingerprint can be confirmed at <a href="http://cantonbecker.com">cantonbecker.com</a>, bitcointalk.org, etc.</li>
@@ -11014,11 +11008,11 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
             	<span class="item"><b>Security &amp; signatures</b></span>
                 <span class="item" style="font-size: 90%;">For <a href="https://bitcoinpaperwallet.com/#security" target="_blank">secure wallet generation</a>, do not print wallets "live" from bitcoinpaperwallet.com.<br />Instead, download this generator from GitHub and run the HTML as a "local" file:</span>
 				<span class="item"><a href="https://github.com/cantonbecker/bitcoinpaperwallet" target="_blank" id="footerlabelgithub"><strong>Secure Download</strong> (GitHub ZIP file)</a></span>
-                
+
 				<span class="item" id="footerlabelsig" style="font-size: 90%;"><a href="#" onClick="document.getElementById('siginfo').style.display='block'; return(false);">Validate PGP/GPG signature</a></span>
 
                 <span class="item" id="footerlabeltests" style="font-size: 90%;">Run unit tests: <a href="?unittests=1#tests">basic</a> | <a href="?asyncunittests=1#tests">async</a></span>
-                
+
 			</div>
 			<div class="copyright">
 				<span id="footerlabelcopyright1">&copy; The folding wallet design and tamper-evident seals are Copyright 2016 by Canton Becker.</span>
@@ -11090,7 +11084,7 @@ ninja.privateKey = {
 			callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
 			return;
 		}
-		// first byte is always 0x01 
+		// first byte is always 0x01
 		else if (hex[0] != 0x01) {
 			callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
 			return;
@@ -11119,7 +11113,7 @@ ninja.privateKey = {
 				return;
 			}
 		}
-		// second byte for EC-multiplied key 
+		// second byte for EC-multiplied key
 		else if (hex[1] == 0x43) {
 			isECMult = true;
 			isCompPoint = (hex[2] & 0x20) != 0;
@@ -11471,7 +11465,7 @@ ninja.publicKey = {
 			div.setAttribute("class", "seedpoint");
 			div.style.top = y + "px";
 			div.style.left = x + "px";
-			
+
 			// let's make the entropy 'points' grow and change color!
 			percentageComplete = ninja.seeder.seedCount / ninja.seeder.seedLimit;
 			pointSize = 2 + Math.ceil(9*percentageComplete) + 'px'
@@ -11479,7 +11473,7 @@ ninja.publicKey = {
 			div.style.backgroundColor = '#' + pointColor.toString(16) + 'FF' + pointColor.toString(16);
 			div.style.width = pointSize;
 			div.style.height = pointSize;
-			
+
 			document.getElementById("progress-bar-percentage").style.width=Math.ceil(percentageComplete*100)+"%";
 
 			// for some reason, appending these divs to an IOS device breaks clicking altogether (?)
@@ -11547,7 +11541,7 @@ ninja.publicKey = {
 			return canvas;
 		},
 
-		// generate a QRCode and return it's representation as an Html table 
+		// generate a QRCode and return it's representation as an Html table
 		createTableHtml: function (text) {
 			var typeNumber = ninja.qrCode.getTypeNumber(text);
 			var qr = new QRCode(typeNumber, QRCode.ErrorCorrectLevel.H);
@@ -11570,7 +11564,7 @@ ninja.publicKey = {
 		},
 
 		// show QRCodes with canvas OR table (IE8)
-		// parameter: keyValuePair 
+		// parameter: keyValuePair
 		// example: { "id1": "string1", "id2": "string2"}
 		//		"id1" is the id of a div element where you want a QRCode inserted.
 		//		"string1" is the string you want encoded into the QRCode.
@@ -11610,11 +11604,11 @@ ninja.publicKey = {
 		}
 		return result;
 	};
-	
+
 	// use when passing an Array of Functions
 	ninja.runSerialized = function (functions, onComplete) {
 		onComplete = onComplete || function () { };
-	
+
 		if (functions.length === 0) onComplete();
 		else {
 			// run the first function, and make it call this
@@ -11623,17 +11617,17 @@ ninja.publicKey = {
 			f(function () { ninja.runSerialized(functions, onComplete); });
 		}
 	};
-	
+
 	ninja.forSerialized = function (initial, max, whatToDo, onComplete) {
 		onComplete = onComplete || function () { };
-	
+
 		if (initial === max) { onComplete(); }
 		else {
 			// same idea as runSerialized
 			whatToDo(initial, function () { ninja.forSerialized(++initial, max, whatToDo, onComplete); });
 		}
 	};
-	
+
 	// use when passing an Object (dictionary) of Functions
 	ninja.foreachSerialized = function (collection, whatToDo, onComplete) {
 		var keys = [];
@@ -11718,7 +11712,7 @@ ninja.publicKey = {
 				"papergenerate1": "Generar",
 				"paperprint": "Imprimir"
 			},
-				
+
 			"fr": {
 				// javascript alerts or messages
 				"paperlabelbitcoinaddress": "Adresse Bitcoin:",
@@ -11875,7 +11869,7 @@ ninja.publicKey = {
 		},
 
 		toggleVanityField: function(show) {
-			document.getElementById('keyButtons').style.display= show ? 'none' : 'block'; 
+			document.getElementById('keyButtons').style.display= show ? 'none' : 'block';
 			document.getElementById('supplyKeys').style.display = show ? 'block' : 'none';
 		},
 
@@ -11903,7 +11897,7 @@ ninja.publicKey = {
 			ninja.wallets.paperwallet.passphrase = passphrase;
 			setTimeout(ninja.wallets.paperwallet.batch, 0);
 		},
-		
+
 		buildManual: function(wallet, passphrase) {
 			ninja.wallets.paperwallet.remaining = 1;
 			ninja.wallets.paperwallet.count = 0;
@@ -11918,7 +11912,7 @@ ninja.publicKey = {
 				ninja.wallets.paperwallet.batch(wallet);
 			}, 0);
 		},
-		
+
 		batch: function (addressSeed) {
 			if (ninja.wallets.paperwallet.remaining > 0) {
 				var paperArea = document.getElementById("paperkeyarea");
@@ -12001,18 +11995,18 @@ ninja.publicKey = {
 				'bip38': {
 					publicUpper: "#fff57c",
 					publicLower: "#f7931a",
-					privateLeft: "#78bad6",			
+					privateLeft: "#78bad6",
 					privateRight: "#fff67d",
 					pointer: "#0084a8",
 					guilloche: "white",
 					text: "#1937a9",
 					textShadow: "white",
 					textPointer: "white",
-				},				
+				},
 				'default': {
 					publicUpper: "#fff57c",
 					publicLower: "#f7931a",
-					privateLeft: "#8cd96f",			
+					privateLeft: "#8cd96f",
 					privateRight: "#fff67d",
 					pointer: "#02ab5c",
 					guilloche: "white",
@@ -12021,7 +12015,7 @@ ninja.publicKey = {
 					textPointer: "white",
 				}
 			};
-			
+
 			var keyValuePair = {};
 			keyValuePair["qrcode_public" + idPostFix] = bitcoinAddress;
 			keyValuePair["qrcode_private" + idPostFix] = privateKey;
@@ -12084,17 +12078,17 @@ ninja.publicKey = {
 			if (cancelSave == true) {
 				encryptBox.checked = ninja.wallets.paperwallet.encrypt;
 			}
-				
+
 			document.getElementById('paperbip38settings').className = show ? 'show' : '';
-			if (!cancelSave) document.getElementById('paperencryptpassphrase').innerText = 
+			if (!cancelSave) document.getElementById('paperencryptpassphrase').innerText =
 				document.getElementById('paperencryptpassphrase').textContent = document.getElementById('paperpassphrase').value;
-			
+
 			if (!show && !cancelSave) {
 				ninja.wallets.paperwallet.encrypt = encryptBox.checked;
 				ninja.wallets.paperwallet.buildManual(ninja.wallets.paperwallet.lastwallet, document.getElementById('paperpassphrase').value);
 				ninja.wallets.paperwallet.resetLimits();
 			}
-			
+
 			document.getElementById('paperencryptstatus').className = ninja.wallets.paperwallet.encrypt ? '' : 'hide';
 		},
 
@@ -12166,7 +12160,7 @@ ninja.publicKey = {
 			document.getElementById("detailarea").style.display = "block";
 			document.getElementById("detailprivkey").focus();
 			if (!ninja.wallets.detailwallet.qrscanner.scanner) {
-				ninja.wallets.detailwallet.qrscanner.scanner = new QRCodeScanner(320, 240, 'paperqroutput', 
+				ninja.wallets.detailwallet.qrscanner.scanner = new QRCodeScanner(320, 240, 'paperqroutput',
 					function(data) {
 						document.getElementById('detailprivkey').value = data;
 						document.getElementById('paperqrscanner').className = '';
@@ -12959,23 +12953,23 @@ ninja.publicKey = {
 		if (typeof PaperWallet == "undefined") {
 			// global PaperWallet object
 			var PaperWallet = window.PaperWallet = {};
-		} 
+		}
 		if (!PaperWallet.draw) {
 			(function() {
-				// images minimized with https://tinypng.com/ and http://pnggauntlet.com/ and encoded with http://www.base64-image.de/		
+				// images minimized with https://tinypng.com/ and http://pnggauntlet.com/ and encoded with http://www.base64-image.de/
 				var imgBitcoinLogo = new Image();
 				imgBitcoinLogo.src =  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATEAAABlCAMAAAAS0yQPAAAAsVBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////3kxr7kwD90ar3jQ38tWv/+fT3khf6nCf7pUH+5dH92rf3kBL/8+r+7dz7rlf4oDX+4MT9xI38vXz//vz4lyH9zJz806L5q03+69T+6M36tWH+8uP6u278zZT82Kv7xIL3igbY4iM2AAAAGXRSTlMAeUWrl+673YhmVg82H8sI1MMWKfblb6Jei/6cWwAADftJREFUeNrs2N2OojAYBuCKIKAMgjrq9yWMlcAiG0HwB3Tv/8LWtG5kHcqgiSfW57ik5E37QktaG1j9qdF1Hf1Td9yuMZ1bI/ImMp6r9ifc0pyZaQ3J2y2rY09AyFGVAXm7+pja8BNdtcgbp8w0aMWdv3fnmdKDqkOQnb5y349jP9+fymMEVY4pfWZWF662mzzGW0u/CBaVzPpEZiPj2va/9ykK5ZXQehL3WV+Hi0O2xB+UO7iYdCTdmkMVLrYrbMMP4MIdEwmNXeCiFbYVB8BpErZZXwMm2eA98i1wBpHMFLhgiXfaANeVq8wM4Aq8nx8B48p0RleBiXx8RJoBY8sT2SWwXYoPWksWmQFMiWJhSLHJHhhXjguNKTBrFKOxj54XothqweufSEBp0flhkGyzIsbGyGT5yRhrTSuMo+kBzn4tKSIVrbUVMHPy4oZuY4dxYZ7A2ZYihqdyH1OPCrtMe/Vzucq/ktjIW/NYPaQYASx2ZVoXWcFGOa/9J8tLLErxO1pJ7MiG7T0MY7baDrWJYdayyoZKv6P29JlJRAZKx7TI0zw+zYBf7/hYx/NCWq2xRRyi98UeOHpYix8yG99B6fQ0+MeuHTpQHX6L1FPIczw+jSH8TNLl7lj4PLXQT9jWpYhexp8QJMYH2kNxXjr8xybfmXDV+yBP8Pg04wmcBfVlDwBJxFL7U1xrjK2ixA+xXslGmuISqKgfOvpLq7kupw0DURgwlBAKadPSdLFs4Qu2sQmXhCRN3v/B2q6Q67VuHs/0+5HMRMYrr3ePjkQ8Mv79f5RZ/zAePn6kbckKEMxa2ZKxnMgYAQ9mVybrP4U2D+qcKNP/sI3oHeYzXns0eFZowXdB8GGTMWSHFwz1ARdwJSlZFcY4U32v8ISlOSDjhkz3XwzcYTrnOdd71ohDi8c83ce/bDKG4BWTe/M8yzDykYrUGMkpw0tC8TC4tHpf5YP1wx2mc4m9WTyryiP+2Fl2mAdaZOorqvwrKeqYzh6GvkC8tiU0+TLohTvMqOPHnkwPHr+mL6AniwNq+lVTNtUul2grYv9KBn/4phE65ksYUPpXmTvM0L1aTKzbo20QHC6GnPH0sg421iK71S3NmG7/Sozt25oT3t2vCYHSv8jcYT51E7/MugH/IL1JeL5sTK2J3eaZIqb+lUpz2S0KnV+zB6SWaWyfXounO4w3cIFSelpb2T6DkTI26P8ZDc6ij4wNabf4rF5a9+FfwRFl2Qd3mGE392o98kLDKimfOVD4q22v9KOPjI0wP74k4iK0sxbcuMM4ncsP95mF3B6J9THYXd6egPAemLX/UzcZo9zhbSNShgBHVy3cjZC5aWTRJUzDe+hv9km4VyvBKyDC5m+CYH0+kUoLA6OLnSxcMoZ8vSGr+hJjiWeJShAUpCyHw+GsUZqL2cMUrkw84nFvx0syYA0zxvwK36ed2v3E1pT0lEfafDyA3aUgwVNZY1veOmVMMp5ThQHOwjBkHASclCX5r4X5cAotJuOFyKTXHpgNLGEm8883S1DwFrSV87UNPD6U7IPadVTOvjxhHpwypu7H5ytQKWlZIvhC5mPQMsN8qUxH5jDeBPSMSZZP3WUs3v7zHKeGydDWWIy+ySFjBO9elqHKUS1LlMAZmJiZhoYDQ5gVGPnyrSFjhaMpQxDQQ9ftjpO/q0Rib+mSsSxpzAuvBoIqY02aj50gHFRwIGulDOxk9GYrTNkd9n/syNgJJGmgb1auFzK8YGSTMXYUiajlypNSkbErqZQxCSMjkrKqOz3ap7z55Kz4NyBTZgqDJML3CUKWNXYZC3Rjh85ubN/M2CF3Sf9J405XQsYUIlarzw1xlozIGKIIGmeRT2H11Cq/SVwCMjKEgSzdq4F4rWUjsQu3gceHEiFjtCstZ4uV+g3JgsgYIRT3m4tFv37JCSDMJxBBI/mSnzJ97Cjkf6ANg+WvUmTXqQ1+omPoLGP5upGxjzeoKbfmf8PwLHs5igg0FsbSl4Ag9BUyQLhmqCBDupTN9GGw/FUKLnpZOP63zjL2dD5sg2C72Wz+/Hp9dLr+s/qtx5gse9pWopuXEAS+QgxIHvum8uOFrwMbc6IPk9mmtry28rtbxmpeyvdLHB0Ou4tsCfmFXEd7MRXLHoXu7LT6kphkLIt8lZgkTD+ql7HUNDUcvRs84OGzU8Yoj9nLC6dWKbCc9k91R1K2N9lZxsxZYaSR9Z/sKGPkgpHbjqGMuXg6bCwZW1lkrGAJQFJR+bHLGKvJWg0eHxNhDYqI0yRHLAfIK3oQ5pCxMgHgZdE+CsL95tklYw7KCHvSaGHNMsaUBY0DYpaxGAgJqSsJp+1a5O0wgNhkLJRGs5WxpTtjKGMWsgoX0I4Zm2rdO49I7dtkbA+EkHQaoSLqSNXgd3vXupwoDEYXRfFet9W2dECEoqIiSNW2+v4PtgqJMRySsM7+KntmdmYHTAPH5OS7JRIKhTLGLqz5kDaMMbmMHY+reV7T4ggi/RLGHgVBiAn33jIZswRDzIJvklcg/KtSGcOvLs5sS7WO2Xu2Tr6dZm5w3G24BztCoF+iYx0IQggIcUUytuBoCcW5kxh7QWfeFcpY8ZNpmZO3L+1UppGxqbfmckt+BJQJ10odn1srYmyRZ4Jf5LUz+Gm2yqzS7tlV7ugmxpMMRTcoYwRhLh+hK+2x6Q7M1JkdHZ1b5Z/CvAR7TChjyJhaxpowWr3b8FqPIyPIrGK+m3eljMGgW2RJAA1sfomMJSw2Zi8JkbTaBwA2v0DGGoWvEkpfTYM80Pp2MGvYop7Z6jF0o5IxhxvcIxKs2iplDOMTdkSWUKiKAr+yKZWxugEKrJSxHg3sTQpzJTq+eyf3+blKxhw6f/KDuwaZJJmMcTdus75rwSA7puuLVMba8OhqGbsmNQImYzSjAGRm2eBuqW7mYElD/uqJi49hMed0BjIGWV8IXUB8TCZjw7Q9/+io0CBjWfw078JkaCA5v3RgSCpjMQR+6eB+MESppFl49CL7FICMQYIpjbBNxcZvTSpjOReopIw9tUWMPXa0AvenBgNGLmMrKmMwuIUm7Mx1zM3B/3aEYVbbZ4wtkDGM86OMMTtUoi+o2No14cPbr7qm6UaxwzjiPIv7ZeyMlkD67aOZgz+D/SOQSpIaFyhjBI7HSAR94cegycNF9oExB83k4G4Zo1/7hzhFyXA8cfveSBkxzfuKt/W+KJ3KIDfEUF8CAWMTcB1TwKJACKLw75UxTI2gUcHg75dvtm1PU9inNIyLCROUsVeRjCFhsYn6AnqFnhB9abn/tHBZz/fLGF2lvwosfYTzsf1Mlmd2IzfZbkylPZYZfX25jPkui285Im8vn6EwHZ/IDFK2snKRHfJRF2hXyRi6GsxA3oGlvzAFcA4fHwvy3ArjIuYt/pzZPfHf3/3Yu4kLkz5BX7god2hZVhjQt3Rvml/urCfn/+Tj9YFlxR7m7NQyhms0qxt2sf41/D5szHIIiifljitaymW7ED4+J5tiAPZRQE7jMCtUUsbQ1cgwLFwtL8miyPv8XphqrCRpkdFTrlpLRhjqizhd8U6XWQQbQgww9dUyhq4GgcZV9yBrX6YCjjcTV/T/hopADjglUV+YJYWMMT3HW5ZshJWXMSwp7jdkUcXpac8K+Bmw3A6xoSslhBQQIXlI1JdBg0o8DkmkDMcM9nO/jFHUUfvRGQqT7cIxC7D5tCU+5bhbhrEJfUcNn7Ol80sq1lVMFIKINRfD0jKGbivbiBZI87ub5cmehUUalohiY06+5qJHCm1C/uXdNeVr1KmjvtS6BhSckHobCp/jzIvTW9jIsxxCWL2EjKGn9ZCrT98JI4rU1T6ts+fb7kh+d/6xDaYiwrZYm84mxGUDV4q19X5bOvhsAh6uWwudlRWfm4QWazOizPjxJIXlE7oatBG5E1sLVjoH3ZTBAHY7fsmKhrc2tWo33uktWnpBEHjum3iXjYs7YYTFhKwKtlf4nB1Rk3ptLLzVEvZDupHDgCstqLeeR5KI4qdNi58O0TQtVEkLVt6E8KHOWk7ZoEd89Rx67IQvwLjLNpTCLUFnRq2wG+C3xnUJ75Jx/i2QMRLpsfcQwhAjwK+FFT4jBrXc0UG5A+C6Re3qXcYm3BJ0pou6aeUvdBr5Kxx0kfjPvGs0x/4CW0KI6CDcD9vTmqMcXVr/9n7rNyukZzf6usG1ad2sXHx9dKPe7l4bcXeabUk3fdEFeoXHY6oH8yUylhxSjWMytiwzxnbcvjdk7XJoQwpdq5U6FoNEV1vnJnUN2zy1W80UZFME3mlp//gQiFfhASFREvqHfSpjdNFU4qsKpx1lcz4udJVmUZQWRZFFU4l9Jr4//BCyx6HkoKPp5d/y05+ni6YKyYYUM/9w9EamvAZjattusl4qJ6U3JwXzPx5tEylD0tSEHaogYhlaSBmiJGGDahwL+KI65U6NJJuSRv9XJfBQlx89qcZ+kxFWmeOtKWU79z7CvsyKEXamjEzMQ3IHX+6ORFMqRNiNi7r9+xk5Jz5YRTQMjgJfwDArd978y88+PlF6/NxqWZqv6JIMqIrhiug3TQLfK8fXtaTA+PGukQDPDfazLGV+M4NC/+HOtwRPLHzpfHsy+dqyAuJhVQdYhs7QvOLwvV9GBWwlKV0E46r+kM0VD23CGcEuPgaJt7zAS4LP3I9yNVpVsykKOXv9bZaDof3ni6Cnj00VRs1ONQIVJdHtvBimGI3mc7V8orLHZDeNjQkYD1qd/7NRhIenzrPeHAwNwxgbw8HvF+21V8m5+AfCu6sYTeBU+wAAAABJRU5ErkJggg==";
-				
+
 				var draw = PaperWallet.draw = {
 					imgBitcoinLogo: imgBitcoinLogo,
-				
+
 					/**
 					 * Draw guilloche pattern with the given parameters into the canvas.
 					 * Source: https://gist.github.com/3n/803329
 					 */
 					guilloche: function(ctx, opts) {
 						ctx.save();
-						
+
 						var opts = opts || {};
 						var scale = opts.scale || 1,
 							majorR = opts.majorR || 49,
@@ -12987,9 +12981,9 @@ ninja.publicKey = {
 							color = opts.color || 'rgb(0,0,255)',
 							width = opts.width || 0.5;
 							globalAlpha = opts.globalAlpha || 1.0;
-					 
+
 						ctx.globalAlpha = globalAlpha;
-					 
+
 						var	diff = majorR - minorR,
 							s = diff / minorR,
 							theta = 0,
@@ -13016,17 +13010,17 @@ ninja.publicKey = {
 							oldX = x;
 							oldY = y;
 						}
-						
+
 						ctx.restore();
 					},
-					
-					
+
+
 					/**
 					 * Calculate unique parameters for pattern drawing.
 					 * @param {String} msg Message to extract parameters from.
 					 */
-					guillocheParams: function(msg) {			
-						/** 
+					guillocheParams: function(msg) {
+						/**
 						 * Extracts a float in range [0, 1[ from first 4 bytes of the given bytearray.
 						 * This treats the first 4 bytes as a signed integer value, scales it to size 1,
 						 * and adds 0.5 to move to the range [0, 1[.
@@ -13037,9 +13031,9 @@ ninja.publicKey = {
 							var v = bytearray[0] << 24;
 							v |= bytearray[1] << 16;
 							v |= bytearray[2] << 8;
-							v |= bytearray[3];			
+							v |= bytearray[3];
 							v /= 4294967296;
-								
+
 							// since v is signed, just add 0.5 to remap to [0, 1[.
 							return v + 0.5;
 						}
@@ -13049,56 +13043,56 @@ ninja.publicKey = {
 						 */
 						function scaled_between(v, min, max) {
 							return v*(max - min) + min;
-						};			
-					
+						};
+
 						// this contains some hand tuned constant to make the generated patterns look pretty.
 						var msg = Crypto.SHA256(msg, {asBytes: true});
 						var majorR = scaled_between(float01(msg), 55, 300); // overall radius.
-												
+
 						var msg = Crypto.SHA256(msg, {asBytes: true});
 						var scale = scaled_between(float01(msg), 5, 15);
 
-						msg = Crypto.SHA256(msg, {asBytes: true}); 
-						var minorR = scaled_between(float01(msg), 0.01, 10); // a large minorR makes for a sparser design, bigger holes in the spiderweb.
-						
-						
-						msg = Crypto.SHA256(msg, {asBytes: true}); 
-						var steps = scaled_between(float01(msg), 1500, 7000); 
-						
-						var width = (5000/steps) * .5; 
-						width = Math.min(width,1.2); // prevent overly chunky lines
-						
 						msg = Crypto.SHA256(msg, {asBytes: true});
-						var radiusEffectConstant = scaled_between(float01(msg), majorR*0.9, majorR); 
-						
+						var minorR = scaled_between(float01(msg), 0.01, 10); // a large minorR makes for a sparser design, bigger holes in the spiderweb.
+
+
+						msg = Crypto.SHA256(msg, {asBytes: true});
+						var steps = scaled_between(float01(msg), 1500, 7000);
+
+						var width = (5000/steps) * .5;
+						width = Math.min(width,1.2); // prevent overly chunky lines
+
+						msg = Crypto.SHA256(msg, {asBytes: true});
+						var radiusEffectConstant = scaled_between(float01(msg), majorR*0.9, majorR);
+
 						msg = Crypto.SHA256(msg, {asBytes: true});
 						var angleMultiplier = Math.ceil(scaled_between(float01(msg), 0, 3));
 
 						// majorR = 110; scale = 11; minorR = .5; steps = 5000; width = .3; radiusEffectConstant = 100; angleMultiplier = 2; // test suite
-					
+
 						return  {
 							angleMultiplier: angleMultiplier,
 							majorR: majorR,
 							minorR: minorR,
 							radiusEffectConstant: radiusEffectConstant,
 							scale: scale,
-							steps: steps,		
+							steps: steps,
 							width: width
 						}
 					},
-					
-					
+
+
 					/**
-					 * Draws a rounded rectangle using the current state of the canvas. 
-					 * If you omit the last three params, it will draw a rectangle 
-					 * outline with a 5 pixel border radius 
+					 * Draws a rounded rectangle using the current state of the canvas.
+					 * If you omit the last three params, it will draw a rectangle
+					 * outline with a 5 pixel border radius
 					 *
 					 * Source: http://stackoverflow.com/a/3368118
 					 *
 					 * @param {CanvasRenderingContext2D} ctx
 					 * @param {Number} x The top left x coordinate
-					 * @param {Number} y The top left y coordinate 
-					 * @param {Number} width The width of the rectangle 
+					 * @param {Number} y The top left y coordinate
+					 * @param {Number} width The width of the rectangle
 					 * @param {Number} height The height of the rectangle
 					 * @param {Number} radius The corner radius. Defaults to 5;
 					 * @param {Boolean} fill Whether to fill the rectangle. Defaults to false.
@@ -13106,7 +13100,7 @@ ninja.publicKey = {
 					 */
 					roundRect: function(ctx, x, y, w, h, opts) {
 						ctx.save();
-						
+
 						ctx.beginPath();
 						ctx.moveTo(x + opts.radius, y);
 						ctx.lineTo(x + w - opts.radius, y);
@@ -13130,72 +13124,72 @@ ninja.publicKey = {
 							ctx.fillStyle = opts.fillStyle;
 							ctx.fill();
 						}
-						
+
 						ctx.restore();
-					},			
-					
-					
+					},
+
+
 					/**
 					 * Draw text with strong blur around it.
 					 * This is quite a hack, but I couldn't find a better way.
 					 */
 					fillTextStrongBlur: function(ctx, msg, x, y, offset, opts) {
 						ctx.save();
-						
+
 						ctx.shadowColor = opts.color.textShadow;
 						ctx.shadowBlur = 7;
 						ctx.shadowOffsetX = 4;
 						ctx.shadowOffsetY = 4;
-						
+
 						// run multiple times for stronger blur
 						for (var i=0; i<1; ++i) {
 							ctx.shadowOffsetX = offset;
 							ctx.shadowOffsetY = offset;
 							ctx.fillText(msg, x, y);
-							
+
 							ctx.shadowOffsetX = -offset;
 							ctx.shadowOffsetY = offset;
 							ctx.fillText(msg, x, y);
-							
+
 							ctx.shadowOffsetX = offset;
 							ctx.shadowOffsetY = -offset;
 							ctx.fillText(msg, x, y);
-							
+
 							ctx.shadowOffsetX = -offset;
 							ctx.shadowOffsetY = -offset;
 							ctx.fillText(msg, x, y);
 						}
-						
+
 						ctx.restore();
-					},			
-					
+					},
+
 					text: function(ctx, opts) {
 						ctx.save();
-						
+
 						ctx.font = opts.font;
 						ctx.textAlign = "center";
 						ctx.fillStyle = opts.color.text;
 						draw.fillTextStrongBlur(ctx, opts.text.publicAddress, 268, 320, 4, opts);
 						draw.fillTextStrongBlur(ctx, opts.text.depositVerify, 268, 696, 4, opts);
-						
+
 						ctx.rotate(-Math.PI*2/4);
 						draw.fillTextStrongBlur(ctx, opts.text.privateKey, -482, 2396, 4, opts);
 						draw.fillTextStrongBlur(ctx, opts.text.walletImportFormat, -482, 2844, 4, opts);
-						
-						
+
+
 						// text for green pointer
 						ctx.fillStyle = opts.color.textPointer;
 						ctx.fillText(opts.text.withdraw, -482, 1015);
-						
+
 						ctx.restore();
 					},
-					
+
 					obfuscation: function(ctx, x, y, w, h) {
 						ctx.save();
 						ctx.font = "18px Courier";
 						ctx.textAlign = "center";
 						var obfuscationColors = ["#000000","#222222","#333333","#666666"];
-						
+
 						// create random text to black out private key pattern
 						var possible_letters = "฿#";
 						// var possible_letters = "■•";
@@ -13206,17 +13200,17 @@ ninja.publicKey = {
 						}
 						ctx.restore();
 					},
-					
+
 					gradients: function(ctx, opts) {
 						ctx.save();
-						
+
 						// draw background gradients
 						var grd = ctx.createLinearGradient(55, 82, 55, 807);
 						grd.addColorStop(0, opts.color.publicUpper);
 						grd.addColorStop(1, opts.color.publicLower);
 						ctx.fillStyle = grd;
 						ctx.fillRect(55, 82, 958, 807);
-						
+
 						grd = ctx.createLinearGradient(1013, 0, 2961, 0)
 						grd.addColorStop(0, opts.color.privateLeft);
 						grd.addColorStop(1, opts.color.privateRight);
@@ -13224,10 +13218,10 @@ ninja.publicKey = {
 						ctx.fillRect(1013, 82, 2961, 807);
 						ctx.restore();
 					},
-					
+
 					logos: function(ctx, cp) {
 						var w = 90;
-						
+
 						/* draw circle for bitcoin logo
 						ctx.arc(cp.x, cp.y, w/2+5, 0, 2*Math.PI, false);
 						ctx.fillStyle = "white";
@@ -13255,12 +13249,12 @@ ninja.publicKey = {
 						ctx.shadowOffsetX = 5;
 						ctx.shadowOffsetY = 0;
 						ctx.fill();
-						ctx.restore();		
+						ctx.restore();
 					},
 
 					clearSurroundings: function(ctx) {
 						ctx.save();
-						
+
 						ctx.beginPath();
 						ctx.moveTo(55, 82);
 						ctx.lineTo(1708, 82);
@@ -13268,14 +13262,14 @@ ninja.publicKey = {
 						ctx.lineTo(2308, 182);
 						ctx.lineTo(2809, 90);
 						ctx.lineTo(2906, 182);
-						
-						ctx.lineTo(2906, 971-182);	
+
+						ctx.lineTo(2906, 971-182);
 						ctx.lineTo(2809, 971-90);
 						ctx.lineTo(2308, 971-182);
 						ctx.lineTo(1708, 971-182);
 						ctx.lineTo(1708, 971-82);
 						ctx.lineTo(55, 971-82);
-						
+
 						// surroundings,  move back
 						ctx.lineTo(0, 971);
 						ctx.lineTo(2962, 971);
@@ -13284,42 +13278,42 @@ ninja.publicKey = {
 						ctx.lineTo(0, 971);
 						ctx.lineTo(55, 971);
 						ctx.closePath();
-						
-						ctx.lineWidth = 0.2;	
+
+						ctx.lineWidth = 0.2;
 						ctx.strokeStyle = "black";
 						ctx.fillStyle = "white";
-						
-						ctx.stroke();	
+
+						ctx.stroke();
 						ctx.fill();
-						
+
 						ctx.restore();
 					},
-					
+
 					// Creates an image based on the given public key.
 					frontImage: function(key, opts) {
 						// create the temporary draw canvas
 						var canvas = document.createElement('canvas');
 						canvas.width = 2962;
 						canvas.height = 971;
-						
+
 						var key = key || "";
-						
+
 						var ctx = canvas.getContext('2d');
 						var cp = {x: 665, y: 389};
-						
+
 						PaperWallet.draw.gradients(ctx, opts);
-						
+
 						// draw guilloche
 						guillocheParams = PaperWallet.draw.guillocheParams(key);
 						guillocheParams.color = opts.color.guilloche;
 						guillocheParams.centerPoint = cp;
 						PaperWallet.draw.guilloche(ctx,  guillocheParams);
-						
+
 						PaperWallet.draw.logos(ctx, cp);
 						PaperWallet.draw.pointer(ctx, opts.color.pointer);
-						
+
 						PaperWallet.draw.clearSurroundings(ctx);
-						
+
 						// draw empty rectangle for public QR code
 						var qrOpts = {
 							lineWidth: 0.2,
@@ -13327,13 +13321,13 @@ ninja.publicKey = {
 							fillStyle: "white",
 							radius: 20,
 						};
-						
+
 						PaperWallet.draw.roundRect(ctx, 113, 344, 310, 310, qrOpts);
 						PaperWallet.draw.roundRect(ctx, 1816, 290, 384, 384, qrOpts);
 						PaperWallet.draw.roundRect(ctx, 2416, 290, 384, 384, qrOpts);
-						
+
 						PaperWallet.draw.text(ctx, opts);
-						
+
 						PaperWallet.draw.obfuscation(ctx, 1831, 310, 350, 350);
 
 						return canvas.toDataURL();
@@ -13343,23 +13337,23 @@ ninja.publicKey = {
 		}
 
 	// global drawing options, most of which will be replaced in setDesign() for translation
-	
+
 	var drawOpts = {
 		color: {
 			publicUpper: "#fff57c",
 			publicLower: "#f7931a",
-			privateLeft: "#8cd96f",			
+			privateLeft: "#8cd96f",
 			privateRight: "#fff67d",
 			pointer: "#03ab5d",
 			guilloche: "white",
-			
+
 			text: "#1937a9",
 			textShadow: "white",
-			textPointer: "white",				
+			textPointer: "white",
 		},
 
-		font: "bold 20pt sans-serif",			
-		
+		font: "bold 20pt sans-serif",
+
 		text: {
 			publicAddress: "",
 			depositVerify: "",
@@ -13388,7 +13382,7 @@ ninja.publicKey = {
 
 	// apply the printer zoom & shift values as !important <head> styles
 	// thanks http://stackoverflow.com/questions/798535/changing-media-specific-css-properties-from-javascript
-	function updateCalibrationInfo() { 
+	function updateCalibrationInfo() {
 
 		var currentZoom = document.getElementById("printerzoom").value;
 		var currentShift = document.getElementById("printershift").value;
@@ -13401,33 +13395,33 @@ ninja.publicKey = {
 		printerStyle.setAttribute('media', 'print');
 		printerStyle.appendChild(document.createTextNode('body { width: ' + ( 950 + (currentZoom * 10)) + 'px !important;} #main { left: ' + ((currentShift * 5)) + 'px !important;}'));
 
-		if (inlineMediaStyle != null) { 
+		if (inlineMediaStyle != null) {
 			head.replaceChild(printerStyle, inlineMediaStyle)
 		} else {
 			head.appendChild(printerStyle);
 		}
 		inlineMediaStyle = printerStyle;
 	}
-	
+
 	var printCounter=0;
 	var landscapeAlert=0;
-	
+
 	function doPrint(myContext) { /* What to do anytime a print button is clicked */
 		window.landscapeAlert ++;
 		updateCalibrationInfo();
 		if (window.landscapeAlert == 1) {
-			alert ('Important note: Please configure your print settings to LANDSCAPE (wide) orientation.');	
+			alert ('Important note: Please configure your print settings to LANDSCAPE (wide) orientation.');
 		}
-		
+
 		if (myContext == 'generate') {
 			window.printCounter ++;
 			if (window.printCounter == 2) {
 				alert (" *** WARNING *** WARNING *** WARNING *** \n\nYou are about to print a second wallet with the same set of keys. \n\nUnless you intended to make a backup wallet, cancel this print job and generate a fresh set of keys.");
 			}
 		}
-		window.print();	
+		window.print();
 	}
-	
+
 	function testAndApplyVanityKey() { /* Verify that a self-entered key is valid, and compute the corresponding public address, render the wallet. */
 		var suppliedKey = document.getElementById('suppliedPrivateKey').value;
 		suppliedKey = suppliedKey.trim(); // in case any spaces or whitespace got pasted in
@@ -13448,7 +13442,7 @@ ninja.publicKey = {
 				var privateKey = wallet.getBitcoinWalletImportFormat();
 				ninja.wallets.paperwallet.buildManual({ address: computedPublicAddress, wifKey: privateKey }, document.getElementById('paperpassphrase').value);
 			}
-		} else {			
+		} else {
 			var computedPublicAddress = new Bitcoin.ECKey(suppliedKey).getBitcoinAddress();
 			alert ('OK! This is a valid WIF-format private key whose public address is:\r\r'+computedPublicAddress);
 			ninja.wallets.paperwallet.buildManual({ address: computedPublicAddress, wifKey: suppliedKey }, document.getElementById('paperpassphrase').value);
@@ -13466,21 +13460,21 @@ ninja.publicKey = {
 		txt+=result.os.name + " version " + result.os.version + " (" + result.cpu.architecture + ")<br />";
 		txt += "</p>";
 		document.getElementById("browserinfo").innerHTML=txt;
-		
+
 		// some common printer calibration settings here
 		if (result.browser.name == 'Safari') { // OS X Safari
 			document.getElementById("printerzoom").value = 5;
 			document.getElementById("printershift").value = 6;
-		} else if (result.browser.name == 'Chrome' && result.os.name == 'Mac OS X') { 
+		} else if (result.browser.name == 'Chrome' && result.os.name == 'Mac OS X') {
 			document.getElementById("printerzoom").value = 3;
 			document.getElementById("printershift").value = 3;
 		} else if (result.browser.name == 'Firefox' && result.os.name == 'Ubuntu') { // live CD?
 			document.getElementById("printerzoom").value = 1;
 			document.getElementById("printershift").value = 0;
-		} else if (result.browser.name == 'Iceweasel' && result.os.name == 'Debian') { 
+		} else if (result.browser.name == 'Iceweasel' && result.os.name == 'Debian') {
 			document.getElementById("printerzoom").value = 1.8;
 			document.getElementById("printershift").value = 2.9;
-		} else if (result.browser.name == 'IE' && result.os.name == 'Windows') { 
+		} else if (result.browser.name == 'IE' && result.os.name == 'Windows') {
 			document.getElementById("printerzoom").value = 5;
 			document.getElementById("printershift").value = 6;
 		}
@@ -13489,14 +13483,14 @@ ninja.publicKey = {
 	}
 
 function setDesign (whichDesign, isOnLoad, whichLanguage) {
-	
+
     whichLanguage = typeof whichLanguage !== 'undefined' ? whichLanguage : 'english';
 
-	// these translations are only applicable to the standard bitcoin wallet. 
+	// these translations are only applicable to the standard lisk wallet.
 	// alt-currencies and special holiday/theme designs use JPGs instead.
-	
+
 	var translations = {
-		
+
 		'english': {
 			publicAddress: "PUBLIC ADDRESS",
 			depositVerify: "DEPOSIT / VERIFY",
@@ -13504,14 +13498,14 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVATE KEY / WITHDRAW",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "BITCOIN PAPER WALLET",
+			backPaperWallet: "LISK PAPER WALLET",
 			backAmount: "Amount Added",
 			backDate: "Date",
 			backNotes: "Notes:",
-			backInst1: "To deposit additional funds to this paper wallet, send bitcoins to its public address, anytime.",
-			backInst2: "Verify your balance by searching for the public address using a service such as blockchain.info",
-			backInst3: "<strong>Do not reveal the private key</strong> until you are ready to import the balance on this wallet to a bitcoin client, exchange, or online wallet.",
-			backInst4: "When withdrawing your funds from this wallet you should remove the <strong>ENTIRE BALANCE</strong>. If you attempt to spend only some of the funds you will likely lose the remaining bitcoins forever.<br />For instructions visit bitcoinpaperwallet.com",
+			backInst1: "To deposit additional funds to this paper wallet, send Lisk to its public address, anytime.",
+			backInst2: "Verify your balance by searching for the public address using a service such as https://explorer.lisk.io",
+			backInst3: "<strong>Do not reveal the private key</strong> until you are ready to import the balance on this wallet to a Lisk client, exchange, or online wallet.",
+			backInst4: "When withdrawing your funds from this wallet you should remove the <strong>ENTIRE BALANCE</strong>. If you attempt to spend only some of the funds you will likely lose the remaining Lisk forever.<br />For in depth instructions visit bitcoinpaperwallet.com",
 		},
 
 		'chinese': {
@@ -13521,7 +13515,7 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "私钥/取款",
 			backLongTextFontSize: "10px",
-			backPaperWallet: "BITCOIN 纸钱包",
+			backPaperWallet: "Lisk 纸钱包",
 			backAmount: "添加数量",
 			backDate: "日期",
 			backNotes: "注释",
@@ -13538,7 +13532,7 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "錢包導入格式",
 			withdraw: "取款",
 			backLongTextFontSize: "10px",
-			backPaperWallet: "BITCOIN 紙錢包",
+			backPaperWallet: "Lisk 紙錢包",
 			backAmount: "添加數量",
 			backDate: "日期",
 			backNotes: "註釋",
@@ -13555,12 +13549,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "SOUKROMÝ KLÍČ / VYBRAT",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "BITCOIN Papírová peněženka",
+			backPaperWallet: "Lisk Papírová peněženka",
 			backAmount: "Částka",
 			backDate: "Datum",
 			backNotes: "Poznámky:",
 			backInst1: "Pokud chcete vložit více peněz do této peněženky, můžete kdykoli použít stejnou veřejnou adresu.",
-			backInst2: "Pokud chcete ověřit zůstatek v peněžence, můžete použít službu blockchain.info a zadat veřejnou adresu.",
+			backInst2: "Pokud chcete ověřit zůstatek v peněžence, můžete použít službu https://explorer.lisk.io a zadat veřejnou adresu.",
 			backInst3: "<strong>NEUKAZUJTE NIKOMU SOUKROMÝ KLÍČ</strong> dokud se nerozhodnete opravdu převést zůstatek do klienta,na burzu nebo do online peněženky. ",
 			backInst4: "Při výběru z této peněženky byste měli převést <strong>CELÝ ZŮSTATEK</strong>. Pokud převedete jen část, je možné že příjdete o zbytek.<br />Dotazy? Navštivte bitcoinpaperwallet.com",
 		},
@@ -13572,12 +13566,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "TEGNEBOGENS IMPORTFORMAT",
 			withdraw: "PRIVAT NØGLE / UDBETAL",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "BITCOIN-PAPIRTEGNEBOG",
+			backPaperWallet: "Lisk-PAPIRTEGNEBOG",
 			backAmount: "Indbetalt beløb",
 			backDate: "Dato",
 			backNotes: "Noter:",
 			backInst1: "For at indbetale yderligere beløb til denne papirtegnebog sendes når som helst bitcoins til dens offentlige adresse.",
-			backInst2: "Verificér din saldo ved at søge efter den offentlige adresse vha. en tjeneste som fx blockchain.info",
+			backInst2: "Verificér din saldo ved at søge efter den offentlige adresse vha. en tjeneste som fx https://explorer.lisk.io",
 			backInst3: "<strong>Afslør ikke den private nøgle</strong> før du er klar til at importere saldoen i denne tegnebog til en bitcoinklient, -børs eller online tegnebog.",
 			backInst4: "Når du udbetaler dine penge fra denne tegnebog, bør du fjerne <strong>HELE SALDOEN</strong>. Hvis du forsøger kun at bruge nogle af pengene, vil du sandsynligvis miste de resterende bitcoins for evigt.<br />For vejledning, besøg bitcoinpaperwallet.com",
 		},
@@ -13589,12 +13583,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVÉ SLEUTEL",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "BITCOIN Papieren portemonnee",
+			backPaperWallet: "Lisk Papieren portemonnee",
 			backAmount: "Bedrag toegevoegd",
 			backDate: "Datum",
 			backNotes: "Notities:",
 			backInst1: "Om meer geld naar deze papieren portemonnee over te maken kun je altijd bitcoins naar het publieke adres sturen.",
-			backInst2: "Verifieer je saldo door het publieke adress op te zoeken met een service zoals blockchain.info",
+			backInst2: "Verifieer je saldo door het publieke adress op te zoeken met een service zoals https://explorer.lisk.io",
 			backInst3: "<strong>LAAT JE PRIVÉ SLEUTEL NIET ZIEN</strong> totdat je het saldo van deze portemonnee over wilt maken naar een bitcoin client, exchange of online portemonnee.",
 			backInst4: "Als je het saldo van deze portemonnee uit wilt laten betalen, dan kun je het beste het <strong>HELE BEDRAG</strong> opnemen. Als je probeert een beetje op te nemen ben je waarschijnlijk de overige bitcoins kwijt.<br /><br />Vragen? Ga naar bitcoinpaperwallet.com",
 		},
@@ -13606,16 +13600,16 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CLÉ SECRÈTE / FAIRE UN RETRAIT",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "BITCOIN Portefeuille papier",
+			backPaperWallet: "Lisk Portefeuille papier",
 			backAmount: "Montant ajouté",
 			backDate: "Date",
 			backNotes: "Notes:",
 			backInst1: "Pour déposer plus de fonds dans ce portefeuille papier, envoyer des Bitcoins à son adresse publique n'importe quand.",
-			backInst2: "Vérifiez le solde en faisant une recherche de l'adresse publique en utilisant un service tel que blockchain.info",
+			backInst2: "Vérifiez le solde en faisant une recherche de l'adresse publique en utilisant un service tel que https://explorer.lisk.io",
 			backInst3: "<strong>NE RÉVÉLEZ PAS VOTRE CLÉ SECRÈTE</strong> jusqu'à ce que vous soyez prêt à transférer le solde de ce portefeuille à un client Bitcoin, une plate-forme d'échange ou un portefeuille en-ligne.",
 			backInst4: "Lorsque vous allez retirer des fonds de ce portefeuille, vous devriez transférer le <strong>SOLDE EN ENTIER</strong>. Si vous essayez de ne dépenser qu'une partie des fonds, vous risquez de perdre le reste des Bitcoins à tout jamais.<br /><br />Questions ? Visitez : bitcoinpaperwallet.com",
 		},
-		
+
 		'german': {
 			publicAddress: "ÖFFENTLICHE ADRESSE",
 			depositVerify: "EINZAHLEN / BESTÄTIGEN",
@@ -13623,15 +13617,15 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVATER SCHLÜSSEL / ABHEBEN",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "BITCOIN PAPIERBRIEFTASCHE",
+			backPaperWallet: "Lisk PAPIERBRIEFTASCHE",
 			backAmount: "Gutschriften",
 			backDate: "Datum",
 			backNotes: "Notizen:",
 			backInst1: "Um das Guthaben auf dieser Papierbrieftasche zu erhöhen, sende bitcoins an ihre öffentliche Adresse, jederzeit.",
-			backInst2: "Um das Guthaben zu bestätigen suche nach der öffentlichen Adresse auf einem Service wie blockchain.info",
-			backInst3: "<strong>Mache den privaten schlüssel nie bekannt</strong> bis du bereit bist das Guthaben auf dieser Brieftasche abzuheben auf einen Bitcoin-Client, eine Wechselbörse oder eine Onlinebrieftasche.",
-			backInst4: "Beim Abheben des Guthabens sollte das <strong>Ganze Guthaben</strong> auf einmal abgehoben werden. Beim Versuch nur einen Teil des Guthaben auszugeben kann es zum dauerhaften Verlust des restlichen Guthabens kommen. <br /><br />Fragen? Geh auf bitcoinpaperwallet.com",
-		}, 
+			backInst2: "Um das Guthaben zu bestätigen suche nach der öffentlichen Adresse auf einem Service wie https://explorer.lisk.io",
+			backInst3: "<strong>Mache den privaten schlüssel nie bekannt</strong> bis du bereit bist das Guthaben auf dieser Brieftasche abzuheben auf einen Lisk-Client, eine Wechselbörse oder eine Onlinebrieftasche.",
+			backInst4: "Beim Abheben des Guthabens sollte das <strong>Ganze Guthaben</strong> auf einmal abgehoben werden. Beim Versuch nur einen Teil des Guthaben auszugeben kann es zum dauerhaften Verlust des restlichen Guthabens kommen. <br /><br />Noch mehr Fragen? Auf bitcoinpaperwallet.com",
+		},
 
 		'hebrew': {
 			publicAddress: "כתובת פומבית",
@@ -13640,12 +13634,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "מפתח פרטי / משיכה",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "BITCOIN ארנק נייר",
+			backPaperWallet: "Lisk ארנק נייר",
 			backAmount: "כמות שנטענה",
 			backDate: "תאריך",
 			backNotes: "הערות",
 			backInst1: "כדי להפקיד לארנק זה, שלחו ביטקוינים לכתובת הפומבית, בכל זמן",
-			backInst2: "ודאו את המאזן שלכם ע\"י חיפוש הכתובת הפומבית בעזרת שירות כמו blockchain.info",
+			backInst2: "ודאו את המאזן שלכם ע\"י חיפוש הכתובת הפומבית בעזרת שירות כמו https://explorer.lisk.io",
 			backInst3: "אף פעם אל תגלו לאף אחד את המפתח הפרטי שלכם עד שאתם מוכנים לייצא את המטבעות לארנק ביטקוין ממוחשב, בורסאת ביטקוין או ארנק מקוון",
 			backInst4: "בעת משיכת המטבעות, יש למשוך את -כל המטבעות- שבארנק. אם תנסו להוציא רק חלק מהמטבעות, תאבדו את המטבעות הנשארים לנצח שאלות? פנו ל: bitcoinpaperwallet.com",
 		},
@@ -13657,12 +13651,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CHIAVE PRIVATA / PRELEVA",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "BITCOIN PORTAFOGLIO CARTACEO",
+			backPaperWallet: "Lisk PORTAFOGLIO CARTACEO",
 			backAmount: "Importo depositato",
 			backDate: "Data",
 			backNotes: "Note:",
 			backInst1: "Per depositare altri fondi su questo portafoglio cartaceo, invia bitcoins al suo indirizzo pubblico, in qualsiasi momento.",
-			backInst2: "Puoi verificare il saldo cercando l'indirizzo pubblico su un servizio tipo blockchain.info",
+			backInst2: "Puoi verificare il saldo cercando l'indirizzo pubblico su un servizio tipo https://explorer.lisk.io",
 			backInst3: "<strong>NON ESPORRE LA CHIAVE PRIVATA</strong> se non per importare immediatamente il contenuto del portafoglio su un client bitcoin, un exchange o un portafoglio online.",
 			backInst4: "Se prelevi i fondi depositati su questo portafoglio, ti consigliamo di prelevare l'<strong>INTERO IMPORTO</strong> depositato. Se cerchi di spendere i fondi solo in parte, probabilmente perderai i bitcoins residui.<br />Domande? Visita : bitcoinpaperwallet.com",
 		},
@@ -13674,7 +13668,7 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "秘 密 鍵 / 出 金",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "BITCOIN ペーパーウォレット",
+			backPaperWallet: "Lisk ペーパーウォレット",
 			backAmount: "入金金額",
 			backDate: "日付",
 			backNotes: "メモ:",
@@ -13690,12 +13684,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			privateKey: "KLUCZ PRYWATNY",
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "KLUCZ PRYWATNY / WYPŁATA",
-			backPaperWallet: "PAPIEROWY PORTFEL BITCOIN",
+			backPaperWallet: "PAPIEROWY PORTFEL Lisk",
 			backAmount: "Wpłacona kwota",
 			backDate: "Data",
 			backNotes: "Uwagi:",
 			backInst1: "Aby wpłacić dodatkowe fundusze do tego portfela, wyślij bitcoiny na publiczny adres.",
-			backInst2: "Sprawdź dostępne środki szukając publicznego adresu w usługach takich jak <u>blockchain.info</u>.",
+			backInst2: "Sprawdź dostępne środki szukając publicznego adresu w usługach takich jak <u>https://explorer.lisk.io</u>.",
 			backInst3: "<strong>Nie odsłaniaj prywatnego klucza</strong>, dopóki nie jesteś gotowy na wydanie wszystkich bitcoinów znajdujących się w tym portfelu.",
 			backInst4: "Podczas wypłacania środków, <strong>powinieneś wypłacić WSZYSTKO</strong>. Jeśli spróbujesz wydać tylko trochę, prawdopodobnie stracisz całą resztę. Na zawsze.<br />Instrukcje znajdziesz na <u>bitcoinpaperwallet.com</u>.",
 		},
@@ -13707,12 +13701,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CHAVE PRIVADA / SAQUE",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "BITCOIN PAPER WALLET",
+			backPaperWallet: "Lisk PAPER WALLET",
 			backAmount: "Saldo",
 			backDate: "Data",
 			backNotes: "Anotações:",
 			backInst1: "Para depositar fundos adicionais na sua paper wallet deve-se enviar os bitcoins para seu endereço público, a qualquer hora.",
-			backInst2: "Verifique o saldo através do seu endereço público usando um serviço como o blockchain.info",
+			backInst2: "Verifique o saldo através do seu endereço público usando um serviço como o https://explorer.lisk.io",
 			backInst3: "<strong>NÃO REVELE A SUA CHAVE PRIVADA</strong> até que você esteja pronto a importar o saldo total para um cliente bitcoin ou uma carteira online ou, ainda, trocar sua paper wallet com alguém.",
 			backInst4: "<strong>TRANSFIRA TODO O SALDO</strong> dessa carteira ao importá-la. Se você tentar importar somente uma parcela provavelmente o risco de perder o restante dos bitcoins é alto.<br /><br />Para mais informações visite bitcoinpaperwallet.com",
 		},
@@ -13724,12 +13718,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "ЗАКРЫТЫЙ КЛЮЧ / ВЫВОД",
 			backLongTextFontSize: "8px",
-			backPaperWallet: "BITCOIN БУМАЖНЫЙ КОШЕЛЁК",
+			backPaperWallet: "Lisk БУМАЖНЫЙ КОШЕЛЁК",
 			backAmount: "Внесено",
 			backDate: "Дата",
 			backNotes: "Заметки:",
 			backInst1: "Для внесения дополнительных финансов на этот бумажный кошелёк отправьте биткоины на его открытый адрес в любое время.",
-			backInst2: "Проверьте баланс найдя открытый адрес в таком сервисе, как blockchain.info",
+			backInst2: "Проверьте баланс найдя открытый адрес в таком сервисе, как https://explorer.lisk.io",
 			backInst3: "<strong>НЕ ВСКРЫВАЙТЕ СВОЙ ЗАКРЫТЫЙ КЛЮЧ</strong> до тех пор, пока вы не будете готовы импортировать баланс этого кошелька в свой bitcoin-клиент, обменник, или онлайн-кошелёк.",
 			backInst4: "Вы должны снять <strong>ВСЕ</strong> свои средства с этого кошелька единовременно. Если вы попытаетесь истратить только некую часть своих финансов, то, скорее всего, потеряете оставшиеся биткоины навсегда.<br /><br />Вопросы? Посетите: bitcoinpaperwallet.com.",
 		},
@@ -13741,12 +13735,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "CLAVE PRIVADA / RETIRAR",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "BITCOIN Cartera de papel",
+			backPaperWallet: "Lisk Cartera de papel",
 			backAmount: "Cantidad añadida",
 			backDate: "Fecha",
 			backNotes: "Notas:",
 			backInst1: "Para depositar fondos adicionales en esta cartera de papel, envíe unos Bitcoins a su dirección pública.",
-			backInst2: "Para verificar su saldo, busque su dirección pública en un sitio web como blockchain.info",
+			backInst2: "Para verificar su saldo, busque su dirección pública en un sitio web como https://explorer.lisk.io",
 			backInst3: "<strong>NUNCA DEBE MOSTRAR SU CLAVE PRIVADA</strong> hasta que este preparado para importar el saldo de esta cartera a un cliente de bitcoin, un sitio de cambio, o una cartera de internet.",
 			backInst4: "Cuando este sacando sus fondos, debe sacar <strong>LA TOTALIDAD DE SU SALDO</strong>. Si no hace esto, es posible que pierda sus Bitcoin.<br /><br />¿Dudas? Vaya a bitcoinpaperwallet.com",
 		},
@@ -13758,20 +13752,20 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			walletImportFormat: "WALLET IMPORT FORMAT",
 			withdraw: "PRIVAT NYCKEL / TA UT",
 			backLongTextFontSize: "9px",
-			backPaperWallet: "BITCOIN PAPER WALLET",
+			backPaperWallet: "Lisk PAPER WALLET",
 			backAmount: "Insatt belopp",
 			backDate: "Datum",
 			backNotes: "Anteckningar:",
 			backInst1: "För att sätta in bitcoin: använd den publika adressen.",
-			backInst2: "Kontrollera saldot genom att söka efter den publika adressen på till exempel blockchain.info",
+			backInst2: "Kontrollera saldot genom att söka efter den publika adressen på till exempel https://explorer.lisk.io",
 			backInst3: "<strong>ANVÄND ELLER VISA INTE DEN PRIVATA NYCKELN</strong> förrän det är dags att flytta saldot till en bitcoinklient, börs eller online-plånbok.",
 			backInst4: "När du flyttar bitcoin från en paperwallet bör du alltid <strong>TÖMMA DEN HELT</strong>. Om du inte gör det riskerar du att förlora kvarvarande bitcoin.<br /><br />Frågor? Besök bitcoinpaperwallet.com",
 		}
 	};
-	
+
 	drawOpts.text = translations[whichLanguage];
 
-	if (!whichDesign) whichDesign = 'default';	
+	if (!whichDesign) whichDesign = 'default';
 
 	// show the language menu if we're using the default design
 	if (whichDesign == 'default') {
@@ -13781,7 +13775,7 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 	}
 
 	// if we used the dropdown menu to select an alt-coin, we need to reload the page altogether.
-	if (!isOnLoad && whichDesign.substring(0,4) == 'alt-') window.location='?design=' + whichDesign;
+	if (!isOnLoad && whichDesign.substring(0,4) == 'alt-' || !isOnLoad && whichDesign == 'bitcoin') window.location='?design=' + whichDesign;
 	// if we're already using an altcoin, reload the page no matter which design we choose.
 	if (!isOnLoad && window.networkVersion != 0x00 ) window.location='?design=' + whichDesign;
 
@@ -13819,8 +13813,8 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 
 	window.frontJPG=myFront;
 	window.designChoice=whichDesign;
-	
-	// if the front artwork is ready, set it to either the correspondong JPG, or draw it	
+
+	// if the front artwork is ready, set it to either the correspondong JPG, or draw it
 	if (document.getElementById('papersvg1') != null) {
 		if (whichDesign == 'default') {
 			document.getElementById("papersvg1").src = PaperWallet.draw.frontImage(document.getElementById("btcaddress1").innerHTML, drawOpts);
@@ -13828,12 +13822,12 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 			document.getElementById('papersvg1').src=myFront;
 		}
 	}
-	
+
 	// set back
 	document.getElementById('backsvg1').src=myBack;
 	document.getElementById('designPreview').src=myPreview;
 	document.getElementById('designPicker').value = whichDesign; // force menu option in case it was picked during onload.
-	document.getElementById('langPicker').value = whichLanguage; 
+	document.getElementById('langPicker').value = whichLanguage;
 }
 
 function setDenomination(valueAndUnit) {
