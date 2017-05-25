@@ -97,10 +97,10 @@ function setCryptoCurrency(toThis) {
 	switch (toThis)
 	{
 	case 'Lisk':
-	  window.networkVersion = 0x00;
-	  window.privateKeyPrefix = 0x88;
-	  window.WIFPrefix = '5L';
-	  window.compressedWIFPrefix = 'w';
+	window.networkVersion = 0x00;
+	window.privateKeyPrefix = 0x80;
+	window.WIFPrefix = '5';
+	window.compressedWIFPrefix = '[LK]';
 		document.title = 'Lisk paper wallet';
 	  break;
 	case 'Bitcoin':
@@ -228,13 +228,11 @@ if (!Array.prototype.map) {
 	</script>
 
 <script type="text/javascript">
-/*
 /*!
 * JS nacl
 * https://github.com/tonyg/js-nacl
 * js-nacl is written by Tony Garnock-Jones tonygarnockjones@gmail.com and is licensed under the MIT license:
 * https://github.com/tonyg/js-nacl#license
-*/
 */
 var nacl_factory = {
   instantiate: function (on_ready, optionsOpt) {
@@ -12098,6 +12096,7 @@ ninja.publicKey = {
 		// determine which type number is big enough for the input text length
 		getTypeNumber: function (text) {
 			var lengthCalculation = text.length * 8 + 12; // length as calculated by the QRCode
+			console.log(lengthCalculation);
 			if (lengthCalculation < 72) { return 1; }
 			else if (lengthCalculation < 128) { return 2; }
 			else if (lengthCalculation < 208) { return 3; }
@@ -12444,11 +12443,41 @@ ninja.publicKey = {
 
 
 <script type="text/javascript">
+var naclInstance;
+nacl_factory.instantiate(function (nacl) {
+	naclInstance = nacl;
+});
+function ab2str(buf) {
+  return String.fromCharCode.apply(null, new Uint16Array(buf));
+}
 
-var liskWalletGenerator = function (passphrase) {
-
-
-
+function str2ab(str) {
+  var buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
+  var bufView = new Uint16Array(buf);
+  for (var i=0, strLen=str.length; i<strLen; i++) {
+    bufView[i] = str.charCodeAt(i);
+  }
+  return buf;
+}
+var liskWalletGenerator = {
+	sha256hash: function (stringToHash) {
+		return naclInstance.crypto_hash_sha256(naclInstance.encode_utf8(stringToHash));
+	},
+	bufferToHex: function (buffer) {
+		return naclInstance.to_hex(buffer);
+	},
+	hexToBuffer: function (hex) {
+		return naclInstance.from_hex(hex);
+	},
+	createKeyPair: function (secret) {
+		var sha256Hash = this.sha256hash(secret, 'utf8');
+		var keypair = naclInstance.crypto_sign_seed_keypair(sha256Hash);
+		console.log(keypair);
+		return {
+			privateKey: this.bufferToHex(keypair.signSk),
+			publicKey: this.bufferToHex(keypair.signPk)
+		};
+	}
 
 }
 
@@ -12556,12 +12585,15 @@ var liskWalletGenerator = function (passphrase) {
 		},
 
 		generateNewWallet: function(addressSeed, callback) {
-      console.log('generateNewWallet1',addressSeed);
+
 			if (addressSeed == null) {
 				var key = new Bitcoin.ECKey(false);
 				addressSeed = { address: key.getBitcoinAddress(), wifKey: key.getBitcoinWalletImportFormat() };
+
+				var keypair = liskWalletGenerator.createKeyPair(key.getBitcoinHexFormat());
+				addressSeed = { address: keypair.publicKey, wifKey: key.getBitcoinHexFormat() };
 			}
-      console.log('generateNewWallet2',addressSeed);
+
 			ninja.wallets.paperwallet.lastwallet = addressSeed;
 			if (ninja.wallets.paperwallet.encrypt) {
 				document.getElementById("busyblock").className = "busy";
@@ -12629,9 +12661,9 @@ var liskWalletGenerator = function (passphrase) {
 			};
 
 			var keyValuePair = {};
-      console.log(bitcoinAddress, privateKey);
 			keyValuePair["qrcode_public" + idPostFix] = bitcoinAddress;
 			keyValuePair["qrcode_private" + idPostFix] = privateKey;
+      console.log(keyValuePair);
 			ninja.qrCode.showQrCode(keyValuePair, 2.75);
 			document.getElementById("btcaddress" + idPostFix).innerHTML = bitcoinAddress;
 			document.getElementById("dupbtcaddress" + idPostFix).innerHTML = bitcoinAddress;
@@ -12646,7 +12678,9 @@ var liskWalletGenerator = function (passphrase) {
 			}
 			else {
 				document.getElementById("btcprivwif" + idPostFix).innerHTML = privateKey;
+				document.getElementById("btcprivwif" + idPostFix).style.fontSize = '11px';
 				document.getElementById("dupbtcprivwif" + idPostFix).innerHTML = privateKey;
+				document.getElementById("dupbtcprivwif" + idPostFix).style.fontSize = '11px';
 				document.getElementById("wallettype" + idPostFix).innerHTML = '';
 				drawOpts.color = colors['default'];
 				if (window.designChoice != 'default') document.getElementById("wallettype" + idPostFix).innerHTML = ''; // special designs should have this burned into the JPG
