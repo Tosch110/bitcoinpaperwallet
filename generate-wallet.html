@@ -10659,7 +10659,7 @@ Bitcoin.Util = {
 
 		#paperarea .artwallet .btcaddress
 		{
-		    position: absolute; top: 275px; left: 40px; z-index: 100; background-color: transparent;
+		    position: absolute; top: 275px; left: 40px; z-index: 100; background: rgba(255,255,255,0.7);
 		    color: #000000; margin: 0;
 				-webkit-transform-origin:top left;
 				/* -webkit-transform:rotate(-90deg); */
@@ -10675,7 +10675,7 @@ Bitcoin.Util = {
 
 		#paperarea .artwallet .dupbtcaddress
 		{
-		    position: absolute; top: 45px; left: 40px; z-index: 100; background-color: transparent;
+		    position: absolute; top: 45px; left: 40px; z-index: 100; background: rgba(255,255,255,0.7);
 		    color: #000000; margin: 0;
 				/* -webkit-transform-origin:top left; */
 				-webkit-transform:rotate(-180deg);
@@ -10691,7 +10691,7 @@ Bitcoin.Util = {
 
 		#paperarea .artwallet .btcprivwif, #paperarea .artwallet .btcencryptedkey
 		{
-		    position: absolute; top: 245px; left: 610px; z-index: 100; background-color: transparent;
+		    position: absolute; top: 245px; left: 610px; z-index: 100; background: rgba(255,255,255,0.7);
 		    color: #000000; margin: 0;
 				-webkit-transform-origin:top left;
 				/*-webkit-transform:rotate(-90deg);*/
@@ -10707,7 +10707,7 @@ Bitcoin.Util = {
 
 		#paperarea .artwallet .dupbtcprivwif, #paperarea .artwallet .dupbtcencryptedkey
 		{
-		    position: absolute; top: 75px; left: 610px; z-index: 100; background-color: transparent;
+		    position: absolute; top: 75px; left: 610px; z-index: 100; background: rgba(255,255,255,0.7);
 		    color: #000000; margin: 0;
 				/* -webkit-transform-origin:top left; */
 				-webkit-transform:rotate(-180deg);
@@ -11128,7 +11128,7 @@ Bitcoin.Util = {
                         <p style="margin-top: 0;"><strong>Change your wallet's design, language, or cryptocurrency here:</strong>
                           <select name="designPicker" id="designPicker" style="font-size: 12px;" onChange="setDesign(this.value, false);">
 														<option value="default">Lisk LSK</option>
-                            <option value="bitcoin">Bitcoin Design</option>
+                            <!--<option value="bitcoin">Bitcoin Design</option>
                             <option value="blackwhite">Black &amp; White Bitcoin</option>
                             <option value="holiday">Holiday / Christmas Bitcoin (English)</option>
                             <option value="chinese-new-year">Chinese New Year Bitcoin (Simplified Chinese)</option>
@@ -11140,6 +11140,7 @@ Bitcoin.Util = {
                             <option value="alt-dogecoin">Dogecoin DOGE</option>
                             <option value="counterparty">Counterparty XCP</option>
                             <option value="alt-testnet">"Testnet"</option>
+                            -->
                           </select>
                           <select name="langPicker" id="langPicker" style="font-size: 12px; display: inline;" onChange="setDesign('default', false, this.value);">
                             <option value="english">English</option>
@@ -11572,8 +11573,12 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 
 		<div id="footer" class="footer">
 			<div class="authorbtc">
-				<div>
-					<span class="item" id="footerlabeldonations"><b>Donations keep this service open &amp; free!</b></span>
+                <div>
+                    <span class="item"><b>Donations for the Lisk Paperwallet Service</b></span>
+                    <span class="item" style="font-size: 11px; font-family: 'Courier New', Courier, monospace;">
+                        <strong>Lisk</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4554893625809998950L  | Delegate: tosch
+                    </span>
+                    <span class="item" id="footerlabeldonations"><b>Donations for the original bitcoinpaperwallet implimentation to keep this service open &amp; free!</b></span>
                     <span class="item" style="font-size: 11px; font-family: 'Courier New', Courier, monospace;">
                     <strong>Bitcoin</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1Pjg628vjMLBvADrPHsthtzKiryM2y46DG<br />
                     <strong>Litecoin</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LYrGQmrvba7qJZUD7Jt4S1iejE5ndhw3CE<br />
@@ -11583,7 +11588,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                     including pointbiz of <strong>bitaddress.org</strong>.</span>
 
 
-				</div>
+                </div>
 			</div>
 			<div class="authorpgp">
 
@@ -11606,8 +11611,8 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                 </div>
 
             	<span class="item"><b>Security &amp; signatures</b></span>
-                <span class="item" style="font-size: 90%;">For <a href="https://bitcoinpaperwallet.com/#security" target="_blank">secure wallet generation</a>, do not print wallets "live" from bitcoinpaperwallet.com.<br />Instead, download this generator from GitHub and run the HTML as a "local" file:</span>
-				<span class="item"><a href="https://github.com/cantonbecker/bitcoinpaperwallet" target="_blank" id="footerlabelgithub"><strong>Secure Download</strong> (GitHub ZIP file)</a></span>
+                <span class="item" style="font-size: 90%;">For <a href="https://bitcoinpaperwallet.com/#security" target="_blank">secure wallet generation</a>, do not print wallets "live" from paperwallet.lisk.io.<br />Instead, download this generator from GitHub and run the HTML as a "local" file:</span>
+				<span class="item"><a href="https://github.com/tosch110/liskpaperwallet" target="_blank" id="footerlabelgithub"><strong>Secure Download</strong> (GitHub ZIP file)</a></span>
 
 				<span class="item" id="footerlabelsig" style="font-size: 90%;"><a href="#" onClick="document.getElementById('siginfo').style.display='block'; return(false);">Validate PGP/GPG signature</a></span>
 
@@ -11615,7 +11620,7 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
 
 			</div>
 			<div class="copyright">
-				<span id="footerlabelcopyright1">&copy; The folding wallet design and tamper-evident seals are Copyright 2016 by Canton Becker.</span>
+				<span id="footerlabelcopyright1">&copy; The folding wallet design and tamper-evident seals are Copyright 2016 by Canton Becker, forked and modified by Tobias Schwarz 2017.</span>
 				<span id="footerlabelcopyright2">This software may be modified and redistributed as per the MIT/GPL/BSD/Apache licenses described in the HTML source code. However, the folding paper wallet design itself may not be modified or redistributed for commercial purposes without permission.</span><br />
 				<span id="footerlabelnowarranty"><strong>This software and service is provided with no warranty. Use at your own risk.</strong></span>
 
@@ -12469,10 +12474,18 @@ var liskWalletGenerator = {
 	hexToBuffer: function (hex) {
 		return naclInstance.from_hex(hex);
 	},
+    createKeyPairFromAB: function (bytes) {
+		var sha256Hash = this.sha256hash(ab2str(bytes));
+	    var keypair = naclInstance.crypto_sign_seed_keypair(sha256Hash);
+	    return {
+		    privateKey: this.bufferToHex(keypair.signSk),
+		    publicKey: this.bufferToHex(keypair.signPk)
+	    };
+
+    },
 	createKeyPair: function (secret) {
 		var sha256Hash = this.sha256hash(secret, 'utf8');
 		var keypair = naclInstance.crypto_sign_seed_keypair(sha256Hash);
-		console.log(keypair);
 		return {
 			privateKey: this.bufferToHex(keypair.signSk),
 			publicKey: this.bufferToHex(keypair.signPk)
@@ -12590,8 +12603,14 @@ var liskWalletGenerator = {
 				var key = new Bitcoin.ECKey(false);
 				addressSeed = { address: key.getBitcoinAddress(), wifKey: key.getBitcoinWalletImportFormat() };
 
-				var keypair = liskWalletGenerator.createKeyPair(key.getBitcoinHexFormat());
-				addressSeed = { address: keypair.publicKey, wifKey: key.getBitcoinHexFormat() };
+				//1) Use ByteArray from bitcoinprivatekeybytearray of the generated random
+                //2) Stringify bytearray
+                //3) Sha256 2)
+                //4) Hex 3)
+                //5) Create KeyPair a la typical Lisk way
+				var shaHash = liskWalletGenerator.bufferToHex(liskWalletGenerator.sha256hash(key.getBitcoinPrivateKeyByteArray().toString()));
+				var keypair = liskWalletGenerator.createKeyPair(shaHash);
+				addressSeed = { address: keypair.publicKey, wifKey: shaHash };
 			}
 
 			ninja.wallets.paperwallet.lastwallet = addressSeed;
