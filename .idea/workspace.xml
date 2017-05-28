@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="780d1db4-d407-4889-b024-6218f02d0926" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generate-wallet.html" afterPath="$PROJECT_DIR$/generate-wallet.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,19 +17,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="generate-wallet.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="generate-wallet.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generate-wallet.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="10709" column="0" lean-forward="false" selection-start-line="10709" selection-start-column="0" selection-end-line="10709" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="11273" column="35" lean-forward="false" selection-start-line="11273" selection-start-column="35" selection-end-line="11273" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1496015089000" expanded="true" signature="930403:930629" ph="..." />
+                <marker date="1496015089000" expanded="false" signature="930599:930615" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
@@ -58,6 +60,7 @@
       <find>liskwallet</find>
       <find>ECKey</find>
       <find>btcaddress</find>
+      <find>BIP</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -72,8 +75,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/generate-wallet.html" />
         <option value="$PROJECT_DIR$/README" />
+        <option value="$PROJECT_DIR$/generate-wallet.html" />
       </list>
     </option>
   </component>
@@ -826,12 +829,12 @@
       <workItem from="1495754848084" duration="778000" />
       <workItem from="1495804377404" duration="81000" />
       <workItem from="1495826845042" duration="3029000" />
-      <workItem from="1496012950082" duration="466000" />
+      <workItem from="1496012950082" duration="1091000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4354000" />
+    <option name="totallyTimeSpent" value="4979000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="959" extended-state="6" />
@@ -884,6 +887,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1496015089000" expanded="true" signature="930403:930629" ph="..." />
+            <marker date="1496015089000" expanded="false" signature="930599:930615" ph="..." />
           </folding>
         </state>
       </provider>
@@ -902,6 +907,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1496015089000" expanded="true" signature="930403:930629" ph="..." />
+            <marker date="1496015089000" expanded="false" signature="930599:930615" ph="..." />
           </folding>
         </state>
       </provider>
@@ -920,6 +927,8 @@
           <caret line="12443" column="0" lean-forward="true" selection-start-line="12443" selection-start-column="0" selection-end-line="12443" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1496015089000" expanded="true" signature="930403:930629" ph="..." />
+            <marker date="1496015089000" expanded="false" signature="930599:930615" ph="..." />
           </folding>
         </state>
       </provider>
@@ -940,21 +949,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate-wallet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="10709" column="0" lean-forward="false" selection-start-line="10709" selection-start-column="0" selection-end-line="10709" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate-wallet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="11273" column="35" lean-forward="false" selection-start-line="11273" selection-start-column="35" selection-end-line="11273" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1496015089000" expanded="true" signature="930403:930629" ph="..." />
+            <marker date="1496015089000" expanded="false" signature="930599:930615" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
