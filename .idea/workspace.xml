@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="780d1db4-d407-4889-b024-6218f02d0926" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/generate-wallet.html.sig" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generate-wallet.html" afterPath="$PROJECT_DIR$/generate-wallet.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,25 +19,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="generate-wallet.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="generate-wallet.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generate-wallet.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="558">
-              <caret line="10709" column="104" lean-forward="false" selection-start-line="10709" selection-start-column="104" selection-end-line="10709" selection-end-column="104" />
+              <caret line="10709" column="0" lean-forward="false" selection-start-line="10709" selection-start-column="0" selection-end-line="10709" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1495834149000" expanded="true" signature="887383:887430" ph="..." />
-                <marker date="1495834149000" expanded="true" signature="916172:916187" ph="..." />
-                <marker date="1495834149000" expanded="true" signature="916189:916196" ph="×" />
-                <marker date="1495834149000" expanded="true" signature="916556:916571" ph="..." />
-                <marker date="1495834149000" expanded="true" signature="916573:916581" ph="&amp;##10004;" />
-                <marker date="1495834149000" expanded="true" signature="917057:917072" ph="..." />
-                <marker date="1495834149000" expanded="true" signature="917074:917082" ph="&amp;##10004;" />
-                <marker date="1495834149000" expanded="true" signature="917252:917267" ph="..." />
-                <marker date="1495834149000" expanded="true" signature="917269:917276" ph="×" />
-                <marker date="1495834149000" expanded="true" signature="1094925:1094940" ph="..." />
-                <marker date="1495834149000" expanded="true" signature="1095003:1095009" ph="&amp;nbsp;" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-23">
+              <caret line="97" column="15" lean-forward="false" selection-start-line="97" selection-start-column="15" selection-end-line="97" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -46,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,6 +75,7 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/generate-wallet.html" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
@@ -88,7 +88,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="967" />
+    <option name="height" value="959" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -106,22 +106,22 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bitcoinpaperwallet" />
+              <option name="myItemId" value="liskpaperwallet" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bitcoinpaperwallet" />
+              <option name="myItemId" value="liskpaperwallet" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -428,6 +428,7 @@
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JRubyCucumberRunConfigurationType" factoryName="JRuby Cucumber">
@@ -669,6 +670,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -821,14 +828,15 @@
       <workItem from="1495754848084" duration="778000" />
       <workItem from="1495804377404" duration="81000" />
       <workItem from="1495826845042" duration="3029000" />
+      <workItem from="1496012950082" duration="346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3888000" />
+    <option name="totallyTimeSpent" value="4234000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="967" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="959" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -878,17 +886,24 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1495834149000" expanded="true" signature="887383:887430" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916172:916187" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916189:916196" ph="×" />
-            <marker date="1495834149000" expanded="true" signature="916556:916571" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916573:916581" ph="&amp;##10004;" />
-            <marker date="1495834149000" expanded="true" signature="917057:917072" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="917074:917082" ph="&amp;##10004;" />
-            <marker date="1495834149000" expanded="true" signature="917252:917267" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="917269:917276" ph="×" />
-            <marker date="1495834149000" expanded="true" signature="1094925:1094940" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="1095003:1095009" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate-wallet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -907,17 +922,6 @@
           <caret line="12443" column="0" lean-forward="true" selection-start-line="12443" selection-start-column="0" selection-end-line="12443" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1495834149000" expanded="true" signature="887383:887430" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916172:916187" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916189:916196" ph="×" />
-            <marker date="1495834149000" expanded="true" signature="916556:916571" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916573:916581" ph="&amp;##10004;" />
-            <marker date="1495834149000" expanded="true" signature="917057:917072" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="917074:917082" ph="&amp;##10004;" />
-            <marker date="1495834149000" expanded="true" signature="917252:917267" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="917269:917276" ph="×" />
-            <marker date="1495834149000" expanded="true" signature="1094925:1094940" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="1095003:1095009" ph="&amp;nbsp;" />
           </folding>
         </state>
       </provider>
@@ -933,7 +937,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -941,21 +945,18 @@
     <entry file="file://$PROJECT_DIR$/generate-wallet.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
-          <caret line="10709" column="104" lean-forward="false" selection-start-line="10709" selection-start-column="104" selection-end-line="10709" selection-end-column="104" />
+          <caret line="10709" column="0" lean-forward="false" selection-start-line="10709" selection-start-column="0" selection-end-line="10709" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1495834149000" expanded="true" signature="887383:887430" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916172:916187" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916189:916196" ph="×" />
-            <marker date="1495834149000" expanded="true" signature="916556:916571" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="916573:916581" ph="&amp;##10004;" />
-            <marker date="1495834149000" expanded="true" signature="917057:917072" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="917074:917082" ph="&amp;##10004;" />
-            <marker date="1495834149000" expanded="true" signature="917252:917267" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="917269:917276" ph="×" />
-            <marker date="1495834149000" expanded="true" signature="1094925:1094940" ph="..." />
-            <marker date="1495834149000" expanded="true" signature="1095003:1095009" ph="&amp;nbsp;" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-23">
+          <caret line="97" column="15" lean-forward="false" selection-start-line="97" selection-start-column="15" selection-end-line="97" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
