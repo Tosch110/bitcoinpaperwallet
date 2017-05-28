@@ -11269,15 +11269,16 @@ Find your scissors! The final step is to cut out your wallet, fold it, and seal 
                     <div style="float: left; font-size: 12px;"><a href="#" onClick="document.getElementById('selfinfo').style.display='block'; return(false);"><strong>Help me!</strong> (How to enter keys, roll dice...)</a></div>
                     </p>
                     </div>
+                    <!-- ENABLE  WITH DISPLAY IN ORDER TO ACTIVATE BIP ENCODING: NEEDS TO BE MODIFIED FOR LISK -->
+					<div id="paperadvancedcommands" style="display: none;">
 
-					<div id="paperadvancedcommands">
-						<!-- TODO: ENABLE IN ORDER TO ACTIVATE BIP ENCODING: NEEDS TO BE MODIFIED FOR LISK
-						<input type="checkbox" id="paperencrypt" onChange="ninja.wallets.paperwallet.toggleEncryptSettings(this.checked);" />BIP38 Encrypt
-						<div id="paperencryptstatus" class="hide">
-							<div id="paperencryptpassphrase"></div>
-                            <input type="button" value="Change Passphrase" onClick="ninja.wallets.paperwallet.toggleEncryptSettings(true);" style="font-size: 10px;">
-						</div>
-						-->
+                            <input type="checkbox" id="paperencrypt" onChange="ninja.wallets.paperwallet.toggleEncryptSettings(this.checked);" />BIP38 Encrypt
+                            <div id="paperencryptstatus" class="hide">
+                                <div id="paperencryptpassphrase"></div>
+                                <input type="button" value="Change Passphrase" onClick="ninja.wallets.paperwallet.toggleEncryptSettings(true);" style="font-size: 10px;">
+                            </div>
+                        </p>
+
 					</div>
 
 					<div id="paperbip38settings">
