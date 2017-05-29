@@ -1,11 +1,15 @@
 **** LOOKING FOR THE ZIP FILE TO DOWNLOAD? ************************************
-If you're on already at https://github.com/cantonbecker/bitcoinpaperwallet
-Then just look for the button that says "Download ZIP". Look to your right -->
+Just look for the button that says "Download ZIP". Look to your right -->
 *******************************************************************************
 
-*** bitcoinpaperwallet.com ***
+*** Liskpaperwallet ***
 
-This project is a fork of bitaddress.org, the original trustworthy
+This project is a fork of bitcoinpaperwallet.com, the initiative to generate secure,
+trustworthy, save storage of Bitcoin, Litecoin and Dogecoin.
+
+*** Bitcoinpaperwallet ***
+
+Bitcoinpaperwallet is a fork of bitaddress.org, the original trustworthy
 JavaScript powered offline bitcoin address generator. 
 
 This attractive paper wallet design is two-sided and folds up to
@@ -57,36 +61,13 @@ All cryptographic functions are verifiably identical to those in bitaddress.org.
 After downloading the ZIP package for this generator, you should find a file 
 named generate-wallet.html.sig which you can use to:
 
-* Verify that generate-wallet.html hasn't been tampered with, and
-* Get proof that it really was authored by Canton Becker (canton@gmail.com) 
-  whose GPG public key and fingerprint should be confirmed at http://cantonbecker.com
-  and/or by searching bitcointalk.org, etc.
-  
-For example, if you have GPG installed, you should be able cd to the appropriate 
-directory and type in these two commands:
-
-  gpg --recv-key 36E1D9B6
-  gpg --verify --with-fingerprint generate-wallet.html.sig generate-wallet.html 
-
-And then verify the resulting signature's fingerprint against Canton Becker's
-published fingerprint at http://cantonbecker.com
-
-If you get warnings like "This key is not certified, there is no indication that
-the key belongs to the owner" do not worry, this is normal.
-
-
-*** DONATIONS ***
-
-To support ongoing development of this project, please consider making a donation or
-purchasing wallet-making supplies or the Ubuntu LiveCD with this software here:
-
-https://bitcoinpaperwallet.com/#purchase
-https://bitcoinpaperwallet.com/#donate
-
-Special thanks to pointbiz/bitaddress.org and Artiom Chilaru/flexlabs.org for 
-their significant contributions to this software.
+* Verify that generate-wallet.html hasn't been tampered with
 
 *** LICENSE ***
+
+© 2017 Tobias Schwarz, Lisk Fork and implementation into bitcoinpaperwallet.com from Canton Becker.
+
+Original Paperwallet implementation:
 
 © Copyright 2014 Canton Becker. This software may be modified and redistributed as 
 per the MIT/GPL/BSD/Apache licenses included in the HTML and JavaScript source. However, 
@@ -97,11 +78,8 @@ for personal use.
 
 {{{{ THIS SOFTWARE AND SERVICE IS PROVIDED WITHOUT WARRANTY. USE AT YOUR OWN RISK. }}}}
 
-- Canton Becker
-http://cantonbecker.com
-canton@gmail.com
-
-
+Contact: Tobias Schwarz
+toschdev@gmail.coms
 
 ----------------------------------------------------------
 --- The original bitaddress.org README continues below ---
@@ -116,13 +94,9 @@ XMLHttpRequest's (no AJAX). The benefit of this technique is you can load the
 JavaScript locally and trust that the JavaScript did not change after being 
 loaded. 
 
-Here is a link to the BitcoinTalk.org forum topic discussing this project:
-https://bitcointalk.org/index.php?topic=43496.0
-
-
-Please send DONATIONS for this project to Bitcoin Address: 
-1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
-
+Donations:
+Lisk: 4554893625809998950L
+Delegate: tosch
 
 END USER NOTES: 
  1) To print QRCode in IE8 you must enable the "Print Background Colors and 
