@@ -1,0 +1,79 @@
+
+  generate-wallet.html (from https://bitcoinpaperwallet.com)
+
+  Contact: Canton Becker / canton@gmail.com / www.cantonbecker.com
+
+  generate-wallet.html is always distributed with a PGP signature "generate-wallet.html.sig" which you
+  can use to validate the integrity and authorship of this file like so:
+
+  gpg --recv-key 36E1D9B6
+  gpg --verify --with-fingerprint generate-wallet.html.sig generate-wallet.html
+
+The bitcoinpaperwallet.com folding wallet design may not be used for commercial use
+  without permission. The design of the bitcoin hologram sticker used to seal these wallets
+  is copyrighted. As a courtesy, please do not modify this software in such a way that the
+  links to purchase hologram stickers and wallet making supplies are removed or pointed elsewhere.
+
+  This software (HTML and JavaScript) is ©Copyright 2016 Canton Becker and bitaddress.org
+  and licensed under the MIT license.
+
+  Special thanks to pointbiz/bitaddress.org, Artiom Chilaru/flexlabs.org, and Martin Ankerl
+  for significant contributions to this software.
+
+  ****************************************************************************************
+  ****************************************************************************************
+  * Contributions to support the bitcoinpaperwallet.com developers are extremely welcome.
+  * Donations are shared between Canton Becker, Artiom Chilaru (BIP38 implementation)
+  * Martin Ankerl (guilloche patterns), and 'pointbiz' (original bitaddress.org code)
+  * Bitcoin Donation Address: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG
+* GitHub Repository: 	https://github.com/cantonbecker/bitcoinpaperwallet
+  ****************************************************************************************
+* The starting point for this code was the excellent single-file bitaddress.org project.
+  * Bitcoin Donation Address: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
+* GitHub Repository:	https://github.com/pointbiz/bitaddress.org
+  ****************************************************************************************
+  ****************************************************************************************
+
+  Portions of this code are copyrighted by their respective authors - see below.
+
+Notice of Copyrights and Licenses:
+***********************************
+The bitaddress.org project, software and embedded resources are copyright bitaddress.org.
+
+Portions of the all-in-one HTML document contain JavaScript codes that are the copyrights of others.
+The individual copyrights are included throughout the document along with their licenses.
+Included JavaScript libraries are separated with HTML script tags.
+
+Summary of JavaScript functions with a redistributable license:
+JavaScript function		License
+*******************		***************
+Array.prototype.map		Public Domain
+window.Crypto			BSD License
+window.SecureRandom		BSD License
+window.EllipticCurve	BSD License
+window.BigInteger		BSD License
+window.QRCode			MIT License
+window.Bitcoin			MIT License
+window.Crypto_scrypt	MIT License
+ninja.(*)				MIT License				// from bitaddress.org
+parser.setUA			GPLv2 & MIT				// Browser User Agent detection
+jsqrcode				Apache License, 2.0		// QR Code scanning from webcam
+
+This HTML file and the graphics required to make it work are available under The MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject
+to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+GitHub Repository: https://github.com/cantonbecker/bitcoinpaperwallet
