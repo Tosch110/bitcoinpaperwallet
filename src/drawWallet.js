@@ -836,14 +836,14 @@ function setDesign (whichDesign, isOnLoad, whichLanguage) {
 
 	// reload background and add altcoin donation addresses if necessary
 	if (isOnLoad && whichDesign.substring(0,4) == 'alt-') {
-		document.getElementById('logoback').style.backgroundImage = 'url(images/logo-' + whichDesign + '.png)';
+		document.getElementById('logoback').style.backgroundImage = 'url(../images/logo-' + whichDesign + '.png)';
 	}
 
 	// now deal with JPG-style backgrounds, and apply instructions to default design
 
 	if (whichDesign == 'default') {
 		var myFront = './images/front-300dpi.jpg';
-		var myBack = './images/back-300dpi.jpg';
+		var myBack = './images/back-300dpi_lisk.jpg';
 		var myPreview = './images/finished-sample-sealed.jpg';
 		// setup proper back text translation & controls
 		document.getElementById('backTextControl').style.display='block';

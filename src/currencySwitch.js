@@ -4,6 +4,13 @@ function setCryptoCurrency(toThis) {
 	window.currencyName = toThis;
 	switch (toThis)
 	{
+	case 'Lisk':
+		window.networkVersion = 0x00;
+		window.privateKeyPrefix = 0x80;
+		window.WIFPrefix = '5';
+		window.compressedWIFPrefix = '[LK]';
+		document.title = 'Lisk paper wallet';
+	  break;
 	case 'Bitcoin':
 	  window.networkVersion = 0x00;
 	  window.privateKeyPrefix = 0x80;
@@ -33,7 +40,7 @@ function setCryptoCurrency(toThis) {
 		break;
 	default:
 	  alert ('Invalid cryptocurrency "' + toThis + '" at initialization. Defaulting to Bitcoin.');
-	  setCryptoCurrency('Bitcoin');
+	  setCryptoCurrency('Lisk');
 	} // eof switch
 	return (true);
 }
@@ -58,7 +65,10 @@ switch (myDesign) {
 	case 'alt-testnet':
 		setCryptoCurrency('Testnet');
 		break;
+	case 'bitcoin':
+		setCryptoCurrency('Bitcoin');
+		break;
 	default:
-	setCryptoCurrency('Bitcoin');
-	window.suppliesURL = 'https://bitcoinpaperwallet.com/#purchase'; // remove special currency flag
+	setCryptoCurrency('Lisk');
+	window.suppliesURL = 'https://liskpaperwallet.com/#purchase'; // remove special currency flag
 }
